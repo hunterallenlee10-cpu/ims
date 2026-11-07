@@ -81,7 +81,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button href={site.joinHref} className="hidden sm:inline-flex">
+          <Button href={site.joinHref} className="max-sm:hidden">
             {site.joinLabel}
           </Button>
           <button

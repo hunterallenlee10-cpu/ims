@@ -38,7 +38,7 @@ export function Section({
       id={id}
       aria-labelledby={rest["aria-labelledby"]}
       className={cn(
-        "relative isolate section-y",
+        "relative isolate overflow-x-clip section-y",
         tone === "raised" && "bg-surface/60",
         divider && "border-t border-line",
         className,

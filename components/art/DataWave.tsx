@@ -31,6 +31,7 @@ export function DataWave({
   duration = 52,
   reverse,
   opacity = 0.5,
+  fade = true,
 }: {
   className?: string;
   lines?: number;
@@ -38,7 +39,10 @@ export function DataWave({
   duration?: number;
   reverse?: boolean;
   opacity?: number;
+  /** Soft radial fade so the lines dissolve at the edges. */
+  fade?: boolean;
 }) {
+  const mask = fade ? "radial-gradient(ellipse 50% 50% at 50% 50%, #000 35%, transparent 100%)" : undefined;
   const id = `wave-grad-${String(seed).replace(".", "")}`;
   const paths = Array.from({ length: lines }, (_, i) => ribbonPath(i, lines, seed));
 
@@ -49,7 +53,7 @@ export function DataWave({
       viewBox={`0 0 ${W} ${H}`}
       preserveAspectRatio="xMidYMid slice"
       className={cn("pointer-events-none absolute", className)}
-      style={{ opacity }}
+      style={{ opacity, maskImage: mask, WebkitMaskImage: mask }}
     >
       <defs>
         {/* Symmetric gradient with a period of exactly one loop, so the drift is seamless. */}
