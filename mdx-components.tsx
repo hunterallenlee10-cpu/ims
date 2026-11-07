@@ -1,7 +1,20 @@
 import type { MDXComponents } from "mdx/types";
+import type { ComponentPropsWithoutRef } from "react";
+import { nodeText, slugify } from "@/lib/slug";
 
-// Global MDX element overrides. Article styling is handled by the .prose class,
-// so plain elements are fine here.
+// Headings get stable ids so legal pages and articles can be linked to by section.
 export function useMDXComponents(components: MDXComponents): MDXComponents {
-  return { ...components };
+  return {
+    h2: ({ children, ...props }: ComponentPropsWithoutRef<"h2">) => (
+      <h2 id={slugify(nodeText(children))} className="scroll-mt-28" {...props}>
+        {children}
+      </h2>
+    ),
+    h3: ({ children, ...props }: ComponentPropsWithoutRef<"h3">) => (
+      <h3 id={slugify(nodeText(children))} className="scroll-mt-28" {...props}>
+        {children}
+      </h3>
+    ),
+    ...components,
+  };
 }

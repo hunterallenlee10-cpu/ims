@@ -16,7 +16,12 @@ import { FoundersTeaser } from "@/components/sections/shared/FoundersTeaser";
 import { FaqList } from "@/components/sections/shared/FaqList";
 import { TwoPathsCta } from "@/components/sections/shared/TwoPathsCta";
 
-export const metadata = pageMetadata({ ...home.meta, path: "/" });
+export const metadata = pageMetadata({
+  title: `Investing Mastery Signals | ${home.meta.title}`,
+  description: home.meta.description,
+  path: "/",
+  absoluteTitle: true,
+});
 
 export default function HomePage() {
   return (

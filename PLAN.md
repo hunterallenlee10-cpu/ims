@@ -1,6 +1,6 @@
 # Investing Mastery Signals — Build Plan
 
-Status: **awaiting approval before Phase 1.**
+Status: **approved and built (Phases 1–5 complete).** Decisions: branch `claude/busy-fermi-5nsujj`, two tiers, delivery channel and cadence kept as placeholders.
 
 ## 0. Source of the design system
 
