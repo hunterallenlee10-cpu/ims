@@ -91,5 +91,5 @@ export const site = {
 
 /** True when a string still holds a [PLACEHOLDER] token. */
 export function isPlaceholder(value: string | null | undefined): boolean {
-  return !value || /\[[A-Z0-9 /_.&-]+\]/.test(value);
+  return !value || /\[[A-Z][^\]]*\]/.test(value);
 }

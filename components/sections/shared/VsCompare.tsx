@@ -3,11 +3,19 @@ import { Icon } from "@/components/ui/Icon";
 type Side = { title: string; points: string[] };
 
 /** "Their way vs our way": muted factual column, VS badge, purple-bordered column. */
-export function VsCompare({ theirs, ours }: { theirs: Side; ours: Side }) {
+export function VsCompare({
+  theirs,
+  ours,
+  labels = { theirs: "Their way", ours: "Our way" },
+}: {
+  theirs: Side;
+  ours: Side;
+  labels?: { theirs: string; ours: string };
+}) {
   return (
     <div className="relative grid gap-5 md:grid-cols-2 md:gap-8">
       <div data-reveal className="rounded-site border border-line bg-surface/50 p-7 sm:p-9">
-        <p className="eyebrow mb-4 text-muted">Their way</p>
+        <p className="eyebrow mb-4 text-muted">{labels.theirs}</p>
         <h3 className="text-h3 text-body">{theirs.title}</h3>
         <ul className="mt-7 space-y-4">
           {theirs.points.map((p) => (
@@ -32,7 +40,7 @@ export function VsCompare({ theirs, ours }: { theirs: Side; ours: Side }) {
         style={{ ["--reveal-delay" as string]: "120ms", boxShadow: "0 0 60px -20px rgba(138,30,241,0.45)" }}
         className="rounded-site border border-accent-light/70 bg-surface p-7 sm:p-9"
       >
-        <p className="eyebrow mb-4 text-accent-light">Our way</p>
+        <p className="eyebrow mb-4 text-accent-light">{labels.ours}</p>
         <h3 className="text-h3">{ours.title}</h3>
         <ul className="mt-7 space-y-4">
           {ours.points.map((p) => (
