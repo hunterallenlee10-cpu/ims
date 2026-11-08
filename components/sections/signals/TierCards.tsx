@@ -23,7 +23,7 @@ export function TierCards() {
           <li key={tier.name} data-reveal style={{ ["--reveal-delay" as string]: `${i * 120}ms` }}>
             <article
               aria-labelledby={`tier-${i}`}
-              className="relative flex h-full flex-col rounded-site border border-line bg-surface p-7 transition-colors duration-300 hover:border-accent-light/70 sm:p-9"
+              className="frame frame-hover flex h-full flex-col p-7 [--cut:22px] sm:p-9"
             >
               <span
                 aria-hidden="true"
@@ -35,11 +35,11 @@ export function TierCards() {
               </h3>
               <p className="mt-2 text-muted">{tier.blurb}</p>
               <p className="mt-7 flex flex-wrap items-baseline gap-x-2">
-                <span className="font-display text-[clamp(2.4rem,5vw,3.2rem)] font-semibold leading-none text-heading">{tier.price}</span>
+                <span className="font-display text-[clamp(2.8rem,6vw,3.8rem)] leading-none text-heading">{tier.price}</span>
                 <span className="text-muted">{tier.period}</span>
               </p>
               {tier.note ? <p className="mt-3 text-sm text-muted">{tier.note}</p> : null}
-              <div className="my-7 h-px bg-line" />
+              <div className="my-7 h-px bg-panel-line" />
               <Checklist items={tier.includes} className="flex-1" />
               <Button href={tier.joinHref} size="lg" className="mt-9 w-full">
                 Join {tier.name}

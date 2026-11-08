@@ -12,8 +12,8 @@ export function UpdateCadence() {
         {c.items.map((item, i) => (
           <li key={item.label} data-reveal style={{ ["--reveal-delay" as string]: `${i * 100}ms` }}>
             <Card rule className="h-full">
-              <p className="eyebrow text-eyebrow">{item.label}</p>
-              <p className="mt-3 font-display text-2xl font-semibold text-heading">{item.value}</p>
+              <p className="mono-label text-eyebrow">{item.label}</p>
+              <p className="mt-4 font-display text-4xl text-accent-light">{item.value}</p>
               <p className="mt-3 text-body">{item.text}</p>
             </Card>
           </li>

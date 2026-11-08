@@ -1,23 +1,19 @@
-import { Card } from "@/components/ui/Card";
-
-/** Numbered step cards joined by a thin gradient rule on desktop. */
+/** Numbered square badges joined by a thin line, title and short text under each. */
 export function StepPath({ items }: { items: { title: string; text: string }[] }) {
   return (
-    <ol className="relative grid gap-5 md:grid-cols-3 md:gap-6">
+    <ol className="relative grid gap-12 md:grid-cols-3 md:gap-8">
       <span
         aria-hidden="true"
-        className="absolute left-[16%] right-[16%] top-[3.25rem] hidden h-px md:block"
-        style={{ background: "linear-gradient(90deg, rgba(47,240,254,.0), rgba(47,240,254,.45), rgba(138,30,241,.7), rgba(138,30,241,0))" }}
+        className="absolute left-0 right-0 top-6 hidden h-px md:block"
+        style={{ background: "linear-gradient(90deg, rgba(185,70,251,0), rgba(185,70,251,.55) 15%, rgba(185,70,251,.55) 85%, rgba(185,70,251,0))" }}
       />
       {items.map((step, i) => (
-        <li key={step.title} data-reveal style={{ ["--reveal-delay" as string]: `${i * 110}ms` }}>
-          <Card className="h-full text-center" rule>
-            <span className="relative mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-full border border-accent-light/70 bg-bg font-display text-lg font-semibold text-heading">
-              {i + 1}
-            </span>
-            <h3 className="text-h3">{step.title}</h3>
-            <p className="mt-3 text-body">{step.text}</p>
-          </Card>
+        <li key={step.title} data-reveal style={{ ["--reveal-delay" as string]: `${i * 110}ms` }} className="relative text-center">
+          <span className="relative mx-auto flex h-12 w-12 items-center justify-center border-2 border-accent-light bg-accent font-mono text-sm font-semibold text-heading shadow-[inset_0_0_0_2px_var(--bg)]">
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <h3 className="mt-6 text-h3">{step.title}</h3>
+          <p className="mx-auto mt-3 max-w-xs text-body">{step.text}</p>
         </li>
       ))}
     </ol>

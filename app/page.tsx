@@ -5,11 +5,12 @@ import { pageMetadata } from "@/lib/metadata";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
 import { HomeHero } from "@/components/sections/home/HomeHero";
 import { SignalConsole } from "@/components/sections/home/SignalConsole";
 import { StatStrip } from "@/components/sections/shared/StatStrip";
 import { VsCompare } from "@/components/sections/shared/VsCompare";
-import { ProgramGrid } from "@/components/sections/shared/ProgramGrid";
+import { ProgramExplorer } from "@/components/sections/home/ProgramExplorer";
 import { StepPath } from "@/components/sections/shared/StepPath";
 import { FeatureChecklists } from "@/components/sections/shared/FeatureChecklists";
 import { FoundersTeaser } from "@/components/sections/shared/FoundersTeaser";
@@ -30,14 +31,20 @@ export default function HomePage() {
       <SignalConsole />
       <StatStrip eyebrow={home.stats.eyebrow} items={home.stats.items} />
 
-      <Section divider aria-labelledby="vs-title">
+      <Section tone="band" aria-labelledby="vs-title">
         <SectionHeader id="vs-title" eyebrow={home.vs.eyebrow} title={home.vs.title} subhead={home.vs.subhead} />
         <VsCompare theirs={home.vs.theirs} ours={home.vs.ours} />
       </Section>
 
-      <Section tone="raised" divider aria-labelledby="program-title">
+      <Section aria-labelledby="program-title">
         <SectionHeader id="program-title" eyebrow={home.program.eyebrow} title={home.program.title} subhead={home.program.subhead} />
-        <ProgramGrid items={home.program.items} />
+        <ProgramExplorer items={home.program.items} hint={home.program.hint} />
+        <div className="mt-14 flex justify-center" data-reveal>
+          <Button href="/signals" size="lg">
+            Join Signals
+            <Icon name="arrowRight" size={18} />
+          </Button>
+        </div>
       </Section>
 
       <Section divider aria-labelledby="steps-title" glow="left">
@@ -45,7 +52,7 @@ export default function HomePage() {
         <StepPath items={home.steps.items} />
       </Section>
 
-      <Section tone="raised" divider aria-labelledby="features-title">
+      <Section tone="band" aria-labelledby="features-title">
         <SectionHeader id="features-title" eyebrow={home.features.eyebrow} title={home.features.title} subhead={home.features.subhead} />
         <FeatureChecklists cards={home.features.cards} />
         <div className="mt-12 text-center" data-reveal>
@@ -55,7 +62,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section divider aria-labelledby="founders-title" glow="right">
+      <Section aria-labelledby="founders-title" glow="right">
         <SectionHeader id="founders-title" eyebrow={home.founders.eyebrow} title={home.founders.title} subhead={home.founders.subhead} />
         <FoundersTeaser founders={founders} />
         <div className="mt-12 text-center" data-reveal>
@@ -65,7 +72,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section tone="raised" divider aria-labelledby="faq-title">
+      <Section divider aria-labelledby="faq-title">
         <SectionHeader id="faq-title" eyebrow={home.faq.eyebrow} title={home.faq.title} />
         <FaqList items={pickFaqs(home.faq.ids)} />
         <div className="mt-12 text-center" data-reveal>

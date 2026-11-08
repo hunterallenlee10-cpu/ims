@@ -7,11 +7,11 @@ export const research = {
   },
   hero: {
     eyebrow: "Free research",
-    title: "Research *notes*",
+    title: "Research\n*notes.*",
     intro: "Public notes on the method and the markets. Written to explain, not to sell a call.",
   },
   articleCta: {
-    title: "Get the full *signal*",
+    title: "Get the full\n*signal.*",
     text: "Members receive the signal, change alerts and the weekly note.",
   },
   disclaimer:

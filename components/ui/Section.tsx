@@ -8,8 +8,11 @@ type Props = {
   id?: string;
   className?: string;
   containerClassName?: string;
-  /** Raised surface band instead of the page background. */
-  tone?: "default" | "raised";
+  /**
+   * default: page background. raised: faint lift.
+   * band: full-width navy band with cut corners (Business Mastery style).
+   */
+  tone?: "default" | "raised" | "band";
   /** Optional soft purple glow behind the section. */
   glow?: "center" | "left" | "right";
   /** Hairline divider at the top of the section. */
@@ -40,6 +43,7 @@ export function Section({
       className={cn(
         "relative isolate overflow-x-clip section-y",
         tone === "raised" && "bg-surface/60",
+        tone === "band" && "chamfer bg-bg-lift-1 [--cut:40px]",
         divider && "border-t border-line",
         className,
       )}

@@ -7,8 +7,8 @@ export const faqPage = {
   },
   hero: {
     eyebrow: "FAQ",
-    title: "Plain *answers*",
+    title: "Plain\n*answers.*",
     intro: "If something isn't covered here, ask us. We'd rather answer a question than leave you guessing.",
   },
-  still: { title: "Still have a *question*?", text: "Send a message and we'll reply by email.", cta: { label: "Contact us", href: "/contact" } },
+  still: { title: "Still have a\n*question?*", text: "Send a message and we'll reply by email.", cta: { label: "Contact us", href: "/contact" } },
 };

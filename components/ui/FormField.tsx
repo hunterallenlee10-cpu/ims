@@ -1,7 +1,7 @@
 import { cn } from "@/lib/cn";
 
 const control =
-  "w-full rounded-site-sm border border-line bg-surface px-4 py-3 text-heading placeholder:text-muted/70 transition-colors focus:border-accent-light focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-light aria-[invalid=true]:border-[#ff7a90]";
+  "w-full border border-panel-line bg-bg/70 px-4 py-3 text-heading placeholder:text-muted/70 transition-colors focus:border-accent-light focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-light aria-[invalid=true]:border-[#ff7a90]";
 
 type Props = {
   id: string;

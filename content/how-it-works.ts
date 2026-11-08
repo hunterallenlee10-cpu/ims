@@ -12,16 +12,16 @@ export const howItWorks = {
 
   hero: {
     eyebrow: "How it works",
-    title: "The method in plain *English*",
+    title: "The method in\n*plain English.*",
     intro:
-      "No black box. Here is what goes into a signal, how the pieces fit together, how often it updates and what a signal post looks like.",
+      "No black box. Here is **what goes into a signal**, how the pieces fit together, how often it updates and what a signal post looks like.",
   },
 
   why: {
     eyebrow: "Why systematic",
-    title: "Rules over *mood*",
+    title: "Rules over\n*mood.*",
     subhead:
-      "Discretionary investing depends on how someone feels that day. A systematic process decides the same way every time, and you can check its work.",
+      "Discretionary investing depends on how someone feels that day. **A systematic process decides the same way every time,** and you can check its work.",
     discretionary: {
       title: "Discretionary",
       points: [
@@ -43,7 +43,7 @@ export const howItWorks = {
 
   inputs: {
     eyebrow: "The three inputs",
-    title: "Three inputs. One *signal*.",
+    title: "Three inputs.\n*One signal.*",
     subhead: "Each input answers one question. Together they produce one composite state.",
     items: [
       {
@@ -79,7 +79,7 @@ export const howItWorks = {
 
   cadence: {
     eyebrow: "Timing",
-    title: "How often it *updates*",
+    title: "How often it\n*updates.*",
     subhead: "On a schedule, plus whenever a rule is triggered. [CONFIRM]",
     items: [
       { label: "Scheduled review", value: "[CADENCE]", text: "Every input is recalculated and the full signal is published, even when nothing changes." },
@@ -90,7 +90,7 @@ export const howItWorks = {
 
   delivery: {
     eyebrow: "Delivery",
-    title: "Where signals *arrive*",
+    title: "Where signals\n*arrive.*",
     subhead: "One place, the same moment, for every member.",
     channel: "[DISCORD/TELEGRAM/EMAIL]",
     points: [
@@ -103,8 +103,8 @@ export const howItWorks = {
 
   anatomy: {
     eyebrow: "Anatomy of a signal",
-    title: "What a signal post *looks like*",
-    subhead: "An annotated example. Every value is made up to show the format.",
+    title: "What a signal\n*post looks like.*",
+    subhead: "An annotated example. **Every value is made up** to show the format.",
     post: {
       badge: "Example data",
       header: "Signal update · Example asset",
@@ -133,7 +133,7 @@ export const howItWorks = {
 
   isNot: {
     eyebrow: "Clear limits",
-    title: "What a signal is *not*",
+    title: "What a signal\n*is not.*",
     items: [
       { title: "Not personal advice", text: "It does not know your goals, finances or risk tolerance." },
       { title: "Not a guarantee", text: "Signals can be wrong. Investing always carries risk of loss." },
@@ -143,7 +143,7 @@ export const howItWorks = {
   },
 
   cta: {
-    title: "See the *membership*",
+    title: "See the\n*membership.*",
     text: "Two billing options, the same signals and research on both.",
   },
 };

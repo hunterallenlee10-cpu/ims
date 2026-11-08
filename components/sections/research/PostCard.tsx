@@ -4,7 +4,7 @@ import { Icon } from "@/components/ui/Icon";
 
 export function PostCard({ post }: { post: Post }) {
   return (
-    <article className="group relative flex h-full flex-col rounded-site border border-line bg-surface p-7 transition-colors duration-300 hover:border-accent-light/70 sm:p-8">
+    <article className="frame frame-hover group flex h-full flex-col p-7 sm:p-8">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
         <time dateTime={post.date}>{formatDate(post.date)}</time>
         <span aria-hidden="true">·</span>

@@ -7,12 +7,14 @@ import { Icon } from "./Icon";
 type Variant = "primary" | "secondary";
 type Size = "md" | "lg";
 
+// Square buttons with a double border (outer line, dark gap, fill), as on the
+// Business Mastery page, in IMS purple.
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-site-sm border font-medium tracking-[0.02em] whitespace-nowrap transition-colors duration-200 select-none";
+  "inline-flex items-center justify-center gap-2 border-2 font-semibold tracking-[0.01em] whitespace-nowrap transition-colors duration-200 select-none";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-accent border-accent text-heading hover:bg-accent-hover hover:border-accent-hover",
+    "bg-accent border-accent-light text-heading shadow-[inset_0_0_0_2px_var(--bg)] hover:bg-accent-hover hover:border-accent-lighter",
   secondary:
     "bg-transparent border-accent-light text-accent-light hover:border-accent-lighter hover:text-accent-lighter hover:bg-accent-light/5",
 };

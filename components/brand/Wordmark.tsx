@@ -30,17 +30,17 @@ export function Wordmark({
     <span className="inline-flex flex-col items-center leading-none">
       <span
         className={cn(
-          "sheen whitespace-nowrap font-display font-semibold tracking-[0.08em]",
+          "sheen whitespace-nowrap font-brand font-semibold normal-case tracking-[0.08em]",
           size === "lg" ? "text-[1.3rem] sm:text-[1.45rem]" : "text-[0.95rem] sm:text-[1.05rem]",
         )}
       >
         INVESTING MASTERY
-      </span>
+      </span>{" "}
       <span className={cn("flex w-full items-center", size === "lg" ? "mt-2.5 gap-3" : "mt-1.5 gap-2")}>
         <span aria-hidden="true" className="rule-gradient flex-1" />
         <span
           className={cn(
-            "font-sans font-medium text-accent-light",
+            "font-mono font-medium text-accent-light",
             size === "lg" ? "pl-[0.6em] text-xs tracking-[0.6em]" : "pl-[0.55em] text-[0.6rem] tracking-[0.55em]",
           )}
         >
@@ -54,8 +54,9 @@ export function Wordmark({
   if (!href) return <span className={className}>{mark}</span>;
 
   return (
-    <Link href={href} className={cn("inline-flex min-h-11 items-center", className)} aria-label={`${site.name}, home`}>
+    <Link href={href} className={cn("inline-flex min-h-11 items-center", className)}>
       {mark}
+      <span className="sr-only"> home</span>
     </Link>
   );
 }

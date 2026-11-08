@@ -15,7 +15,7 @@ export default function ContactPage() {
       <PageHero eyebrow={contact.hero.eyebrow} title={contact.hero.title} intro={contact.hero.intro} />
       <Section className="!pt-4 md:!pt-8" aria-labelledby="contact-form-title">
         <div className="grid gap-12 lg:grid-cols-[1.6fr_1fr] lg:gap-16">
-          <div className="relative rounded-site border border-line bg-surface p-6 sm:p-10">
+          <div className="frame p-6 [--cut:22px] sm:p-10">
             <h2 id="contact-form-title" className="mb-8 text-h3">
               {contact.form.title}
             </h2>

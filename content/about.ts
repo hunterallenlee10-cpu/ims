@@ -36,13 +36,13 @@ export const about = {
   },
   hero: {
     eyebrow: "About us",
-    title: "Why we built a *system*",
+    title: "Why we built\n*a system.*",
     intro:
       "Investing Mastery Signals started with a simple frustration: too much opinion, not enough process. This is how it came together, who runs it, and the rules we hold ourselves to.",
   },
   timeline: {
     eyebrow: "The story",
-    title: "Year by *year*",
+    title: "Year by\n*year.*",
     subhead: "Milestones only. Each chapter gets filled in with real dates and details.",
     items: [
       { year: "[YEAR]", title: "[MILESTONE]", text: "[MILESTONE: what happened and why it mattered]", photo: null as string | null },
@@ -54,13 +54,13 @@ export const about = {
   },
   founders: {
     eyebrow: "The founders",
-    title: "Hunter Lee & Aaron *Wathen*",
-    subhead: "Two people, one written process.",
+    title: "Hunter Lee &\n*Aaron Wathen.*",
+    subhead: "Two people, **one written process.**",
   },
   principles: {
     eyebrow: "How we operate",
-    title: "Our *principles*",
-    subhead: "The rules behind the rules.",
+    title: "Our core\n*principles.*",
+    subhead: "Six rules sit behind everything we publish.",
     items: [
       { icon: "rule", title: "Rules over opinions", text: "Signals come from written rules. If we change a rule, we say what changed and why." },
       { icon: "layers", title: "One signal for everyone", text: "Every member gets the same signal at the same time. No inner circle, no early access." },

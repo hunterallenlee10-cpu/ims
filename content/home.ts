@@ -11,19 +11,22 @@ export const home = {
   },
 
   hero: {
+    chipTag: "Signals",
     eyebrow: "Systematic investment research",
-    title: "Investing Mastery Signals",
-    tagline: "The science of wealth multiplication.", // [CONFIRM tagline]
+    // "\n" breaks the line; *stars* color the second line purple.
+    title: "Investing Mastery\n*Signals.*",
     sentence:
-      "Members get a rules-based read on valuation, trend and risk, published to everyone at the same time, with the reasoning written down.",
+      "A rules-based read on valuation, trend and risk, **published to every member at the same time.**",
+    tagline: "The science of wealth multiplication.", // [CONFIRM tagline]
+    support: "No hype and no guesswork. Every signal comes with the reasoning written down, so you always know why.",
     primary: { label: "Join Signals", href: "/signals" },
     secondary: { label: "See how it works", href: "/how-it-works" },
   },
 
   console: {
     eyebrow: "Inside the signal",
-    title: "One screen. Three *inputs*.",
-    subhead: "This is what a signal update looks like. The numbers below are made up to show the format.",
+    title: "One screen.\n*Three inputs.*",
+    subhead: "This is what a signal update looks like. **The numbers below are made up** to show the format.",
     badge: "Example data",
     caption: "Illustrative only. Not a real or current signal, and not a recommendation.",
     asset: "Example asset",
@@ -47,8 +50,8 @@ export const home = {
 
   vs: {
     eyebrow: "Two ways to invest",
-    title: "Opinion or *process*",
-    subhead: "Most investors decide on feel. A system decides the same way every time.",
+    title: "Stop guessing.\n*Follow a process.*",
+    subhead: "Most investors decide on feel. **A system decides the same way every time.**",
     theirs: {
       title: "Guessing, hype and influencer calls",
       points: [
@@ -72,8 +75,9 @@ export const home = {
   // [CONFIRM list]
   program: {
     eyebrow: "What members get",
-    title: "Five parts. One *signal*.",
+    title: "Five parts.\n*One signal.*",
     subhead: "Each part is measured the same way every time, then combined into one read.",
+    hint: "Click through each one to see what it is",
     items: [
       {
         icon: "valuation",
@@ -104,9 +108,9 @@ export const home = {
   },
 
   steps: {
-    eyebrow: "The path",
-    title: "Three *steps*",
-    subhead: "Simple on purpose. The decisions stay yours.",
+    eyebrow: "Next steps",
+    title: "How it\n*works for you.*",
+    subhead: "Simple on purpose. **The decisions stay yours.**",
     items: [
       {
         title: "Join",
@@ -126,8 +130,8 @@ export const home = {
   // [CONFIRM] all inclusions
   features: {
     eyebrow: "Membership",
-    title: "What's *included*",
-    subhead: "Every member gets the same access. No upsells inside the membership.",
+    title: "Everything\n*included.*",
+    subhead: "Every member gets the same access. **No upsells inside the membership.**",
     cards: [
       {
         title: "The signals",
@@ -150,21 +154,21 @@ export const home = {
 
   founders: {
     eyebrow: "Who's behind it",
-    title: "Built by two *operators*",
+    title: "Built by two\n*operators.*",
     subhead: "Investing Mastery Signals is run by Hunter Lee and Aaron Wathen.",
     link: { label: "Read our story", href: "/about" },
   },
 
   faq: {
     eyebrow: "Questions",
-    title: "Straight *answers*",
+    title: "Straight\n*answers.*",
     ids: ["financial-advice", "guarantee", "personalized", "receive"],
     link: { label: "All questions", href: "/faq" },
   },
 
   twoPaths: {
     eyebrow: "Your call",
-    title: "Two *paths*",
+    title: "Two paths.\n*Pick one.*",
     left: {
       title: "Keep guessing",
       text: "Same headlines, same second-guessing, and no written plan for when markets turn.",

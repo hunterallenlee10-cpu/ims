@@ -1,5 +1,4 @@
 import { home } from "@/content/home";
-import { Badge } from "@/components/ui/Badge";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -25,7 +24,7 @@ export function ZScoreGauge({ value, className }: { value: number; className?: s
           <stop offset="1" stopColor="#8A1EF1" />
         </linearGradient>
       </defs>
-      <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#1A2738" strokeWidth="10" strokeLinecap="round" />
+      <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#213854" strokeWidth="10" strokeLinecap="round" />
       <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="url(#gauge-grad)" strokeWidth="3" strokeLinecap="round" />
       {ticks.map((t) => {
         const a = polar(t, 70);
@@ -43,7 +42,7 @@ export function ZScoreGauge({ value, className }: { value: number; className?: s
         );
       })}
       <line x1="100" y1="100" x2={tip.x} y2={tip.y} stroke="#F9F9FB" strokeWidth="2" strokeLinecap="round" />
-      <circle cx="100" cy="100" r="5" fill="#0D1724" stroke="#B946FB" strokeWidth="2" />
+      <circle cx="100" cy="100" r="5" fill="#0F2033" stroke="#B946FB" strokeWidth="2" />
     </svg>
   );
 }
@@ -76,7 +75,7 @@ function Sparkline({ className }: { className?: string }) {
 function Panel({ label, children, className }: { label: string; children: React.ReactNode; className?: string }) {
   return (
     <div className={cn("flex flex-col p-6 sm:p-7", className)}>
-      <p className="eyebrow text-eyebrow">{label}</p>
+      <p className="mono-label text-eyebrow">{label}</p>
       {children}
     </div>
   );
@@ -86,28 +85,41 @@ export function SignalConsole() {
   const c = home.console;
   const z = c.valuation.value;
   return (
-    <Section glow="center" aria-labelledby="console-title" className="!pt-8 md:!pt-12">
-      <SectionHeader id="console-title" eyebrow={c.eyebrow} title={c.title} subhead={c.subhead} />
+    <Section glow="center" aria-labelledby="console-title">
+      <SectionHeader
+        id="console-title"
+        eyebrow={c.eyebrow}
+        title={c.title}
+        subhead={c.subhead}
+        chip={{ tag: "Example", variant: "split" }}
+        chipIcon="pulse"
+      />
 
       <figure data-reveal className="mx-auto max-w-5xl" aria-label="Example signal console. All values are made up.">
         <div
-          className="overflow-hidden rounded-site border border-line bg-surface/95"
-          style={{ boxShadow: "0 0 0 1px rgba(185,70,251,0.08), 0 30px 120px -40px rgba(138,30,241,0.55)" }}
+          className="frame [--cut:22px]"
         >
           {/* Top bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-4 sm:px-7">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-panel-line px-5 py-4 sm:px-7">
             <div className="flex items-center gap-3">
-              <span aria-hidden="true" className="pulse-dot h-2 w-2 rounded-full bg-accent-light" />
-              <span className="eyebrow text-heading">Signal console</span>
-              <span className="hidden text-sm text-muted sm:inline">· {c.asset}</span>
+              <span aria-hidden="true" className="flex gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-panel-line" />
+                <span className="h-2.5 w-2.5 rounded-full bg-panel-line" />
+                <span className="h-2.5 w-2.5 rounded-full bg-panel-line" />
+              </span>
+              <span className="mono-label text-heading">Signal console</span>
+              <span className="mono-label hidden text-muted sm:inline">· {c.asset}</span>
             </div>
-            <Badge>{c.badge}</Badge>
+            <span className="mono-label inline-flex items-center gap-2 text-accent-light">
+              <span aria-hidden="true" className="pulse-dot h-2 w-2 rounded-full bg-accent-light" />
+              {c.badge}
+            </span>
           </div>
 
           {/* Three inputs */}
-          <div className="grid divide-y divide-line md:grid-cols-3 md:divide-x md:divide-y-0">
+          <div className="grid divide-y divide-panel-line md:grid-cols-3 md:divide-x md:divide-y-0">
             <Panel label={c.trend.label}>
-              <p className="mt-4 inline-flex w-fit items-center gap-2 rounded-site-sm border border-accent-light/60 px-3 py-1.5 text-sm font-semibold text-heading">
+              <p className="mt-4 inline-flex w-fit items-center gap-2 border border-accent-light/60 bg-bg/40 px-3 py-1.5 text-sm font-semibold text-heading">
                 <Icon name="trend" size={16} className="text-accent-light" />
                 {c.trend.value}
               </p>
@@ -118,7 +130,7 @@ export function SignalConsole() {
             <Panel label={c.valuation.label}>
               <div className="mx-auto mt-3 w-full max-w-[220px]">
                 <ZScoreGauge value={z} className="w-full" />
-                <p className="mt-1 text-center font-display text-3xl font-semibold text-heading tabular-nums">
+                <p className="mt-1 text-center font-display text-4xl text-heading tabular-nums">
                   {z > 0 ? "+" : ""}
                   {z.toFixed(2)}
                 </p>
@@ -134,8 +146,8 @@ export function SignalConsole() {
                     <span
                       key={state}
                       className={cn(
-                        "flex min-h-11 items-center justify-center rounded-site-sm border text-sm font-semibold",
-                        active ? "border-accent-light/70 bg-accent-light/10 text-heading" : "border-line text-muted",
+                        "flex min-h-11 items-center justify-center border text-sm font-semibold",
+                        active ? "border-accent-light/70 bg-accent-light/10 text-heading" : "border-panel-line text-muted",
                       )}
                     >
                       {state}
@@ -144,12 +156,12 @@ export function SignalConsole() {
                 })}
               </div>
               <div className="mt-5" aria-hidden="true">
-                <div className="flex justify-between text-xs text-muted">
+                <div className="mono-label flex justify-between !text-[0.68rem] text-muted">
                   <span>Leverage allowed</span>
                   <span>0×</span>
                 </div>
-                <div className="mt-2 h-1.5 rounded-full bg-line">
-                  <div className="h-full w-[6%] rounded-full" style={{ background: "var(--gradient-signature)" }} />
+                <div className="mt-2 h-1.5 bg-bg/60">
+                  <div className="h-full w-[6%]" style={{ background: "var(--gradient-signature)" }} />
                 </div>
               </div>
               <p className="mt-4 text-sm text-muted">{c.gate.detail}</p>
@@ -157,19 +169,19 @@ export function SignalConsole() {
           </div>
 
           {/* Bottom bar */}
-          <div className="flex flex-col gap-3 border-t border-line bg-bg/40 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-7">
+          <div className="flex flex-col gap-3 border-t border-panel-line bg-bg/30 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-7">
             <p className="text-sm">
-              <span className="eyebrow mr-3 text-eyebrow">{c.composite.label}</span>
+              <span className="mono-label mr-3 text-eyebrow">{c.composite.label}</span>
               <span className="font-semibold text-heading">{c.composite.value}</span>
             </p>
-            <p className="inline-flex items-center gap-2 text-sm text-muted">
+            <p className="mono-label inline-flex items-center gap-2 !tracking-[0.12em] text-muted">
               <Icon name="clock" size={16} className="text-accent-light" />
               {c.updated}
             </p>
           </div>
         </div>
         <figcaption className="mt-4 text-center text-sm text-muted">
-          <span className="mr-2 font-semibold uppercase tracking-[0.2em] text-accent-light">Example data.</span>
+          <span className="mono-label mr-2 font-semibold text-accent-light">Example data.</span>
           <span>{c.caption}</span>
         </figcaption>
       </figure>
