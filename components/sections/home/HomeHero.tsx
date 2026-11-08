@@ -1,10 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
+import Link from "next/link";
 import { home } from "@/content/home";
+import { renderAccent, renderRich } from "@/lib/accent";
 import { DataWave } from "@/components/art/DataWave";
 import { Glow } from "@/components/art/Glow";
 import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Chip } from "@/components/ui/Chip";
+import { CtaArrows } from "@/components/ui/CtaArrows";
+import { Icon } from "@/components/ui/Icon";
 import { TrustLine } from "@/components/ui/TrustLine";
 import { HeroVideo } from "./HeroVideo";
 
@@ -17,7 +21,7 @@ export function HomeHero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="relative isolate flex min-h-[88svh] items-center overflow-hidden pb-24 pt-[calc(var(--header-h)+3rem)] md:min-h-[94svh]"
+      className="relative isolate flex min-h-[92svh] items-center overflow-hidden border-b border-panel-line pb-20 pt-[calc(var(--header-h)+3.5rem)]"
     >
       {hasVideo ? (
         <>
@@ -30,40 +34,43 @@ export function HomeHero() {
       <DataWave
         seed={0.6}
         lines={11}
-        opacity={0.55}
+        opacity={0.5}
         duration={56}
         className="-right-[45%] -top-[8%] h-[520px] w-[1100px] max-w-none sm:-right-[25%] lg:-right-[12%] lg:-top-[14%]"
       />
       <DataWave
         seed={3.3}
         lines={9}
-        opacity={0.4}
+        opacity={0.38}
         duration={64}
         reverse
         className="-bottom-[10%] -left-[50%] h-[460px] w-[1000px] max-w-none sm:-left-[30%] lg:-left-[16%]"
       />
-      <Glow className="left-1/2 top-[42%] h-[520px] w-[900px] max-w-[160vw] -translate-x-1/2 -translate-y-1/2" strength={0.75} />
+      <Glow className="left-1/2 top-[40%] h-[520px] w-[900px] max-w-[160vw] -translate-x-1/2 -translate-y-1/2" strength={0.7} />
 
       <div className="container-site relative text-center">
-        <Eyebrow tone="platinum" className="mb-6 sm:mb-8">
-          {hero.eyebrow}
-        </Eyebrow>
-        <h1 id="hero-title" className="sheen mx-auto max-w-5xl text-[clamp(2.6rem,8.2vw,6.25rem)] leading-[1.02]">
-          {hero.title}
+        <Chip tag={hero.chipTag} label={hero.eyebrow} className="mb-8" />
+        <h1 id="hero-title" className="sheen mx-auto max-w-6xl text-[clamp(3.2rem,9.6vw,7.6rem)] leading-[0.92]">
+          {renderAccent(hero.title)}
         </h1>
-        <p className="mt-5 font-accent text-[clamp(1.45rem,3vw,2.1rem)] italic leading-snug text-accent-light">
-          {hero.tagline}
-        </p>
-        <p className="measure mx-auto mt-6 text-lg text-body md:text-xl">{hero.sentence}</p>
-        <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
-          <Button href={hero.primary.href} size="lg" className="sm:min-w-52">
-            {hero.primary.label}
-          </Button>
-          <Button href={hero.secondary.href} size="lg" variant="secondary" className="sm:min-w-52">
-            {hero.secondary.label}
-          </Button>
+        <p className="measure mx-auto mt-8 text-xl leading-relaxed text-body md:text-[1.4rem]">{renderRich(hero.sentence)}</p>
+        <p className="mt-4 font-semibold text-heading">{hero.tagline}</p>
+        <p className="measure mx-auto mt-4 text-muted">{hero.support}</p>
+        <div className="mt-10 flex justify-center">
+          <CtaArrows>
+            <Button href={hero.primary.href} size="lg" className="sm:min-w-52">
+              {hero.primary.label}
+            </Button>
+          </CtaArrows>
         </div>
-        <TrustLine className="mt-6" />
+        <TrustLine className="mt-7" />
+        <Link
+          href={hero.secondary.href}
+          className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-accent-light hover:text-accent-lighter"
+        >
+          {hero.secondary.label}
+          <Icon name="arrowRight" size={16} />
+        </Link>
       </div>
     </section>
   );

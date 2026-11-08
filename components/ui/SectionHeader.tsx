@@ -1,9 +1,12 @@
 import { cn } from "@/lib/cn";
-import { renderAccent } from "@/lib/accent";
-import { Eyebrow } from "./Eyebrow";
+import { renderAccent, renderRich } from "@/lib/accent";
+import type { IconName } from "./Icon";
+import { Chip } from "./Chip";
 
 /**
- * Eyebrow → Cinzel headline (key word in *asterisks* turns purple) → one-line muted subhead.
+ * Label → two-line condensed headline (second line in purple) → muted subhead.
+ * Pass `chip` to show a boxed label chip instead of the plain spaced label.
+ * Title formatting: "First line.\n*Second line.*"   Subhead: **bold** for emphasis.
  */
 export function SectionHeader({
   eyebrow,
@@ -12,6 +15,8 @@ export function SectionHeader({
   align = "center",
   id,
   as: Tag = "h2",
+  chip,
+  chipIcon,
   className,
 }: {
   eyebrow?: string;
@@ -20,6 +25,8 @@ export function SectionHeader({
   align?: "center" | "left";
   id?: string;
   as?: "h1" | "h2";
+  chip?: { tag?: string; variant?: "split" | "icon" };
+  chipIcon?: IconName;
   className?: string;
 }) {
   return (
@@ -27,16 +34,22 @@ export function SectionHeader({
       data-reveal
       className={cn(
         "mb-12 md:mb-16",
-        align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl",
+        align === "center" ? "mx-auto max-w-4xl text-center" : "max-w-3xl",
         className,
       )}
     >
-      {eyebrow ? <Eyebrow className="mb-4">{eyebrow}</Eyebrow> : null}
+      {eyebrow ? (
+        chip ? (
+          <Chip className="mb-6" label={eyebrow} tag={chip.tag} variant={chip.variant ?? "split"} icon={chipIcon} />
+        ) : (
+          <p className="eyebrow mb-5 tracking-[0.4em] text-accent-light">{eyebrow}</p>
+        )
+      ) : null}
       <Tag id={id} className={Tag === "h1" ? "text-h1" : "text-h2"}>
         {renderAccent(title)}
       </Tag>
       {subhead ? (
-        <p className={cn("mt-5 text-muted", align === "center" && "mx-auto", "measure")}>{subhead}</p>
+        <p className={cn("measure mt-6 text-lg text-muted", align === "center" && "mx-auto")}>{renderRich(subhead)}</p>
       ) : null}
     </header>
   );

@@ -7,9 +7,9 @@ export function DisclaimerBox({ children, className, title = "Disclaimer" }: { c
   return (
     <aside
       aria-label={title}
-      className={cn("rounded-site border border-line bg-surface p-6 text-sm leading-relaxed text-muted sm:p-7", className)}
+      className={cn("frame p-6 text-sm leading-relaxed text-muted sm:p-7", className)}
     >
-      <p className="eyebrow mb-3 text-accent-light">{title}</p>
+      <p className="mono-label mb-3 text-accent-light">{title}</p>
       {children ?? <p>{site.disclaimer}</p>}
     </aside>
   );

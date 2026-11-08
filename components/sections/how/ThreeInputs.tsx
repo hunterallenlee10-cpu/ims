@@ -15,7 +15,7 @@ export function ThreeInputs() {
           <li key={item.name} data-reveal style={{ ["--reveal-delay" as string]: `${i * 100}ms` }}>
             <Card icon={item.icon} className="h-full">
               <h3 className="text-h3">{item.name}</h3>
-              <p className="mt-3 font-accent text-xl italic leading-snug text-accent-light">{item.question}</p>
+              <p className="mt-3 text-lg font-semibold leading-snug text-heading">{item.question}</p>
               <p className="mt-4 text-body">{item.how}</p>
             </Card>
           </li>
@@ -27,7 +27,7 @@ export function ThreeInputs() {
         <h3 className="text-center text-h3">{c.combine.title}</h3>
         <div className="mt-8 grid grid-cols-3 gap-3">
           {c.items.map((item) => (
-            <div key={item.name} className="flex min-h-12 items-center justify-center gap-2 rounded-site-sm border border-line bg-bg/60 px-2 text-sm font-medium text-heading">
+            <div key={item.name} className="flex min-h-12 items-center justify-center gap-2 border border-panel-line bg-panel px-2 text-sm font-semibold text-heading">
               <Icon name={item.icon} size={18} className="hidden text-accent-light sm:block" />
               {item.name}
             </div>
@@ -45,16 +45,16 @@ export function ThreeInputs() {
           ))}
         </svg>
         <div
-          className="mx-auto max-w-sm rounded-site border border-accent-light/70 bg-surface px-6 py-5 text-center"
+          className="frame frame-accent mx-auto max-w-sm px-6 py-5 text-center"
           style={{ boxShadow: "0 0 50px -12px rgba(138,30,241,0.55)" }}
         >
-          <p className="eyebrow text-accent-light">{c.combine.output}</p>
+          <p className="mono-label text-accent-light">{c.combine.output}</p>
           <p className="mt-2 text-sm text-body">{c.combine.outputNote}</p>
         </div>
         <ol className="mx-auto mt-10 max-w-xl space-y-3">
           {c.combine.steps.map((step, i) => (
             <li key={step} className="flex gap-4">
-              <span className="font-display text-lg font-semibold text-accent-light">{i + 1}</span>
+              <span className="font-mono text-sm text-accent-light">{String(i + 1).padStart(2, "0")}</span>
               <span>{step}</span>
             </li>
           ))}

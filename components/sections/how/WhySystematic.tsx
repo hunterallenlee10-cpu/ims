@@ -13,7 +13,7 @@ export function WhySystematic() {
         ours={c.systematic}
         labels={{ theirs: c.discretionary.title, ours: c.systematic.title }}
       />
-      <p data-reveal className="mx-auto mt-12 max-w-2xl text-center font-accent text-[1.4rem] italic leading-snug text-accent-light">
+      <p data-reveal className="measure mx-auto mt-12 text-center text-lg font-semibold text-heading">
         {c.note}
       </p>
     </Section>

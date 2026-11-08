@@ -1,7 +1,8 @@
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
+import { Icon } from "./Icon";
 
-/** Short line of true claims under a main CTA. */
+/** Short line of true claims under a main CTA, each with a check. */
 export function TrustLine({
   items = site.trustLine,
   className,
@@ -14,19 +15,15 @@ export function TrustLine({
   return (
     <ul
       className={cn(
-        "flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted",
+        "flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-body",
         align === "center" ? "justify-center" : "justify-start",
         className,
       )}
       aria-label="What to expect"
     >
-      {items.map((item, i) => (
-        <li key={item} className="flex items-center gap-3">
-          {i > 0 ? (
-            <span aria-hidden="true" className="text-accent-light">
-              ·
-            </span>
-          ) : null}
+      {items.map((item) => (
+        <li key={item} className="flex items-center gap-2">
+          <Icon name="check" size={16} className="text-accent-light" />
           {item}
         </li>
       ))}

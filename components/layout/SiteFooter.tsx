@@ -8,7 +8,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
     <footer
-      className="relative border-t border-line"
+      className="relative border-t border-accent/30"
       style={{ background: "linear-gradient(180deg, rgba(13,23,36,0.4) 0%, #0A1520 100%)" }}
     >
       <div className="container-site py-16 md:py-20">

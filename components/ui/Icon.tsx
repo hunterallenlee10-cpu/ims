@@ -36,6 +36,33 @@ const paths = {
     </>
   ),
   check: <path d="M5 12.5l4.5 4.5L19 7.5" />,
+  spark: (
+    <>
+      <path d="M12 3v4M12 17v4M3 12h4M17 12h4" />
+      <path d="M6.5 6.5l2.2 2.2M15.3 15.3l2.2 2.2M17.5 6.5l-2.2 2.2M8.7 15.3l-2.2 2.2" />
+    </>
+  ),
+  pulse: <path d="M3 12h4l2.5-6 4 12 2.5-6H21" />,
+  card: (
+    <>
+      <rect x="3" y="5.5" width="18" height="13" />
+      <path d="M3 10h18M7 15h4" />
+    </>
+  ),
+  refresh: (
+    <>
+      <path d="M20 11a8 8 0 0 0-14.3-4.3L4 8.5" />
+      <path d="M4 4v4.5h4.5" />
+      <path d="M4 13a8 8 0 0 0 14.3 4.3L20 15.5" />
+      <path d="M20 20v-4.5h-4.5" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="3.5" y="5" width="17" height="15" />
+      <path d="M3.5 9.5h17M8 3v4M16 3v4" />
+    </>
+  ),
   arrowRight: <path d="M4 12h15M13 6l6 6-6 6" />,
   menu: <path d="M4 7h16M4 12h16M4 17h16" />,
   close: <path d="M6 6l12 12M18 6L6 18" />,

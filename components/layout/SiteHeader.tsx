@@ -48,7 +48,7 @@ export function SiteHeader() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300",
         scrolled || open
-          ? "border-b border-line bg-bg/80 backdrop-blur-md supports-[backdrop-filter]:bg-bg/70"
+          ? "border-b border-accent/40 bg-bg/85 backdrop-blur-md supports-[backdrop-filter]:bg-bg/75"
           : "border-b border-transparent bg-transparent",
       )}
     >

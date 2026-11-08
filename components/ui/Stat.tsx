@@ -26,11 +26,11 @@ export function Stat({ value, label }: { value: string; label: string }) {
 
   return (
     <div className="text-center">
-      <p ref={ref} className="font-display text-stat font-semibold text-accent tabular-nums">
+      <p ref={ref} className="font-display text-stat text-accent-light tabular-nums">
         <span aria-hidden="true">{display}</span>
         <span className="sr-only">{value}</span>
       </p>
-      <p className="eyebrow mt-3 text-eyebrow">{label}</p>
+      <p className="mono-label mt-3 text-eyebrow">{label}</p>
     </div>
   );
 }

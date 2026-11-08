@@ -29,13 +29,15 @@ All text lives in `content/`. You shouldn't need to touch components to change w
 | `content/contact.ts` | Contact page |
 | `content/legal.ts` + `content/legal/*.mdx` | Legal pages |
 
-In headlines, wrap the one key word in `*asterisks*` to color it purple: `"Rules over *mood*"`.
+Headlines are written as two short lines. `\n` breaks the line and `*asterisks*` color a part purple: `"Rules over\n*mood.*"`. In body copy, `**double asterisks**` make words bold.
 
 See **PLACEHOLDERS.md** for everything still to fill in.
 
 ## Design tokens
 
 Colors, type scale and spacing are CSS variables at the top of `app/globals.css`, exposed to Tailwind (`bg-surface`, `text-heading`, `border-line`, `text-accent-light`, `font-display` …). Change a value there and it updates everywhere.
+
+Type: Anton (condensed all-caps headlines), Geist (body), Geist Mono (labels and chips), Cinzel (wordmark only). Panels use cut corners: `.frame` (with a border) and `.chamfer` (no border), sized by `--cut`.
 
 Accessibility rules baked into the tokens:
 

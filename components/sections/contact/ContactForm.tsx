@@ -55,8 +55,8 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div role="status" className="rounded-site border border-accent-light/70 bg-surface p-8">
-        <p className="eyebrow text-accent-light">Message sent</p>
+      <div role="status" className="frame frame-accent p-8">
+        <p className="mono-label text-accent-light">Message sent</p>
         <p className="mt-3 text-body">{f.success}</p>
       </div>
     );

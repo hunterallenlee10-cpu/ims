@@ -21,11 +21,11 @@ export function FounderBios() {
               />
             </div>
             <div data-reveal style={{ ["--reveal-delay" as string]: "100ms" }}>
-              <p className="eyebrow text-accent-light">{f.role}</p>
+              <p className="mono-label text-accent-light">{f.role}</p>
               <h3 id={`founder-${i}`} className="mt-3 text-h2">
                 {f.name}
               </h3>
-              <p className="mt-4 font-accent text-[1.45rem] italic leading-snug text-accent-light">{f.oneLiner}</p>
+              <p className="mt-5 text-xl font-semibold leading-snug text-heading">{f.oneLiner}</p>
               <div className="measure mt-6 space-y-4 text-body">
                 {f.bio.map((para) => (
                   <p key={para}>{para}</p>

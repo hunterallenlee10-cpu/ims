@@ -22,7 +22,7 @@ export function PlaceholderImage({
   priority?: boolean;
 }) {
   return (
-    <div className={cn("relative overflow-hidden rounded-site border border-line bg-surface", className)}>
+    <div className={cn("relative overflow-hidden border border-panel-line bg-panel", className)}>
       {src ? (
         <Image src={src} alt={alt} fill sizes={sizes} className="object-cover" priority={priority} />
       ) : (

@@ -20,14 +20,14 @@ export const signals = {
 
   hero: {
     eyebrow: "Membership",
-    title: "Join *Signals*",
+    title: "Join\n*Signals.*",
     intro:
-      "Two ways to pay, one membership. Both options get the same signals, the same research and the same access, at the same time.",
+      "Two ways to pay, one membership. **Both options get the same signals,** the same research and the same access, at the same time.",
   },
 
   tiers: {
     eyebrow: "Choose a billing option",
-    title: "Same signal. Your *schedule*.",
+    title: "Same signal.\n*Your schedule.*",
     items: [
       {
         name: "Monthly", // [CONFIRM tier name]
@@ -62,7 +62,7 @@ export const signals = {
 
   included: {
     eyebrow: "Included in every membership",
-    title: "Everything you *get*",
+    title: "Everything\n*you get.*",
     groups: [
       {
         title: "Signals",
@@ -90,7 +90,7 @@ export const signals = {
 
   terms: {
     eyebrow: "Billing & cancellation",
-    title: "Clear *terms*",
+    title: "Clear\n*terms.*",
     subhead: "Read these before you join. [CONFIRM all terms]",
     items: [
       { label: "Billing", text: "Billed [BILLING PERIOD] in advance until you cancel." },
@@ -108,13 +108,13 @@ export const signals = {
 
   faq: {
     eyebrow: "Before you join",
-    title: "Membership *questions*",
+    title: "Membership\n*questions.*",
     ids: ["financial-advice", "personalized", "receive", "cancel", "refunds", "tiers", "manage-money"],
   },
 
   twoPaths: {
     eyebrow: "Your call",
-    title: "Two *paths*",
+    title: "Two paths.\n*Pick one.*",
     left: {
       title: "Keep guessing",
       text: "Same headlines, same second-guessing, and no written plan for when markets turn.",

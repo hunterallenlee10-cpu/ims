@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cinzel, Cormorant_Garamond, Inter } from "next/font/google";
+import { Anton, Cinzel, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -8,15 +8,11 @@ import { SkipLink } from "@/components/layout/SkipLink";
 import { RevealObserver } from "@/components/ui/RevealObserver";
 import { organizationJsonLd } from "@/lib/jsonld";
 
-const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel", display: "swap" });
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500"],
-  style: ["italic"],
-  variable: "--font-cormorant",
-  display: "swap",
-});
+// Headlines: heavy condensed caps. Body: Geist. Labels: Geist Mono. Wordmark: Cinzel.
+const anton = Anton({ subsets: ["latin"], weight: "400", variable: "--font-anton", display: "swap" });
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
+const cinzel = Cinzel({ subsets: ["latin"], weight: "600", variable: "--font-cinzel", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -46,7 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${cinzel.variable} ${inter.variable} ${cormorant.variable}`}
+      className={`${anton.variable} ${geist.variable} ${geistMono.variable} ${cinzel.variable}`}
     >
       <head>
         {/* Marks the page as JS-capable so scroll reveals only hide content when they can run. */}

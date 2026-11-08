@@ -40,11 +40,11 @@ export function Timeline() {
             <li key={i} id={`chapter-${i + 1}`} className="relative scroll-mt-28 pb-16 last:pb-0 md:pb-24">
               <span
                 aria-hidden="true"
-                className="absolute left-[5px] top-3 h-[13px] w-[13px] rounded-full border-2 border-accent-light bg-bg md:left-1/2 md:-translate-x-1/2"
+                className="absolute left-[5px] top-3 h-[13px] w-[13px] border-2 border-accent-light bg-accent md:left-1/2 md:-translate-x-1/2"
               />
               <div className={cn("grid gap-6 pl-10 md:grid-cols-2 md:gap-16 md:pl-0")}>
                 <div data-reveal className={cn(right ? "md:order-2 md:pl-4" : "md:pr-4 md:text-right")}>
-                  <p className="text-signature font-display text-[clamp(2.75rem,7vw,4.75rem)] font-semibold leading-none">{item.year}</p>
+                  <p className="text-signature font-display text-[clamp(3.2rem,8vw,5.6rem)] leading-none">{item.year}</p>
                   <h3 className="mt-4 text-h3">{item.title}</h3>
                   <p className={cn("measure mt-3 text-body", !right && "md:ml-auto")}>{item.text}</p>
                 </div>

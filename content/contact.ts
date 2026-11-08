@@ -6,7 +6,7 @@ export const contact = {
   },
   hero: {
     eyebrow: "Contact",
-    title: "Get in *touch*",
+    title: "Get in\n*touch.*",
     intro:
       "Questions about the method, membership or billing? Send a message. We can't answer questions about your personal portfolio or what you should buy.",
   },

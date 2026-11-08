@@ -48,7 +48,7 @@ export default function FaqPage() {
           <div className="space-y-16">
             {faqGroups.map((g) => (
               <section key={g.title} id={slug(g.title)} aria-labelledby={`${slug(g.title)}-title`} className="scroll-mt-28">
-                <h2 id={`${slug(g.title)}-title`} className="eyebrow mb-4 font-sans text-accent-light">
+                <h2 id={`${slug(g.title)}-title`} className="mono-label mb-4 text-accent-light">
                   {g.title}
                 </h2>
                 <div className="border-t border-line">

@@ -3,8 +3,9 @@ import { cn } from "@/lib/cn";
 import { Icon, type IconName } from "./Icon";
 
 /**
- * Surface card with a hairline border. On hover only the border lifts to purple.
- * Pass `icon` for a line icon, or `rule` for a thin purple top rule.
+ * Navy panel with cut corners and a hairline border.
+ * On hover only the border lifts to purple. `icon` adds a boxed line icon,
+ * `rule` adds a thin purple top rule.
  */
 export function Card({
   children,
@@ -24,8 +25,8 @@ export function Card({
   return (
     <Tag
       className={cn(
-        "relative rounded-site border bg-surface p-6 transition-colors duration-300 sm:p-8",
-        highlight ? "border-accent-light/70" : "border-line hover:border-accent-light/70",
+        "frame p-6 sm:p-8",
+        highlight ? "frame-accent" : "frame-hover",
         className,
       )}
     >
@@ -37,7 +38,7 @@ export function Card({
         />
       ) : null}
       {icon ? (
-        <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-site-sm border border-line text-accent-light">
+        <span className="mb-6 inline-flex h-12 w-12 items-center justify-center border border-panel-line bg-bg/40 text-accent-light">
           <Icon name={icon} size={22} />
         </span>
       ) : null}
