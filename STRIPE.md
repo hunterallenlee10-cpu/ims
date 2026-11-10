@@ -1,6 +1,6 @@
 # Stripe subscription checkout
 
-Status: **Live products, prices and customer portal are set up. Checkout code is built and verified against live Stripe. Two dashboard steps and one Vercel variable remain before real sales (§2). Webhook automation (Phase 5) is next.**
+Status: **Live and selling (Core, Pro).** Checkout tested from the live site on 2026-11-10. New members are invited to Telegram by hand for now (Option 1); webhook automation (Phase 5) is optional future work.
 
 Stripe account: `acct_1Ua6qPRj5B5P2Oab` (IMS, owned by Hunter). Verified with `GET /v1/account` on 2026-11-10: live mode, `charges_enabled: true`.
 
@@ -26,11 +26,11 @@ Rules that still apply:
 | D2 | Telegram delivery | **Option 1 manual first**, Option 2 bot after |
 | D3 | Checkout field label | Your exact label fits (Stripe allows 100 characters): "Telegram username (so we can approve your join request)" |
 | D4 | Members without a Telegram username | Mismatches go to the admins |
-| D5 | Proration on Core ↔ Pro | Stripe default `create_prorations`: an upgrade charges the difference right away. Change by re-running the setup script with `PRORATION=none` (switch at next renewal) or `always_invoice` |
-| D6 | After all payment retries fail | `[TODO: cancel subscription vs. mark unpaid — default cancel]`, set in the Dashboard (§8) |
-| D7 | Upgrade Core → Pro: remove from Core group? | `[TODO: confirm]` |
+| D5 | Proration on Core ↔ Pro | `create_prorations`: an upgrade takes effect immediately and the prorated difference goes on the next invoice. Change by re-running the setup script with `PRORATION=none` or `always_invoice` (then update the site copy) |
+| D6 | After all payment retries fail | Cancel the subscription (Billing settings done by Hunter) |
+| D7 | Upgrade Core → Pro: remove from Core group? | **Yes**, once they have joined the main group |
 | D8 | Invite link lifetime (Option 2) | 72 hours, re-sent by the daily sweep |
-| D9 | Member email sender | `[TODO: sender address, ideally a domain email]` |
+| D9 | Member email sender | Manual invites for now, sent by Hunter or Aaron. Support address: ceo@leeenterprisesunlimited.com. Invites promised within 12 hours |
 | D10 | Admin alerts | Telegram DM to both admins, email as backup |
 
 ---
@@ -68,7 +68,7 @@ Rules that still apply:
 | `STRIPE_MANAGED_PAYMENTS` | `true` | Set in Vercel (Production, Preview) |
 | `STRIPE_SECRET_KEY` | `sk_live_…` | **Hunter adds it** (§2) |
 | `CHAMPION_CHECKOUT_ENABLED` | `true` once the Champion wording is on the site | **Hunter sets it** |
-| `CONTACT_WEBHOOK_URL` | n8n webhook for the contact form | `[TODO]`. Until set, the contact form shows an error |
+| `CONTACT_WEBHOOK_URL` | n8n workflow "IMS - Website contact form to email" → ceo@leeenterprisesunlimited.com | Set in Vercel (Production, Sensitive) |
 
 ---
 
@@ -108,7 +108,7 @@ Session settings: `mode: subscription`; required text field "Telegram username (
 
 **Managed Payments** (Stripe as merchant of record) is on by default for this account (confirmed: sessions report `managed_payments.enabled: true`). It doesn't allow Checkout's `custom_text`, so the "invite by email" note lives on the success page.
 
-**Eligibility risk:** Stripe's eligibility page says Managed Payments is for "fully automated digital product[s]" and that a service with "human intervention (such as live 1-1 coaching)" doesn't qualify. Pro's live calls and Ask the Founders, and Champion's done-for-you part, may fall outside that. If Stripe rules a product ineligible, IMS becomes responsible for its sales tax/VAT. Options: confirm with Stripe support, or set `STRIPE_MANAGED_PAYMENTS=false` and use Stripe Tax instead. `[TODO: Hunter to confirm eligibility with Stripe]`
+**Eligibility: confirmed.** Hunter checked with Stripe that IMS does not owe the tax under Managed Payments (2026-11-10). Background: Stripe's eligibility page says Managed Payments is for "fully automated digital product[s]" and that a service with "human intervention (such as live 1-1 coaching)" doesn't qualify. Pro's live calls and Ask the Founders, and Champion's done-for-you part, may fall outside that. If Stripe rules a product ineligible, IMS becomes responsible for its sales tax/VAT. Options: confirm with Stripe support, or set `STRIPE_MANAGED_PAYMENTS=false` and use Stripe Tax instead.
 
 ---
 
@@ -154,7 +154,7 @@ Dashboard only (Hunter):
 | V6 | Double click (same attempt id) | Pass: same response returned |
 | V7 | Live session with the real settings | Created `cs_live_…` with Managed Payments on, $25.00 USD, Telegram field; expired immediately. With `consent_collection` it is refused until the Terms URL is set (§2.1) |
 | V8 | `/join/success` | Pass: `noindex, nofollow`, grants nothing |
-| V9 | First real purchase, invite delivered, group join works, then refund | `[TODO: Hunter, after §2]` |
+| V9 | Join Core on the live site opens Stripe Checkout | Pass (2026-11-10, live session with Telegram field and Terms checkbox) |
 | V10 | First renewal, first failed payment, first upgrade/downgrade/cancel | Not tested (live-first). Watch the first month |
 
 ---
@@ -181,10 +181,11 @@ Dashboard only (Hunter):
 - [x] `.env.example` committed
 - [x] Portal configured; login link set in Vercel
 - [x] Public Vercel variables set
-- [ ] Terms URL in Stripe public details (Hunter)
-- [ ] `STRIPE_SECRET_KEY` in Vercel; merge; redeploy (Hunter)
-- [ ] Billing settings in Dashboard (Hunter)
+- [x] Terms URL in Stripe public details (Hunter)
+- [x] `STRIPE_SECRET_KEY` in Vercel; merge; redeploy
+- [x] Billing settings in Dashboard (Hunter, via another chat)
 - [ ] Champion description wording (Hunter), then `CHAMPION_CHECKOUT_ENABLED=true`
 - [ ] Phase 5: n8n webhook workflow, admin alerts, daily sweep
 - [ ] Phase 5: Telegram bot (Option 2)
-- [ ] V9 real purchase and refund
+- [x] V9 live checkout opens from the site
+- [x] Contact form connected (n8n → ceo@leeenterprisesunlimited.com)

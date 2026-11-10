@@ -94,7 +94,7 @@ export const faqGroups: FaqGroup[] = [
         id: "telegram",
         question: "How do I get into the Telegram group after I pay?",
         answer:
-          `Enter your Telegram username during checkout. After you pay, a private invite link arrives by email within [TODO: delivery time]. Open it in Telegram and tap Request to Join. Once your request is approved, read the Start Here topic first.\n\nCore members join ${groups.core}. Pro and Champion members join the main ${groups.main} group.`,
+          `Enter your Telegram username during checkout. After you pay, a private invite link arrives by email within 12 hours. Open it in Telegram and tap Request to Join. Once your request is approved, read the Start Here topic first.\n\nCore members join ${groups.core}. Pro and Champion members join the main ${groups.main} group.`,
       },
       {
         id: "share",
@@ -118,20 +118,22 @@ export const faqGroups: FaqGroup[] = [
         id: "upgrade",
         question: "Can I upgrade or downgrade?",
         answer:
-          `Yes, between Core and Pro, in Manage membership. Moving from Core to Pro gets you an invite to the main ${groups.main} group. [TODO: prorate immediately vs. switch at next renewal]\n\nMoving from Pro to Core takes effect at the end of your current billing period. Then you're removed from the main group and invited to ${groups.core}. Champion can't be selected in Manage membership. [TODO: how members move to or from Champion]`,
+          `Yes, between Core and Pro, in Manage membership. Moving from Core to Pro takes effect right away: the price difference for the rest of the month is added to your next bill, you get an invite to the main ${groups.main} group, and you leave the Core group once you've joined.\n\nMoving from Pro to Core takes effect at the end of your current billing period. Then you're removed from the main group and invited to ${groups.core}. Champion can't be selected in Manage membership. [TODO: how members move to or from Champion]`,
         link: "manage",
       },
       {
         id: "payment-failed",
         question: "What happens to my access if my payment fails?",
         answer:
-          "Stripe emails you and retries your card automatically. You keep access while retries run, and you can update your card in Manage membership. If every retry fails, your membership is canceled and you're removed from the group. [TODO: retry window; cancel subscription vs. mark unpaid — default cancel]",
+          "Stripe emails you and retries your card automatically. You keep access while retries run, and you can update your card in Manage membership. If every retry fails, your membership is canceled and you're removed from the group.",
         link: "manage",
       },
       {
         id: "refunds",
         question: "Do you offer refunds?",
-        answer: "[TODO: refund policy]",
+        answer:
+          "No. Payments for periods already paid aren't refunded. You can cancel anytime in Manage membership to stop future charges, and your access continues to the end of the period you've paid for.",
+        link: "manage",
       },
     ],
   },

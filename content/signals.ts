@@ -135,7 +135,7 @@ export const signals = {
     title: "Payment\n*received.*",
     intro: "Thanks for joining Investing Mastery Signals. **This page doesn't grant access.** Your invite comes by email.",
     steps: [
-      { title: "Check your email", text: "Your private invite link arrives by email within [TODO: delivery time]. Check spam if you don't see it." },
+      { title: "Check your email", text: "Your private invite link arrives by email within 12 hours. Check spam if you don't see it." },
       { title: "Request to join", text: "Open the link in Telegram and tap Request to Join. Use the Telegram username you entered at checkout." },
       { title: "Read Start Here", text: "Once you're approved, read the Start Here topic first." },
     ],
@@ -150,7 +150,7 @@ export const signals = {
     steps: [
       { title: "Choose a tier", text: "Pick Core, Pro or Champion above." },
       { title: "Pay with Stripe", text: "Checkout runs on Stripe. Enter your Telegram username there so we can approve your request." },
-      { title: "Get your invite", text: "A private invite link arrives by email within [TODO: delivery time]." },
+      { title: "Get your invite", text: "A private invite link arrives by email within 12 hours." },
       { title: "Request to join", text: "Open the link in Telegram and tap Request to Join." },
       { title: "Get approved", text: "Your request is approved once it matches your paid membership and Telegram username." },
       { title: "Read Start Here", text: "Start with the Start Here topic. It explains how the group works." },
@@ -164,7 +164,7 @@ export const signals = {
     items: [
       {
         label: "Core to Pro",
-        text: "You get an invite to the main " + groups.main + " group. When the change and new price take effect: [TODO: prorate immediately vs. switch at next renewal]. Whether you also leave the Core group: [TODO: confirm].",
+        text: "Takes effect right away. The price difference for the rest of the current month is added to your next bill. You get an invite to the main " + groups.main + " group, and you're removed from the Core group once you've joined.",
       },
       {
         label: "Pro to Core",
@@ -187,10 +187,10 @@ export const signals = {
       { label: "After you cancel", text: "Access continues to the end of the period you've paid for. Then your membership ends and you're removed from the group." },
       {
         label: "Failed payments",
-        text: "Stripe emails you and retries your card automatically over [TODO: retry window]. You keep access while retries run. If every retry fails, your membership is canceled and you're removed from the group. [TODO: cancel subscription vs. mark unpaid — default cancel]",
+        text: "Stripe emails you and retries your card automatically. You keep access while retries run. If every retry fails, your membership is canceled and you're removed from the group.",
       },
       { label: "Receipts", text: "Stripe emails a receipt for every payment. Past invoices are in Manage membership." },
-      { label: "Refunds", text: "[TODO: refund policy]" },
+      { label: "Refunds", text: "No refunds for periods already paid. Cancel anytime to stop future charges; your access continues to the end of the period you've paid for." },
       { label: "Price changes", text: "[TODO: price change policy and notice period]" },
       { label: "Age", text: "Membership is for adults 18 and over." },
     ],
