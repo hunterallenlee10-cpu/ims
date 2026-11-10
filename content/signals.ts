@@ -17,25 +17,25 @@ export const signalCatalog: { icon: IconName; name: string; text: string; tiers:
   {
     icon: "valuation",
     name: "Portfolio Signal",
-    text: "The portfolio-level signal, posted with its reasoning written out. [TODO: one-line description of what the Portfolio Signal measures]",
+    text: "The portfolio-level signal, posted with its reasoning written out.", // TODO(Hunter): one-line description of what it measures
     tiers: "Core, Pro and Champion",
   },
   {
     icon: "pulse",
     name: "IMS Signals",
-    text: "IMS's rules-based valuation, trend and risk indicators, such as the BTC Valuation Z-Score model, each posted with its reasoning. [TODO: confirm which models are posted here]",
+    text: "IMS's rules-based valuation, trend and risk indicators, each posted with its reasoning.", // TODO(Hunter): which models post here
     tiers: "Pro and Champion",
   },
   {
     icon: "refresh",
     name: "BTC DCA Signal",
-    text: "A rules-based accumulation and distribution rate for Bitcoin, based on the SDCA model, for members who dollar-cost average. [TODO: confirm description]",
+    text: "A rules-based signal for members who dollar-cost average into Bitcoin, posted with its reasoning.", // TODO(Hunter): confirm description
     tiers: "Pro and Champion",
   },
   {
     icon: "trend",
     name: "Trend Probability",
-    text: "A rules-based read of trend direction, expressed as a probability, with the reasoning behind it. [TODO: confirm description]",
+    text: "A rules-based trend probability reading, posted with the reasoning behind it.", // TODO(Hunter): confirm description
     tiers: "Pro and Champion",
   },
 ];
@@ -97,9 +97,8 @@ export const tiers: Tier[] = [
     price: "$399",
     amount: 399,
     period: "USD / month, billed monthly",
-    inherits: "Everything in Pro",
-    rows: [],
-    pending: "[TODO: CHAMPION DESCRIPTION — pending legal/compliance wording from Hunter]",
+    inherits: "Everything in Pro, plus:",
+    rows: [{ label: "Portfolio management", items: ["We manage your portfolio for you"] }],
     cta: { label: "Join Champion" },
   },
 ];
@@ -172,7 +171,7 @@ export const signals = {
       },
       {
         label: "Champion",
-        text: "Champion can't be selected in Manage membership. [TODO: how members move to or from Champion]",
+        text: "Contact us anytime to move up to Champion. Champion members can cancel in Manage membership, or contact us to switch tiers.",
       },
     ],
   },
@@ -191,7 +190,7 @@ export const signals = {
       },
       { label: "Receipts", text: "Stripe emails a receipt for every payment. Past invoices are in Manage membership." },
       { label: "Refunds", text: "No refunds for periods already paid. Cancel anytime to stop future charges; your access continues to the end of the period you've paid for." },
-      { label: "Price changes", text: "[TODO: price change policy and notice period]" },
+      { label: "Price changes", text: "We give at least 30 days' notice before a price change applies to your membership. You can cancel before it takes effect." },
       { label: "Age", text: "Membership is for adults 18 and over." },
     ],
     links: [

@@ -18,12 +18,11 @@ export const contact = {
     messageHint: "Please don't include account numbers or other sensitive financial details.",
     submit: "Send message",
     sending: "Sending…",
-    success: "Thanks. Your message is in. We'll reply by email [TODO: response time, e.g. within 2 business days].",
+    success: "Thanks. Your message is in. We'll reply by email within 12 to 18 hours.",
     error: "Something went wrong and your message wasn't sent. Please try again, or email us directly.",
   },
   sidebar: {
     emailTitle: "Email",
-    telegramTitle: "Telegram",
     socialTitle: "Elsewhere",
     note: "For billing questions, include the email address you joined with.",
     manageNote: "To cancel, switch tiers or update your card, use Manage membership.",

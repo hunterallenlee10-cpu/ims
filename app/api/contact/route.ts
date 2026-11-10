@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     }
   } else {
     // No delivery target configured. Fail loudly instead of telling the visitor the
-    // message arrived when nobody will see it. [TODO: set CONTACT_WEBHOOK_URL in Vercel]
+    // message arrived when nobody will see it.
     console.error("[contact] CONTACT_WEBHOOK_URL is not set; message not delivered", { length: message.length });
     return NextResponse.json({ ok: false, error: "Contact form is not connected yet." }, { status: 503 });
   }

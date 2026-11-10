@@ -14,9 +14,8 @@ export const site = {
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : "http://localhost:3000"),
-  legalEntity: "[TODO: legal entity name]",
+  legalEntity: "Investing Mastery Signals",
   email: "ceo@leeenterprisesunlimited.com",
-  supportTelegram: "[TODO: support Telegram handle]",
   founders: ["Hunter Lee", "Aaron Wathen"],
 
   // Set to "/brand/logo.svg" once the real logo file is in public/brand/.

@@ -7,7 +7,7 @@ Stripe account: `acct_1Ua6qPRj5B5P2Oab` (IMS, owned by Hunter). Verified with `G
 ### Changes to the original plan (Hunter, 2026-11-10)
 
 - **Live first.** Hunter asked for Stripe to be set up straight in live mode, skipping the sandbox. Consequence: renewals, failed payments and portal changes have not been exercised with test clocks. The first real occurrence of each is its first test, so watch the first month closely (§9).
-- **Champion cleared for sale.** Hunter has what he needs to sell Champion. Still needed: the exact Champion description wording (the site and Stripe show only "Everything in Pro" until then). Checkout opens when Hunter sets `CHAMPION_CHECKOUT_ENABLED=true` in Vercel.
+- **Champion open for sale (2026-11-10).** Wording confirmed by Hunter: "Everything in Pro, plus we manage your portfolio for you." `CHAMPION_CHECKOUT_ENABLED=true` is set in Vercel Production. Hunter confirmed IMS is not a registered investment adviser; the Disclaimer says so.
 - **Recommendations accepted:** n8n for webhooks (D1), manual Telegram invites first and the bot later (D2), Stripe's default proration (D5).
 
 Rules that still apply:
@@ -67,7 +67,7 @@ Rules that still apply:
 | `NEXT_PUBLIC_STRIPE_PORTAL_URL` | `https://billing.stripe.com/p/login/bJe28t2PSdC19VQdPH8so00` | Set in Vercel (Production, Preview) |
 | `STRIPE_MANAGED_PAYMENTS` | `true` | Set in Vercel (Production, Preview) |
 | `STRIPE_SECRET_KEY` | `sk_live_…` | **Hunter adds it** (§2) |
-| `CHAMPION_CHECKOUT_ENABLED` | `true` once the Champion wording is on the site | **Hunter sets it** |
+| `CHAMPION_CHECKOUT_ENABLED` | `true` | Set in Vercel (Production) |
 | `CONTACT_WEBHOOK_URL` | n8n workflow "IMS - Website contact form to email" → ceo@leeenterprisesunlimited.com | Set in Vercel (Production, Sensitive) |
 
 ---
@@ -80,7 +80,7 @@ Created by `scripts/stripe-setup.mts`. It's idempotent: prices are found by `loo
 |---|---|---|---|---|---|
 | IMS Core | The Portfolio Signal only, in the read-only "Core Members - SIGNAL ONLY" Telegram group. | $25.00 / month | `ims_core_monthly` | `prod_VbKNJCHQYGbJqg` | `price_1Ua7ipRj5B5P2OabVBxlHkN3` |
 | IMS Pro | All IMS signals (Portfolio Signal, IMS Signals, BTC DCA Signal, Trend Probability), a weekly research note, a macro and liquidity briefing, method notes, and full access to the main "Investing Mastery Signals" Telegram group. | $50.00 / month | `ims_pro_monthly` | `prod_VbKNU4iJNqFG5p` | `price_1Ua7iqRj5B5P2OabEHqlT3U1` |
-| IMS Champion | Everything in Pro | $399.00 / month | `ims_champion_monthly` | `prod_VbKNqZs5VvVvc8` | `price_1Ua7irRj5B5P2OabVfNyjMdL` |
+| IMS Champion | Everything in Pro, plus we manage your portfolio for you. | $399.00 / month | `ims_champion_monthly` | `prod_VbKNqZs5VvVvc8` | `price_1Ua7irRj5B5P2OabVfNyjMdL` |
 
 Customer portal configuration: `bpc_1Ua7irRj5B5P2OabBz6cKtBZ`.
 
@@ -184,7 +184,7 @@ Dashboard only (Hunter):
 - [x] Terms URL in Stripe public details (Hunter)
 - [x] `STRIPE_SECRET_KEY` in Vercel; merge; redeploy
 - [x] Billing settings in Dashboard (Hunter, via another chat)
-- [ ] Champion description wording (Hunter), then `CHAMPION_CHECKOUT_ENABLED=true`
+- [x] Champion description added on the site and in Stripe; `CHAMPION_CHECKOUT_ENABLED=true`; live Champion session verified
 - [ ] Phase 5: n8n webhook workflow, admin alerts, daily sweep
 - [ ] Phase 5: Telegram bot (Option 2)
 - [x] V9 live checkout opens from the site

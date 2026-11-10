@@ -29,7 +29,7 @@ if (!SITE_URL.startsWith("https://")) throw new Error("Set SITE_URL to the publi
 // fetch-based client: respects HTTPS_PROXY when run with NODE_USE_ENV_PROXY=1.
 const stripe = new Stripe(key, { appInfo: { name: "ims-setup-script" }, httpClient: Stripe.createFetchHttpClient() });
 
-// Facts only. Champion is "Everything in Pro" until its wording is cleared.
+// Facts only. Champion wording confirmed by Hunter on 2026-11-10.
 const PRODUCTS: Record<TierId, { name: string; description: string; amount: number }> = {
   core: {
     name: "IMS Core",
@@ -42,7 +42,7 @@ const PRODUCTS: Record<TierId, { name: string; description: string; amount: numb
       'All IMS signals (Portfolio Signal, IMS Signals, BTC DCA Signal, Trend Probability), a weekly research note, a macro and liquidity briefing, method notes, and full access to the main "Investing Mastery Signals" Telegram group.',
     amount: 5000,
   },
-  champion: { name: "IMS Champion", description: "Everything in Pro", amount: 39900 },
+  champion: { name: "IMS Champion", description: "Everything in Pro, plus we manage your portfolio for you.", amount: 39900 },
 };
 
 const log = (msg: string) => console.log(`${DRY ? "[dry run] " : ""}${msg}`);

@@ -31,10 +31,6 @@ export function SiteFooter() {
                   {site.email}
                 </a>
               </li>
-              <li className="inline-flex min-h-11 items-center gap-2 text-muted sm:min-h-9">
-                <Icon name="chat" size={16} className="text-accent-light" />
-                {site.supportTelegram}
-              </li>
               <li>
                 <ManageMembershipLink className="text-sm" />
               </li>
