@@ -10,7 +10,7 @@ export function UpdateCadence() {
   return (
     <Section id="cadence" tone="raised" divider aria-labelledby="cadence-title" className="scroll-mt-20">
       <SectionHeader id="cadence-title" eyebrow={c.eyebrow} title={c.title} subhead={c.subhead} />
-      <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className={cn("grid gap-5 sm:grid-cols-2", c.items.length > 2 ? "lg:grid-cols-4" : "mx-auto max-w-4xl")}>
         {c.items.map((item, i) => (
           <li key={item.label} data-reveal style={{ ["--reveal-delay" as string]: `${i * 100}ms` }}>
             <Card rule className="h-full">

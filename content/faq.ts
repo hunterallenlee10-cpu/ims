@@ -26,7 +26,7 @@ export const faqGroups: FaqGroup[] = [
       {
         id: "exchange",
         question: "Which exchange do I need?",
-        answer: "[TODO: which exchange or exchanges members need, if any]",
+        answer: "None in particular. Use whichever exchange or wallet you already prefer.",
       },
       {
         id: "guarantee",
@@ -38,7 +38,7 @@ export const faqGroups: FaqGroup[] = [
         id: "manage-money",
         question: "Does IMS manage my money?",
         answer:
-          "Core and Pro members manage and move their own money. IMS provides signals and analysis only. [TODO: Champion answer, pending legal/compliance wording from Hunter]",
+          "Only for Champion members. In Champion, we manage your portfolio for you. Core and Pro members manage and move their own money, and IMS provides signals and analysis only.",
       },
       {
         id: "performance",
@@ -78,12 +78,12 @@ export const faqGroups: FaqGroup[] = [
       {
         id: "cadence",
         question: "How often do signals go out?",
-        answer: "[TODO: posting cadence for signals, research notes, briefings and live calls]",
+        answer: "Signals are posted every day. Pro and Champion members also get a weekly research note.",
       },
       {
         id: "markets",
         question: "What markets do the signals cover?",
-        answer: "Crypto, including Bitcoin. [TODO: full list of assets covered]",
+        answer: "Crypto, including Bitcoin.",
       },
     ],
   },
@@ -118,7 +118,7 @@ export const faqGroups: FaqGroup[] = [
         id: "upgrade",
         question: "Can I upgrade or downgrade?",
         answer:
-          `Yes, between Core and Pro, in Manage membership. Moving from Core to Pro takes effect right away: the price difference for the rest of the month is added to your next bill, you get an invite to the main ${groups.main} group, and you leave the Core group once you've joined.\n\nMoving from Pro to Core takes effect at the end of your current billing period. Then you're removed from the main group and invited to ${groups.core}. Champion can't be selected in Manage membership. [TODO: how members move to or from Champion]`,
+          `Yes, between Core and Pro, in Manage membership. Moving from Core to Pro takes effect right away: the price difference for the rest of the month is added to your next bill, you get an invite to the main ${groups.main} group, and you leave the Core group once you've joined.\n\nMoving from Pro to Core takes effect at the end of your current billing period. Then you're removed from the main group and invited to ${groups.core}. To move up to Champion, contact us anytime.`,
         link: "manage",
       },
       {

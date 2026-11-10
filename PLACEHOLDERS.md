@@ -1,89 +1,29 @@
-# Missing information ([TODO] placeholders)
+# Missing information
 
-Every `[TODO: ...]` on the site, grouped by what Hunter needs to supply. Copy lives in `content/`; edit the file listed, save and redeploy.
+What's still left for Hunter to supply. Copy lives in `content/`; edit the file listed, save and redeploy.
 
-How placeholders behave on the site:
-
-- `[TODO: ...]` text shows on the page as-is, so gaps are easy to spot.
-- A button or link whose URL is still a `[TODO]` renders **disabled**. It never sends visitors to a broken page.
-- Stats stay **hidden** until a real value replaces `null`. Social links stay hidden until a real URL is set.
+- A `[TODO: ...]` in visible copy shows on the page as-is, so gaps are easy to spot.
+- Stats stay hidden until a real value replaces `null`. Social links stay hidden until a real URL is set.
 - Photos show a labeled slot until a file is added and its path is set.
-- FAQ answers that still contain a `[TODO]` are left out of the FAQ structured data.
 
-Find them all: `git grep -n "\[TODO:"`
+Find them all: `git grep -n "TODO"`
 
-## Compliance flag (resolve first)
+## Shown on the live site
 
-Hunter confirmed on 2026-11-10 that he has what he needs to sell the Champion plan. Still needed: the exact Champion description wording. Champion checkout opens when `CHAMPION_CHECKOUT_ENABLED=true` is set in Vercel (Hunter sets it).
-
-| Placeholder | Where |
+| What | Where |
 |---|---|
-| `[TODO: CHAMPION DESCRIPTION — pending legal/compliance wording from Hunter]` | `content/signals.ts` (Champion tier `pending`), `content/legal/terms.mdx` §4 |
-| `[TODO: Champion answer, pending legal/compliance wording from Hunter]` | `content/faq.ts` (`manage-money`) |
-| `[TODO: how members move to or from Champion]` | `content/signals.ts` (`switching`), `content/faq.ts` (`upgrade`), `content/legal/terms.mdx` §7 |
+| Founder one-line bios and bios (also on the home page) | `content/about.ts` (`founders`) |
+| Founder photos | Add `public/team/hunter.jpg` and `aaron.jpg`, then set `photo` in `content/about.ts` |
+| About page timeline: years, milestones, launch details, photos | `content/about.ts` (`timeline`) |
 
+## Code comments only (not visible)
 
-## Posting cadence
-
-| Placeholder | Where |
+| What | Where |
 |---|---|
-| `[TODO: cadence]` ×3, `[TODO: posting cadence for each signal]`, `[TODO: day it goes out]`, `[TODO: posting cadence]`, `[TODO: live call schedule]` | `content/how-it-works.ts` (`cadence`) |
-| `[TODO: posting cadence for signals, research notes, briefings and live calls]` | `content/faq.ts` (`cadence`) |
+| What the Portfolio Signal measures; which models post under IMS Signals; BTC DCA Signal and Trend Probability descriptions | `content/signals.ts` (`signalCatalog`, `TODO(Hunter)` comments) |
+| Real, verifiable stats (hidden until set; no performance numbers) | `content/home.ts` (`stats`) |
+| X, YouTube, Instagram links (hidden until set) | `content/site.ts` (`socials`) |
 
-## Billing and refund terms
+## Logo
 
-| Placeholder | Where |
-|---|---|
-| `[TODO: price change policy and notice period]`, `[TODO: notice period]` | `content/signals.ts` (`terms`), `content/legal/terms.mdx` §9 |
-
-
-## Signals, topics and markets
-
-| Placeholder | Where |
-|---|---|
-| `[TODO: one-line description of what the Portfolio Signal measures]` | `content/signals.ts` (`signalCatalog`) |
-| `[TODO: confirm which models are posted here]` (IMS Signals) | `content/signals.ts` (`signalCatalog`) |
-| `[TODO: confirm description]` ×2 (BTC DCA Signal, Trend Probability) | `content/signals.ts` (`signalCatalog`) |
-| `[TODO: confirm what is posted here]` (IA - Investing Analysis topic) | `content/how-it-works.ts` (`groupsSection.topics`) |
-| `[TODO: full list of assets covered]`, `[TODO: list the specific assets and markets the signals cover.]` | `content/faq.ts` (`markets`), `content/legal/risk-disclosure.mdx` |
-
-## Exchange
-
-| Placeholder | Where |
-|---|---|
-| `[TODO: which exchange or exchanges members need, if any]` | `content/faq.ts` (`exchange`) |
-
-## Joining and support contact
-
-| Placeholder | Where |
-|---|---|
-| `[TODO: support Telegram handle]` | `content/site.ts` (`supportTelegram`) |
-| `[TODO: response time, e.g. within 2 business days]` | `content/contact.ts` |
-| `[TODO: X URL]`, `[TODO: YouTube URL]`, `[TODO: Instagram URL]` | `content/site.ts` (`socials`). Hidden until set; delete any you don't use |
-
-## Founder bios and photos
-
-| Placeholder | Where |
-|---|---|
-| `[TODO: one-line bio for ...]`, `[TODO: bio for ...]` | `content/about.ts` (`founders`) |
-| `[TODO: photo of Hunter Lee]`, `[TODO: photo of Aaron Wathen]` | Add `public/team/hunter.jpg` and `aaron.jpg`, then set `photo` in `content/about.ts` |
-| `[TODO: year]` ×5, `[TODO: milestone]` ×4, `[TODO: what happened and why it mattered]` ×4, `[TODO: launch details]`, chapter photos | `content/about.ts` (`timeline`) |
-| `[TODO: stat label ...]` ×4 | `content/home.ts` (`stats`). Hidden until a real, verifiable value is set. No performance numbers |
-
-## OG image
-
-The share image is generated from the brand styles in `app/opengraph-image.tsx` (no real logo yet). When a logo exists, put it at `public/brand/logo.svg` and set `logoSrc` in `content/site.ts`.
-
-## Legal pages (all marked "DRAFT — needs legal review.")
-
-| Placeholder | Where |
-|---|---|
-| `[TODO: legal entity name]`, `[TODO: business address]` | `content/site.ts`, `content/legal/terms.mdx`, `privacy.mdx` |
-| `[TODO: date]` ×4 (last updated) | `content/legal.ts` |
-| Regulatory status, founder positions | `content/legal/disclaimer.mdx` |
-| Excluded countries, liability cap `[TODO: number]`, governing law `[TODO: state or country]`, dispute resolution, `[TODO: attorney review]` | `content/legal/terms.mdx` |
-| Analytics, email and automation providers, cookies, retention, countries, `[TODO: attorney review]` | `content/legal/privacy.mdx` |
-
-## Telegram delivery choices
-
-Decided in `STRIPE.md` (webhook destination and Telegram Option 1 vs. Option 2). Sender address for member emails: `[TODO: sender address, ideally a domain email]`.
+The share image is generated from the brand styles in `app/opengraph-image.tsx`. When a logo exists, put it at `public/brand/logo.svg` and set `logoSrc` in `content/site.ts`.

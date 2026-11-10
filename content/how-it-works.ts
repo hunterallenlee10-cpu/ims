@@ -98,7 +98,7 @@ export const howItWorks = {
     topics: [
       { name: "Start Here", text: "Read this first. How the group works and how to read the signals." },
       { name: "IMS Signals", text: "IMS's rules-based valuation, trend and risk signals, with their reasoning." },
-      { name: "IA - Investing Analysis", text: "Investing analysis and research posts. [TODO: confirm what is posted here]" },
+      { name: "IA - Investing Analysis", text: "Investing analysis and research posts." },
       { name: "BTC DCA Signal", text: "BTC DCA Signal posts and their reasoning." },
       { name: "Trend Probability", text: "Trend Probability posts and their reasoning." },
       { name: "Questions", text: "Ask questions about the signals and how the models work." },
@@ -109,12 +109,10 @@ export const howItWorks = {
   cadence: {
     eyebrow: "Timing",
     title: "How often\n*posts go out.*",
-    subhead: "Schedules for each type of post.",
+    subhead: "New posts go up every day.",
     items: [
-      { label: "Signals", value: "[TODO: cadence]", text: "Portfolio Signal, IMS Signals, BTC DCA Signal and Trend Probability. [TODO: posting cadence for each signal]" },
-      { label: "Research note", value: "Weekly", text: "A written note for Pro and Champion members. [TODO: day it goes out]" },
-      { label: "Macro and liquidity briefing", value: "[TODO: cadence]", text: "For Pro and Champion members. [TODO: posting cadence]" },
-      { label: "Live calls", value: "[TODO: cadence]", text: "For Pro and Champion members. [TODO: live call schedule]" },
+      { label: "Signals", value: "Daily", text: "Signals are posted every day, each with its reasoning written out." },
+      { label: "Research note", value: "Weekly", text: "A written research note for Pro and Champion members." },
     ],
   },
 

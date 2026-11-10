@@ -36,10 +36,6 @@ export default function JoinSuccessPage() {
                 </a>
               )}
             </li>
-            <li className="inline-flex items-center gap-2 text-heading">
-              <Icon name="chat" size={18} className="text-accent-light" />
-              {site.supportTelegram}
-            </li>
           </ul>
         </div>
       </Section>

@@ -39,13 +39,6 @@ export default function ContactPage() {
               <p className="mt-3 text-sm text-muted">{s.note}</p>
             </div>
             <div>
-              <p className="eyebrow mb-3 text-accent-light">{s.telegramTitle}</p>
-              <p className="inline-flex items-center gap-2 text-heading">
-                <Icon name="chat" size={18} className="text-accent-light" />
-                {site.supportTelegram}
-              </p>
-            </div>
-            <div>
               <p className="eyebrow mb-3 text-accent-light">Billing</p>
               <p className="text-sm text-muted">{s.manageNote}</p>
               <ManageMembershipLink className="mt-2" />
