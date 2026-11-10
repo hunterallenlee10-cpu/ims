@@ -1,18 +1,18 @@
 import { home } from "@/content/home";
 import { founders } from "@/content/about";
+import { signalCatalog } from "@/content/signals";
 import { pickFaqs } from "@/content/faq";
 import { pageMetadata } from "@/lib/metadata";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
-import { Icon } from "@/components/ui/Icon";
 import { HomeHero } from "@/components/sections/home/HomeHero";
-import { SignalConsole } from "@/components/sections/home/SignalConsole";
 import { StatStrip } from "@/components/sections/shared/StatStrip";
 import { VsCompare } from "@/components/sections/shared/VsCompare";
 import { ProgramExplorer } from "@/components/sections/home/ProgramExplorer";
+import { SignalPostExample } from "@/components/sections/shared/SignalPostExample";
+import { TierCards } from "@/components/sections/signals/TierCards";
 import { StepPath } from "@/components/sections/shared/StepPath";
-import { FeatureChecklists } from "@/components/sections/shared/FeatureChecklists";
 import { FoundersTeaser } from "@/components/sections/shared/FoundersTeaser";
 import { FaqList } from "@/components/sections/shared/FaqList";
 import { TwoPathsCta } from "@/components/sections/shared/TwoPathsCta";
@@ -28,7 +28,19 @@ export default function HomePage() {
   return (
     <>
       <HomeHero />
-      <SignalConsole />
+
+      <Section glow="center" aria-labelledby="sample-title">
+        <SectionHeader id="sample-title" eyebrow={home.sample.eyebrow} title={home.sample.title} subhead={home.sample.subhead} />
+        <div data-reveal className="mx-auto max-w-2xl">
+          <SignalPostExample />
+        </div>
+        <div className="mt-10 text-center" data-reveal>
+          <Button href={home.sample.link.href} variant="secondary" arrow>
+            {home.sample.link.label}
+          </Button>
+        </div>
+      </Section>
+
       <StatStrip eyebrow={home.stats.eyebrow} items={home.stats.items} />
 
       <Section tone="band" aria-labelledby="vs-title">
@@ -38,26 +50,17 @@ export default function HomePage() {
 
       <Section aria-labelledby="program-title">
         <SectionHeader id="program-title" eyebrow={home.program.eyebrow} title={home.program.title} subhead={home.program.subhead} />
-        <ProgramExplorer items={home.program.items} hint={home.program.hint} />
-        <div className="mt-14 flex justify-center" data-reveal>
-          <Button href="/signals" size="lg">
-            Join Signals
-            <Icon name="arrowRight" size={18} />
-          </Button>
-        </div>
+        <ProgramExplorer items={signalCatalog} hint={home.program.hint} />
       </Section>
+
+      <TierCards eyebrow={home.pricing.eyebrow} title={home.pricing.title} subhead={home.pricing.subhead} />
 
       <Section divider aria-labelledby="steps-title" glow="left">
         <SectionHeader id="steps-title" eyebrow={home.steps.eyebrow} title={home.steps.title} subhead={home.steps.subhead} />
         <StepPath items={home.steps.items} />
-      </Section>
-
-      <Section tone="band" aria-labelledby="features-title">
-        <SectionHeader id="features-title" eyebrow={home.features.eyebrow} title={home.features.title} subhead={home.features.subhead} />
-        <FeatureChecklists cards={home.features.cards} />
         <div className="mt-12 text-center" data-reveal>
-          <Button href="/signals" variant="secondary" arrow>
-            See membership options
+          <Button href={home.steps.link.href} variant="secondary" arrow>
+            {home.steps.link.label}
           </Button>
         </div>
       </Section>

@@ -10,7 +10,7 @@ type Props = {
   containerClassName?: string;
   /**
    * default: page background. raised: faint lift.
-   * band: full-width navy band with cut corners (Business Mastery style).
+   * band: full-width navy band with cut corners.
    */
   tone?: "default" | "raised" | "band";
   /** Optional soft purple glow behind the section. */

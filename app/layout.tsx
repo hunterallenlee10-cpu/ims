@@ -17,7 +17,7 @@ const cinzel = Cinzel({ subsets: ["latin"], weight: "600", variable: "--font-cin
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Systematic Investment Research`,
+    default: `${site.name} | Rules-Based Crypto Signals`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: site.name,
-    title: `${site.name} | Systematic Investment Research`,
+    title: `${site.name} | Rules-Based Crypto Signals`,
     description: site.description,
     url: "/",
   },

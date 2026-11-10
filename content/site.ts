@@ -1,5 +1,5 @@
 // Site-wide copy and settings. Edit text here; components read from this file.
-// Anything in [BRACKETS] is a placeholder. See PLACEHOLDERS.md.
+// Anything in [TODO: ...] brackets is missing information. See PLACEHOLDERS.md.
 
 export type NavLink = { label: string; href: string };
 
@@ -7,56 +7,74 @@ export const site = {
   name: "Investing Mastery Signals",
   shortName: "IMS",
   description:
-    "Systematic, rules-based investment research. Investing Mastery Signals publishes the same valuation, trend and risk signals to every member, with the reasoning written down.",
-  // Set NEXT_PUBLIC_SITE_URL in Vercel to the production domain, e.g. https://[DOMAIN]
+    "Rules-based crypto valuation and trend signals, each with its reasoning written out, delivered in private Telegram groups. Three monthly memberships: Core, Pro and Champion.",
+  // Set NEXT_PUBLIC_SITE_URL in Vercel to the production domain, e.g. https://example.com
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : "http://localhost:3000"),
-  legalEntity: "[LEGAL ENTITY NAME]",
-  email: "[EMAIL]",
+  legalEntity: "[TODO: legal entity name]",
+  email: "[TODO: support email]",
+  supportTelegram: "[TODO: support Telegram handle]",
   founders: ["Hunter Lee", "Aaron Wathen"],
 
   // Set to "/brand/logo.svg" once the real logo file is in public/brand/.
   logoSrc: null as string | null,
 
-  // Where every "Join Signals" button points. Tier cards on /signals hold the real [JOIN LINK]s.
-  joinHref: "/signals",
-  joinLabel: "Join Signals",
+  // Where every "Join" button outside the pricing cards points.
+  joinHref: "/signals#pricing",
+  joinLabel: "See membership",
 
-  // Only true claims. Items marked [CONFIRM] are not yet confirmed.
-  trustLine: ["Rules-based", "Same signal for every member", "Cancel anytime [CONFIRM]"],
+  // Stripe's no-code customer portal login link (members sign in with their email).
+  // Set NEXT_PUBLIC_STRIPE_PORTAL_URL in Vercel. Test and live mode have different links.
+  manageMembership: {
+    label: "Manage membership",
+    href: process.env.NEXT_PUBLIC_STRIPE_PORTAL_URL ?? "[TODO: Stripe customer portal login link]",
+  },
+
+  // Only true claims.
+  trustLine: ["Rules-based", "Reasoning written out", "Cancel anytime"],
 
   ageNotice: "Membership is for adults 18 and over.",
 
+  // Required wording. Shown in the footer on every page and next to the pricing table.
   disclaimer:
-    "Investing Mastery Signals publishes general, impersonal research for educational purposes. Nothing on this site is financial, investment, tax or legal advice. Investing involves risk, including loss of principal. Past performance does not guarantee future results.",
+    "IMS provides general research and educational information only. It is not financial, investment, legal, or tax advice.",
+  riskNote:
+    "Crypto is highly volatile. Past performance does not guarantee future results. You can lose some or all of your money. Do your own research and consider speaking with a licensed professional.",
 
   nav: [
     { label: "How It Works", href: "/how-it-works" },
-    { label: "Signals", href: "/signals" },
-    { label: "Research", href: "/research" },
+    { label: "Membership", href: "/signals" },
     { label: "About", href: "/about" },
     { label: "FAQ", href: "/faq" },
   ] satisfies NavLink[],
 
   socials: [
-    { label: "X", href: "[X URL]", icon: "x" },
-    { label: "YouTube", href: "[YOUTUBE URL]", icon: "youtube" },
-    { label: "Instagram", href: "[INSTAGRAM URL]", icon: "instagram" },
-    { label: "Community", href: "[DISCORD/TELEGRAM URL]", icon: "chat" },
+    { label: "X", href: "[TODO: X URL]", icon: "x" },
+    { label: "YouTube", href: "[TODO: YouTube URL]", icon: "youtube" },
+    { label: "Instagram", href: "[TODO: Instagram URL]", icon: "instagram" },
   ] as const,
 
   footer: {
     columns: [
       {
-        title: "Signals",
+        title: "Membership",
         links: [
-          { label: "Membership", href: "/signals" },
+          { label: "Pricing", href: "/signals#pricing" },
+          { label: "How joining works", href: "/signals#joining" },
+          { label: "Billing", href: "/signals#billing" },
+          { label: "FAQ", href: "/faq" },
+        ],
+      },
+      {
+        title: "The signals",
+        links: [
           { label: "How It Works", href: "/how-it-works" },
           { label: "Example signal", href: "/how-it-works#signal-anatomy" },
-          { label: "FAQ", href: "/faq" },
+          { label: "The groups", href: "/how-it-works#groups" },
+          { label: "Group rules", href: "/how-it-works#rules" },
         ],
       },
       {
@@ -64,16 +82,7 @@ export const site = {
         links: [
           { label: "About", href: "/about" },
           { label: "Founders", href: "/about#founders" },
-          { label: "Principles", href: "/about#principles" },
           { label: "Contact", href: "/contact" },
-        ],
-      },
-      {
-        title: "Research",
-        links: [
-          { label: "All research", href: "/research" },
-          { label: "Method notes", href: "/research?tag=method" },
-          { label: "Valuation", href: "/research?tag=valuation" },
         ],
       },
       {
@@ -81,15 +90,15 @@ export const site = {
         links: [
           { label: "Disclaimer", href: "/disclaimer" },
           { label: "Risk Disclosure", href: "/risk-disclosure" },
-          { label: "Terms", href: "/terms" },
-          { label: "Privacy", href: "/privacy" },
+          { label: "Terms of Service", href: "/terms" },
+          { label: "Privacy Policy", href: "/privacy" },
         ],
       },
     ] satisfies { title: string; links: NavLink[] }[],
   },
 };
 
-/** True when a string still holds a [PLACEHOLDER] token. */
+/** True when a string still holds a [PLACEHOLDER] or [TODO: ...] token. */
 export function isPlaceholder(value: string | null | undefined): boolean {
   return !value || /\[[A-Z][^\]]*\]/.test(value);
 }

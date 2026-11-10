@@ -15,7 +15,7 @@ export function FounderBios() {
               <PlaceholderImage
                 src={f.photo}
                 alt={`Portrait of ${f.name}`}
-                label={`[PHOTO: ${f.name}]`}
+                label={`[TODO: photo of ${f.name}]`}
                 className="mx-auto aspect-[4/5] max-w-md"
                 sizes="(min-width: 768px) 440px, 100vw"
               />

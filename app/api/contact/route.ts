@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
 
-// Contact form endpoint (stub).
-// TODO: send messages somewhere. Two easy options:
-//   1. Set CONTACT_WEBHOOK_URL in Vercel (e.g. an n8n, Zapier or Make webhook) and
-//      every message is POSTed there as JSON. This is already wired up below.
-//   2. Replace the webhook block with an email provider (e.g. Resend) call.
+// Contact form endpoint. Every message is POSTed as JSON to CONTACT_WEBHOOK_URL
+// (e.g. an n8n webhook). Without it the endpoint returns 503 so nothing is lost silently.
 
 type Payload = { name?: unknown; email?: unknown; message?: unknown; company?: unknown };
 
@@ -47,8 +44,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: "Could not deliver message." }, { status: 502 });
     }
   } else {
-    // TODO: no target configured yet. Messages only reach the server log.
-    console.info("[contact] new message (no CONTACT_WEBHOOK_URL set)", { name, email, length: message.length });
+    // No delivery target configured. Fail loudly instead of telling the visitor the
+    // message arrived when nobody will see it. [TODO: set CONTACT_WEBHOOK_URL in Vercel]
+    console.error("[contact] CONTACT_WEBHOOK_URL is not set; message not delivered", { length: message.length });
+    return NextResponse.json({ ok: false, error: "Contact form is not connected yet." }, { status: 503 });
   }
 
   return NextResponse.json({ ok: true });

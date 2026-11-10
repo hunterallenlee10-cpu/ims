@@ -47,3 +47,8 @@ export function renderRich(text: string): ReactNode {
 export function stripAccent(text: string): string {
   return text.replace(/\*/g, "").replace(/\n/g, " ");
 }
+
+/** Plain-text version of body copy (for structured data): drops ** and * markers and line breaks. */
+export function plainText(text: string): string {
+  return text.replace(/\*+/g, "").replace(/\n+/g, " ").replace(/\s{2,}/g, " ").trim();
+}

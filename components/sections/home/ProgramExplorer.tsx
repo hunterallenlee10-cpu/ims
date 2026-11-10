@@ -4,7 +4,7 @@ import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { cn } from "@/lib/cn";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
-type Item = { icon: IconName; name: string; text: string };
+type Item = { icon: IconName; name: string; text: string; tiers?: string };
 
 /**
  * Numbered list on the left, detail panel on the right. Built as an accessible
@@ -41,7 +41,7 @@ export function ProgramExplorer({ items, hint }: { items: Item[]; hint: string }
           <Icon name="spark" size={14} className="text-accent-light" />
           {hint}
         </p>
-        <div role="tablist" aria-orientation="vertical" aria-label="What members get" className="border-t border-panel-line">
+        <div role="tablist" aria-orientation="vertical" aria-label="The signals" className="border-t border-panel-line">
           {items.map((it, i) => {
             const selected = i === active;
             return (
@@ -94,7 +94,7 @@ export function ProgramExplorer({ items, hint }: { items: Item[]; hint: string }
         </h3>
         <p className="mt-5 flex-1 text-lg text-body">{item.text}</p>
         <div className="mono-label mt-8 flex justify-between border-t border-panel-line pt-5 text-muted">
-          <span>Included with membership</span>
+          <span>{item.tiers ? `Included in ${item.tiers}` : "Included with membership"}</span>
           <span>
             {pad(active + 1)} / {pad(items.length)}
           </span>

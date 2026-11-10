@@ -1,7 +1,10 @@
 // FAQ copy. Used on /faq, the home preview and /signals.
-// [ANSWER] / [CADENCE] / [MARKETS] / [DISCORD/TELEGRAM/EMAIL] are placeholders.
+// Answers with a [TODO: ...] are left out of the FAQPage structured data until filled in.
+// `link: "manage"` adds the Manage membership (Stripe customer portal) link under the answer.
 
-export type Faq = { id: string; question: string; answer: string };
+import { groups } from "@/content/signals";
+
+export type Faq = { id: string; question: string; answer: string; link?: "manage" };
 export type FaqGroup = { title: string; items: Faq[] };
 
 export const faqGroups: FaqGroup[] = [
@@ -12,25 +15,30 @@ export const faqGroups: FaqGroup[] = [
         id: "financial-advice",
         question: "Is this financial advice?",
         answer:
-          "No. Investing Mastery Signals publishes general, impersonal research for educational purposes. It does not take your goals, finances or risk tolerance into account, and it is not financial, investment, tax or legal advice.\n\nIf you need advice for your own situation, speak with a licensed professional.",
+          "No. IMS provides general research and educational information only. It is not financial, investment, legal, or tax advice. The signals don't take your goals, finances or risk tolerance into account.\n\nIf you need advice for your own situation, speak with a licensed professional.",
+      },
+      {
+        id: "experience",
+        question: "Do I need experience?",
+        answer:
+          "There's no experience requirement to join. Every signal comes with its reasoning written out, and Pro includes method notes on how the models work. You do need to be comfortable making your own decisions, because the signals are indicators, not instructions.",
+      },
+      {
+        id: "exchange",
+        question: "Which exchange do I need?",
+        answer: "[TODO: which exchange or exchanges members need, if any]",
       },
       {
         id: "guarantee",
         question: "Do you guarantee returns?",
         answer:
-          "No. Nobody can. Every investment carries risk, including the loss of the money you put in. Signals will sometimes be wrong. Past results, real or hypothetical, never guarantee future results.",
+          "No. Nobody can. Crypto is highly volatile and you can lose some or all of your money. Signals will sometimes be wrong. Past performance does not guarantee future results.",
       },
       {
         id: "manage-money",
-        question: "Do you manage money or hold funds?",
+        question: "Does IMS manage my money?",
         answer:
-          "No. We never hold, manage or trade your money, and we never ask for access to your accounts. You keep full control of your own investments.",
-      },
-      {
-        id: "who-for",
-        question: "Who is this for?",
-        answer:
-          "Adults 18 and over who want a rules-based framework to inform their own decisions, and who are comfortable making those decisions themselves.",
+          "Core and Pro members manage and move their own money. IMS provides signals and analysis only. [TODO: Champion answer, pending legal/compliance wording from Hunter]",
       },
       {
         id: "performance",
@@ -44,59 +52,86 @@ export const faqGroups: FaqGroup[] = [
     title: "Signals",
     items: [
       {
+        id: "what-signals",
+        question: "What are the signals?",
+        answer:
+          "Rules-based valuation and trend indicators, each posted with its reasoning written out. Examples include the BTC Valuation Z-Score model, the SDCA accumulation and distribution rate, and trend probability. They are indicators, not direct buy or sell calls.",
+      },
+      {
+        id: "core-vs-pro",
+        question: "What's the difference between Core and Pro?",
+        answer:
+          `Core ($25/month) gets the Portfolio Signal only, in the read-only ${groups.core} group. Members can't post or ask questions.\n\nPro ($50/month) gets every signal: the Portfolio Signal, IMS Signals, the BTC DCA Signal and Trend Probability. It adds the weekly research note, the macro and liquidity briefing, method notes on how the models work, and full access to the main ${groups.main} group, including live calls and Ask the Founders.`,
+      },
+      {
         id: "personalized",
         question: "Is the signal personalized?",
         answer:
-          "No. Every member receives the same signal at the same time. We don't give individual allocations, position sizes or one-to-one recommendations, and we don't answer \"what should I buy?\" questions.",
+          "No. Every member of a tier gets the same post at the same time. Signals don't include individual allocations or position sizes.",
       },
       {
-        id: "receive",
-        question: "How do I receive signals?",
+        id: "missed",
+        question: "What if I miss a signal?",
         answer:
-          "Signals and research notes are published to members in [DISCORD/TELEGRAM/EMAIL]. [ANSWER: how access is granted after joining.]",
+          "Nothing is lost. The full signal archive is visible in your group from your first day, so you can scroll back through every past post.",
       },
       {
         id: "cadence",
-        question: "How often do signals update?",
-        answer:
-          "The full signal is reviewed [CADENCE]. A state can also change between scheduled updates when a rule is triggered, and members are notified when that happens. [ANSWER: confirm]",
+        question: "How often do signals go out?",
+        answer: "[TODO: posting cadence for signals, research notes, briefings and live calls]",
       },
       {
         id: "markets",
-        question: "What markets do you cover?",
-        answer: "[MARKETS]. [ANSWER: which assets and markets the signal covers.]",
-      },
-      {
-        id: "inputs",
-        question: "What goes into a signal?",
-        answer:
-          "Three kinds of input: long-term valuation (where price sits against its own history), trend (the current direction under fixed rules) and risk (whether conditions support taking on more). How they combine is explained on the How It Works page.",
+        question: "What markets do the signals cover?",
+        answer: "Crypto, including Bitcoin. [TODO: full list of assets covered]",
       },
     ],
   },
   {
-    title: "Membership & billing",
+    title: "Telegram groups",
     items: [
       {
-        id: "cancel",
-        question: "How do I cancel?",
-        answer: "[ANSWER: cancellation steps.] Cancellation and billing terms are listed on the Signals page.",
-      },
-      {
-        id: "refunds",
-        question: "Do you offer refunds?",
-        answer: "[ANSWER: refund policy.]",
-      },
-      {
-        id: "tiers",
-        question: "What is the difference between the membership options?",
+        id: "telegram",
+        question: "How do I get into the Telegram group after I pay?",
         answer:
-          "Both options receive the same signals and research. They differ only in billing period and price. [CONFIRM]",
+          `Enter your Telegram username during checkout. After you pay, a private invite link arrives by email within [TODO: delivery time]. Open it in Telegram and tap Request to Join. Once your request is approved, read the Start Here topic first.\n\nCore members join ${groups.core}. Pro and Champion members join the main ${groups.main} group.`,
       },
       {
         id: "share",
         question: "Can I share the signals?",
-        answer: "[ANSWER: sharing policy.]",
+        answer:
+          "No. Signals are for your own use. You can't share, repost or resell them, and forwarding and saving are turned off in the groups. Members also can't add or invite anyone. Sharing breaks the Terms of Service and can lead to removal.",
+      },
+    ],
+  },
+  {
+    title: "Membership and billing",
+    items: [
+      {
+        id: "cancel",
+        question: "How do I cancel?",
+        answer:
+          "Open Manage membership, sign in with the email you paid with, and cancel. Your access continues to the end of the period you've paid for. Then your membership ends and you're removed from the group.",
+        link: "manage",
+      },
+      {
+        id: "upgrade",
+        question: "Can I upgrade or downgrade?",
+        answer:
+          `Yes, between Core and Pro, in Manage membership. Moving from Core to Pro gets you an invite to the main ${groups.main} group. [TODO: prorate immediately vs. switch at next renewal]\n\nMoving from Pro to Core takes effect at the end of your current billing period. Then you're removed from the main group and invited to ${groups.core}. Champion can't be selected in Manage membership. [TODO: how members move to or from Champion]`,
+        link: "manage",
+      },
+      {
+        id: "payment-failed",
+        question: "What happens to my access if my payment fails?",
+        answer:
+          "Stripe emails you and retries your card automatically. You keep access while retries run, and you can update your card in Manage membership. If every retry fails, your membership is canceled and you're removed from the group. [TODO: retry window; cancel subscription vs. mark unpaid — default cancel]",
+        link: "manage",
+      },
+      {
+        id: "refunds",
+        question: "Do you offer refunds?",
+        answer: "[TODO: refund policy]",
       },
     ],
   },

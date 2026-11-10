@@ -1,107 +1,202 @@
-// /signals (membership) copy. Two tiers, same signals on both.
+// /signals (membership) copy, plus the tier and signal data used across the site.
+// Source of truth: three monthly tiers. Each higher tier includes everything below it.
 // No countdowns, no "spots left", no strikethrough prices, no "most popular" labels.
 
+import type { IconName } from "@/components/ui/Icon";
+
+import type { TierId } from "@/lib/tiers";
+export type { TierId };
+
+export const groups = {
+  core: "Core Members - SIGNAL ONLY",
+  main: "Investing Mastery Signals",
+} as const;
+
+/** The four signals. `tiers` lists who gets each one. */
+export const signalCatalog: { icon: IconName; name: string; text: string; tiers: string }[] = [
+  {
+    icon: "valuation",
+    name: "Portfolio Signal",
+    text: "The portfolio-level signal, posted with its reasoning written out. [TODO: one-line description of what the Portfolio Signal measures]",
+    tiers: "Core, Pro and Champion",
+  },
+  {
+    icon: "pulse",
+    name: "IMS Signals",
+    text: "IMS's rules-based valuation, trend and risk indicators, such as the BTC Valuation Z-Score model, each posted with its reasoning. [TODO: confirm which models are posted here]",
+    tiers: "Pro and Champion",
+  },
+  {
+    icon: "refresh",
+    name: "BTC DCA Signal",
+    text: "A rules-based accumulation and distribution rate for Bitcoin, based on the SDCA model, for members who dollar-cost average. [TODO: confirm description]",
+    tiers: "Pro and Champion",
+  },
+  {
+    icon: "trend",
+    name: "Trend Probability",
+    text: "A rules-based read of trend direction, expressed as a probability, with the reasoning behind it. [TODO: confirm description]",
+    tiers: "Pro and Champion",
+  },
+];
+
 export type Tier = {
+  id: TierId;
   name: string;
   price: string;
+  /** Plain number for structured data. */
+  amount: number;
   period: string;
-  blurb: string;
-  includes: string[];
-  joinHref: string;
+  /** "Everything in Core, plus:" style line. */
+  inherits?: string;
+  rows: { label: string; items: string[] }[];
+  whoFor?: string;
   note?: string;
+  /** Champion only: shown instead of rows until compliance clears the wording. */
+  pending?: string;
+  /** Checkout button label. The button posts only the tier id to /api/checkout. */
+  cta: { label: string };
 };
+
+export const tiers: Tier[] = [
+  {
+    id: "core",
+    name: "Core",
+    price: "$25",
+    amount: 25,
+    period: "USD / month, billed monthly",
+    rows: [
+      { label: "Group", items: [`${groups.core} (read-only)`] },
+      { label: "Signals", items: ["Portfolio Signal only"] },
+      { label: "Research", items: ["None"] },
+      { label: "Community", items: ["Read-only: members can't post or ask questions"] },
+    ],
+    whoFor: "People who want the portfolio signal and nothing else.",
+    cta: { label: "Join Core" },
+  },
+  {
+    id: "pro",
+    name: "Pro",
+    price: "$50",
+    amount: 50,
+    period: "USD / month, billed monthly",
+    inherits: "Everything in Core, plus:",
+    rows: [
+      { label: "Group", items: [`Full access to the main ${groups.main} group, every topic`] },
+      { label: "Signals", items: ["Portfolio Signal", "IMS Signals", "BTC DCA Signal", "Trend Probability"] },
+      { label: "Research", items: ["Weekly research note", "Macro and liquidity briefing", "Method notes on how the models work"] },
+      { label: "Community", items: ["All chats", "Live calls", "Ask the Founders", "Talk with other members and the founders"] },
+    ],
+    whoFor: "People who want the full system, the reasoning behind it, and the community.",
+    note: "You manage and move your own money. IMS provides signals and analysis only.",
+    cta: { label: "Join Pro" },
+  },
+  {
+    id: "champion",
+    name: "Champion",
+    price: "$399",
+    amount: 399,
+    period: "USD / month, billed monthly",
+    inherits: "Everything in Pro",
+    rows: [],
+    pending: "[TODO: CHAMPION DESCRIPTION — pending legal/compliance wording from Hunter]",
+    cta: { label: "Join Champion" },
+  },
+];
 
 export const signals = {
   meta: {
-    title: "Join Signals",
+    title: "Membership and Pricing",
     description:
-      "Investing Mastery Signals membership: two billing options with the same rules-based signals and research. Clear terms, cancel information, 18+ only.",
+      "Core ($25/month), Pro ($50/month) and Champion ($399/month) memberships for Investing Mastery Signals, delivered in private Telegram groups. How joining, billing, cancelling and switching tiers work.",
   },
 
   hero: {
     eyebrow: "Membership",
-    title: "Join\n*Signals.*",
+    title: "Pick your\n*tier.*",
     intro:
-      "Two ways to pay, one membership. **Both options get the same signals,** the same research and the same access, at the same time.",
+      "Three monthly memberships, all delivered in private Telegram groups. **Each tier includes everything in the tiers below it.**",
   },
 
-  tiers: {
-    eyebrow: "Choose a billing option",
-    title: "Same signal.\n*Your schedule.*",
+  pricing: {
+    eyebrow: "Pricing",
+    title: "Three tiers.\n*Billed monthly.*",
+    canceled: "Checkout canceled. You haven't been charged. Pick a tier when you're ready.",
+    agree: "By joining you agree to the",
+    footnote: "Prices in USD. Depending on where you live, sales tax or VAT may apply at checkout. Stripe processes payments as the merchant of record.",
+    championClosed: "Champion checkout opens soon.",
+    redirecting: "Opening checkout…",
+    error: "Checkout couldn't start. Please try again, or contact support.",
+  },
+
+  success: {
+    meta: { title: "Payment Received", description: "Your Investing Mastery Signals payment went through. Your private Telegram invite link is on its way by email." },
+    eyebrow: "You're in",
+    title: "Payment\n*received.*",
+    intro: "Thanks for joining Investing Mastery Signals. **This page doesn't grant access.** Your invite comes by email.",
+    steps: [
+      { title: "Check your email", text: "Your private invite link arrives by email within [TODO: delivery time]. Check spam if you don't see it." },
+      { title: "Request to join", text: "Open the link in Telegram and tap Request to Join. Use the Telegram username you entered at checkout." },
+      { title: "Read Start Here", text: "Once you're approved, read the Start Here topic first." },
+    ],
+    help: "Invite didn't arrive, or your username changed? Contact support:",
+  },
+
+  joining: {
+    eyebrow: "How joining works",
+    title: "From checkout\n*to the group.*",
+    subhead:
+      "Core members join **" + groups.core + "**. Pro and Champion members join the main **" + groups.main + "** group.",
+    steps: [
+      { title: "Choose a tier", text: "Pick Core, Pro or Champion above." },
+      { title: "Pay with Stripe", text: "Checkout runs on Stripe. Enter your Telegram username there so we can approve your request." },
+      { title: "Get your invite", text: "A private invite link arrives by email within [TODO: delivery time]." },
+      { title: "Request to join", text: "Open the link in Telegram and tap Request to Join." },
+      { title: "Get approved", text: "Your request is approved once it matches your paid membership and Telegram username." },
+      { title: "Read Start Here", text: "Start with the Start Here topic. It explains how the group works." },
+    ],
+  },
+
+  switching: {
+    eyebrow: "Upgrade or downgrade",
+    title: "Change tiers\n*any time.*",
+    subhead: "Switch between Core and Pro yourself in **Manage membership**. Sign in with the email you paid with.",
     items: [
       {
-        name: "Monthly", // [CONFIRM tier name]
-        price: "[PRICE]",
-        period: "per month", // [BILLING PERIOD]
-        blurb: "Pay month to month.",
-        includes: [
-          "All signals: valuation, trend, risk gate",
-          "Change alerts when a state flips",
-          "Weekly research note",
-          "Macro & liquidity briefing",
-          "Member channel on [DISCORD/TELEGRAM/EMAIL]",
-        ],
-        joinHref: "[JOIN LINK: monthly]",
+        label: "Core to Pro",
+        text: "You get an invite to the main " + groups.main + " group. When the change and new price take effect: [TODO: prorate immediately vs. switch at next renewal]. Whether you also leave the Core group: [TODO: confirm].",
       },
       {
-        name: "Annual", // [CONFIRM tier name]
-        price: "[PRICE]",
-        period: "per year", // [BILLING PERIOD]
-        blurb: "Pay once a year.",
-        includes: [
-          "Everything in Monthly",
-          "Same signals and research, same timing",
-          "One payment per year",
-        ],
-        joinHref: "[JOIN LINK: annual]",
-        note: "[ANNUAL NOTE: only state a saving if it is real and exact]",
-      },
-    ] satisfies Tier[],
-    footnote: "Prices in [CURRENCY]. Taxes may apply. [CONFIRM]",
-  },
-
-  included: {
-    eyebrow: "Included in every membership",
-    title: "Everything\n*you get.*",
-    groups: [
-      {
-        title: "Signals",
-        items: [
-          "Long-term valuation Z-score",
-          "Trend state across several timeframes",
-          "Risk & leverage gate status",
-          "One composite state with written reasoning",
-          "Alerts when any state changes",
-        ],
+        label: "Pro to Core",
+        text: "Takes effect at the end of your current billing period. Then you're removed from the main group and invited to " + groups.core + ".",
       },
       {
-        title: "Research & access",
-        items: [
-          "Weekly research note",
-          "Macro & liquidity briefing",
-          "Method notes on how each input works",
-          "Archive of past signal posts",
-          "Member channel on [DISCORD/TELEGRAM/EMAIL]",
-        ],
+        label: "Champion",
+        text: "Champion can't be selected in Manage membership. [TODO: how members move to or from Champion]",
       },
     ],
-    note: "[CONFIRM] every item above before launch.",
   },
 
   terms: {
-    eyebrow: "Billing & cancellation",
+    eyebrow: "Billing and cancellation",
     title: "Clear\n*terms.*",
-    subhead: "Read these before you join. [CONFIRM all terms]",
+    subhead: "Read these before you join.",
     items: [
-      { label: "Billing", text: "Billed [BILLING PERIOD] in advance until you cancel." },
-      { label: "Cancelling", text: "[CANCELLATION STEPS: e.g. cancel any time from your account page.]" },
-      { label: "After you cancel", text: "[ACCESS AFTER CANCEL: e.g. access continues to the end of the period you paid for.]" },
-      { label: "Refunds", text: "[REFUND POLICY]" },
-      { label: "Price changes", text: "[PRICE CHANGE POLICY: e.g. notice given before any change takes effect.]" },
+      { label: "Billing", text: "Every tier is billed monthly in USD, in advance, through Stripe, until you cancel." },
+      { label: "Cancelling", text: "Cancel any time in Manage membership. Sign in with the email you paid with." },
+      { label: "After you cancel", text: "Access continues to the end of the period you've paid for. Then your membership ends and you're removed from the group." },
+      {
+        label: "Failed payments",
+        text: "Stripe emails you and retries your card automatically over [TODO: retry window]. You keep access while retries run. If every retry fails, your membership is canceled and you're removed from the group. [TODO: cancel subscription vs. mark unpaid — default cancel]",
+      },
+      { label: "Receipts", text: "Stripe emails a receipt for every payment. Past invoices are in Manage membership." },
+      { label: "Refunds", text: "[TODO: refund policy]" },
+      { label: "Price changes", text: "[TODO: price change policy and notice period]" },
       { label: "Age", text: "Membership is for adults 18 and over." },
     ],
     links: [
       { label: "Terms of Service", href: "/terms" },
+      { label: "Privacy Policy", href: "/privacy" },
       { label: "Risk Disclosure", href: "/risk-disclosure" },
     ],
   },
@@ -109,7 +204,7 @@ export const signals = {
   faq: {
     eyebrow: "Before you join",
     title: "Membership\n*questions.*",
-    ids: ["financial-advice", "personalized", "receive", "cancel", "refunds", "tiers", "manage-money"],
+    ids: ["core-vs-pro", "telegram", "cancel", "upgrade", "payment-failed", "refunds", "financial-advice"],
   },
 
   twoPaths: {
@@ -121,8 +216,8 @@ export const signals = {
     },
     right: {
       title: "Follow a system",
-      text: "Rules-based signals, the reasoning in writing, and your own plan for what to do with them.",
+      text: "Rules-based signals with the reasoning written out, and your own decisions about what to do with them.",
     },
-    cta: { label: "Choose a billing option", href: "#tiers" },
+    cta: { label: "Choose a tier", href: "#pricing" },
   },
 };

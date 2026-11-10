@@ -1,20 +1,20 @@
 // /how-it-works copy. Each block feeds one section component in
 // components/sections/how/. Reorder sections in app/how-it-works/page.tsx.
 
-import type { IconName } from "@/components/ui/Icon";
+import { groups } from "@/content/signals";
 
 export const howItWorks = {
   meta: {
     title: "How It Works",
     description:
-      "The Investing Mastery Signals method in plain English: valuation, trend and risk inputs, how they combine, how often signals update and how members receive them.",
+      "What Investing Mastery Signals posts, what a signal post looks like, how the private Telegram groups and topics work, how often posts go out, and the group rules.",
   },
 
   hero: {
     eyebrow: "How it works",
-    title: "The method in\n*plain English.*",
+    title: "What members\n*actually see.*",
     intro:
-      "No black box. Here is **what goes into a signal**, how the pieces fit together, how often it updates and what a signal post looks like.",
+      "The signals, the structure of every post, the two Telegram groups, and the rules that keep them private. **No black box.**",
   },
 
   why: {
@@ -35,99 +35,99 @@ export const howItWorks = {
       points: [
         "The same inputs produce the same output, every time",
         "Rules are written before the decision, not after it",
-        "Every change can be traced back to the rule that caused it",
+        "Every reading comes with the reasoning behind it",
       ],
     },
     note: "A system is not a crystal ball. It can be wrong, and sometimes will be. Its value is consistency and transparency, not certainty.",
   },
 
-  inputs: {
-    eyebrow: "The three inputs",
-    title: "Three inputs.\n*One signal.*",
-    subhead: "Each input answers one question. Together they produce one composite state.",
-    items: [
-      {
-        icon: "valuation",
-        name: "Valuation",
-        question: "Is price cheap or expensive against its own history?",
-        how: "A set of long-term valuation measures is combined into a single Z-score. Below zero is cheaper than usual; above zero is more expensive than usual.",
-      },
-      {
-        icon: "trend",
-        name: "Trend",
-        question: "Which way is the market moving right now?",
-        how: "Fixed trend rules read the current direction across several timeframes. The output is a state such as up, down or sideways, never a price target.",
-      },
-      {
-        icon: "shield",
-        name: "Risk",
-        question: "Do conditions support taking on more risk?",
-        how: "A risk and leverage gate checks volatility, liquidity and macro conditions. If the gate is closed, the signal does not support added leverage, whatever the other inputs say.",
-      },
-    ] satisfies { icon: IconName; name: string; question: string; how: string }[],
-    combine: {
-      title: "How they combine",
-      steps: [
-        "Valuation sets the long-term backdrop.",
-        "Trend confirms or questions the direction.",
-        "The risk gate decides whether added exposure is supported.",
-      ],
-      output: "Composite state",
-      outputNote: "Published as one of [STATE NAMES], with the reasoning attached.",
+  signalsList: {
+    eyebrow: "The signals",
+    title: "Four signals.\n*Reasoning included.*",
+    subhead:
+      "Rules-based valuation and trend indicators. Examples include the BTC Valuation Z-Score model, the SDCA accumulation and distribution rate, and trend probability. **They are indicators, not direct buy or sell calls.**",
+  },
+
+  anatomy: {
+    eyebrow: "Anatomy of a signal post",
+    title: "What a signal\n*post looks like.*",
+    subhead: "Every signal post follows the same structure. **Values are hidden here** because this shows the format, not a reading.",
+    label: "Example format, not a real signal.",
+    post: {
+      signalLabel: "Signal",
+      signalName: "BTC DCA Signal",
+      postedLabel: "Posted",
+      readingLabel: "Current reading",
+      changeLabel: "What changed",
+      changeText: "Reading moved from",
+      changeJoin: "to",
+      reasoningLabel: "The reasoning",
+      reasoningText:
+        "A plain-English explanation of which inputs moved, why the reading is what it is, and which rule produced it.",
+      footer: "General research and educational information only. Not financial advice.",
     },
+    callouts: [
+      { n: 1, title: "Signal name and time", text: "Which signal it is, and exactly when it was posted." },
+      { n: 2, title: "Current reading", text: "The signal's reading right now, under the same rules every time." },
+      { n: 3, title: "What changed", text: "How the reading moved since the last post, in one line." },
+      { n: 4, title: "The reasoning", text: "Why the reading is what it is, written out in plain English." },
+    ],
+  },
+
+  groupsSection: {
+    eyebrow: "The Telegram groups",
+    title: "Two private\n*groups.*",
+    subhead: "Your tier decides which group you join. Both are private and invite-only.",
+    core: {
+      name: groups.core,
+      tier: "Core",
+      points: [
+        "The Portfolio Signal only",
+        "Read-only: members can't post or ask questions",
+      ],
+    },
+    main: {
+      name: groups.main,
+      tier: "Pro and Champion",
+      points: [
+        "Every signal, the research, live calls and Ask the Founders",
+        "Members can ask questions and talk with each other and the founders",
+      ],
+    },
+    topicsTitle: "Topics in the main group",
+    topics: [
+      { name: "Start Here", text: "Read this first. How the group works and how to read the signals." },
+      { name: "IMS Signals", text: "IMS's rules-based valuation, trend and risk signals, with their reasoning." },
+      { name: "IA - Investing Analysis", text: "Investing analysis and research posts. [TODO: confirm what is posted here]" },
+      { name: "BTC DCA Signal", text: "BTC DCA Signal posts and their reasoning." },
+      { name: "Trend Probability", text: "Trend Probability posts and their reasoning." },
+      { name: "Questions", text: "Ask questions about the signals and how the models work." },
+      { name: "Member Chat", text: "General conversation with other members and the founders." },
+    ],
   },
 
   cadence: {
     eyebrow: "Timing",
-    title: "How often it\n*updates.*",
-    subhead: "On a schedule, plus whenever a rule is triggered. [CONFIRM]",
+    title: "How often\n*posts go out.*",
+    subhead: "Schedules for each type of post.",
     items: [
-      { label: "Scheduled review", value: "[CADENCE]", text: "Every input is recalculated and the full signal is published, even when nothing changes." },
-      { label: "Rule-triggered change", value: "As it happens", text: "If a rule flips a state between reviews, members are notified with the reason." },
-      { label: "Research note", value: "Weekly", text: "A written note on what changed, why, and what we are watching next." },
+      { label: "Signals", value: "[TODO: cadence]", text: "Portfolio Signal, IMS Signals, BTC DCA Signal and Trend Probability. [TODO: posting cadence for each signal]" },
+      { label: "Research note", value: "Weekly", text: "A written note for Pro and Champion members. [TODO: day it goes out]" },
+      { label: "Macro and liquidity briefing", value: "[TODO: cadence]", text: "For Pro and Champion members. [TODO: posting cadence]" },
+      { label: "Live calls", value: "[TODO: cadence]", text: "For Pro and Champion members. [TODO: live call schedule]" },
     ],
   },
 
-  delivery: {
-    eyebrow: "Delivery",
-    title: "Where signals\n*arrive.*",
-    subhead: "One place, the same moment, for every member.",
-    channel: "[DISCORD/TELEGRAM/EMAIL]",
-    points: [
-      "Signals and research notes are posted in [DISCORD/TELEGRAM/EMAIL].",
-      "Every member receives the same post at the same time.",
-      "Past posts stay available, so you can see how each state changed over time.",
-      "No DMs with personal allocations. Questions about the method are welcome; questions about your portfolio are for a licensed professional.",
-    ],
-  },
-
-  anatomy: {
-    eyebrow: "Anatomy of a signal",
-    title: "What a signal\n*post looks like.*",
-    subhead: "An annotated example. **Every value is made up** to show the format.",
-    post: {
-      badge: "Example data",
-      header: "Signal update · Example asset",
-      timestamp: "Example · Mon 14:00 UTC",
-      change: "Trend state changed: Sideways → Uptrend",
-      rows: [
-        { input: "Valuation Z-score", value: "+0.80", note: "Fair to slightly expensive (unchanged)" },
-        { input: "Trend state", value: "Uptrend", note: "Rules met on 3 of 3 timeframes (changed)" },
-        { input: "Risk & leverage gate", value: "Closed", note: "Volatility above threshold (unchanged)" },
-      ],
-      composite: "Composite state: Hold exposure",
-      reasoning:
-        "The trend rules now agree across all three timeframes, so the trend input moved to Uptrend. Valuation is close to its long-run average, and the risk gate stays closed, so the composite state does not support added leverage.",
-      watching: "What would change it: the risk gate reopening, or the Z-score moving above +1.5.",
-      disclaimer: "General research, not personal advice. Signals can be wrong.",
-    },
-    callouts: [
-      { n: 1, title: "Header and timestamp", text: "Which market, and exactly when the signal was published." },
-      { n: 2, title: "What changed", text: "The state change in one line, so you never have to hunt for it." },
-      { n: 3, title: "The three inputs", text: "Every input with its current value, marked changed or unchanged." },
-      { n: 4, title: "Composite state", text: "The single combined read, under the same rules every time." },
-      { n: 5, title: "Reasoning", text: "Why the state is what it is, in plain English." },
-      { n: 6, title: "What would change it", text: "The conditions that would move the signal next." },
+  rules: {
+    eyebrow: "Group rules and privacy",
+    title: "Private\n*by design.*",
+    items: [
+      { title: "Invite-only", text: "Both groups are private. You join through your own invite link and a join request." },
+      { title: "No forwarding or saving", text: "Forwarding and saving content are turned off in the groups." },
+      { title: "No adding members", text: "Members can't add or invite anyone else." },
+      { title: "For your own use", text: "Signals are for your own use. You can't share, repost or resell them." },
+      { title: "Full archive from day one", text: "Every past signal post in your group is visible from your first day." },
+      { title: "Your details", text: "Your Telegram username is used to approve your join request and manage your access." },
     ],
   },
 
@@ -135,15 +135,15 @@ export const howItWorks = {
     eyebrow: "Clear limits",
     title: "What a signal\n*is not.*",
     items: [
-      { title: "Not personal advice", text: "It does not know your goals, finances or risk tolerance." },
-      { title: "Not a guarantee", text: "Signals can be wrong. Investing always carries risk of loss." },
-      { title: "Not money management", text: "We never hold, manage or trade your money." },
-      { title: "Not early access for a few", text: "Every member gets the same signal at the same time." },
+      { title: "Not personal advice", text: "It doesn't know your goals, finances or risk tolerance." },
+      { title: "Not a guarantee", text: "Signals can be wrong. Crypto is highly volatile and you can lose money." },
+      { title: "Not a buy or sell call", text: "Signals are valuation and trend indicators. What you do is your decision." },
+      { title: "Not early access for a few", text: "Every member of a tier gets the same post at the same time." },
     ],
   },
 
   cta: {
     title: "See the\n*membership.*",
-    text: "Two billing options, the same signals and research on both.",
+    text: "Core, Pro and Champion. Billed monthly. Cancel anytime.",
   },
 };
