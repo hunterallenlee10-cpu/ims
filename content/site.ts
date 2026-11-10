@@ -15,7 +15,7 @@ export const site = {
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : "http://localhost:3000"),
   legalEntity: "[TODO: legal entity name]",
-  email: "[TODO: support email]",
+  email: "ceo@leeenterprisesunlimited.com",
   supportTelegram: "[TODO: support Telegram handle]",
   founders: ["Hunter Lee", "Aaron Wathen"],
 

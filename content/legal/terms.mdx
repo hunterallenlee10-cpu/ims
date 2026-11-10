@@ -30,17 +30,17 @@ Core and Pro members manage and move their own money. We provide signals and ana
 - Memberships are billed monthly, in advance, in US dollars, until cancelled.
 - Payments are processed by Stripe, which acts as the merchant of record for membership purchases through Stripe Managed Payments. You authorize Stripe to charge your payment method each month.
 - Depending on where you live, sales tax or VAT may apply. Stripe calculates and collects it at checkout.
-- If a payment fails, Stripe will retry it automatically. You keep access while retries run. If every retry fails, your membership is cancelled and your group access is removed. [TODO: retry window; cancel subscription vs. mark unpaid — default cancel]
+- If a payment fails, Stripe will retry it automatically. You keep access while retries run. If every retry fails, your membership is cancelled and your group access is removed.
 
 ## 7. Changing tiers
 
-You can switch between Core and Pro in the customer portal ("Manage membership"). [TODO: prorate immediately vs. switch at next renewal.] A move from Pro to Core takes effect at the end of the current billing period. Champion cannot be selected in the customer portal. [TODO: how members move to or from Champion.]
+You can switch between Core and Pro in the customer portal ("Manage membership"). A move from Core to Pro takes effect immediately, and the prorated difference for the rest of the current billing period is added to your next invoice; you are removed from the Core group once you have joined the main group. A move from Pro to Core takes effect at the end of the current billing period. Champion cannot be selected in the customer portal. [TODO: how members move to or from Champion.]
 
 ## 8. Cancellation and refunds
 
 - You can cancel at any time in the customer portal ("Manage membership"), signing in with the email you paid with.
 - After cancelling, access continues until the end of the period you have paid for. Then your membership ends and you are removed from the group.
-- Refunds: [TODO: refund policy].
+- Refunds: payments for billing periods that have already started are not refunded. Cancelling stops future charges.
 
 ## 9. Price changes
 
@@ -84,4 +84,4 @@ We may update these Terms. If a change is material, we will give notice before i
 
 ## 19. Contact
 
-[TODO: legal entity name], [TODO: business address]. Email: [TODO: support email].
+[TODO: legal entity name], [TODO: business address]. Email: ceo@leeenterprisesunlimited.com.

@@ -22,13 +22,6 @@ Hunter confirmed on 2026-11-10 that he has what he needs to sell the Champion pl
 | `[TODO: Champion answer, pending legal/compliance wording from Hunter]` | `content/faq.ts` (`manage-money`) |
 | `[TODO: how members move to or from Champion]` | `content/signals.ts` (`switching`), `content/faq.ts` (`upgrade`), `content/legal/terms.mdx` §7 |
 
-## Checkout and Stripe settings
-
-| Placeholder | Where |
-|---|---|
-| Terms of Service URL in Stripe → Settings → Business → Public details (`https://www.investingmasterysignals.com/terms`) | Stripe Dashboard. Checkout fails until it's set |
-| `STRIPE_SECRET_KEY` (live) | Vercel → Settings → Environment Variables (Production) |
-| `[TODO: set CONTACT_WEBHOOK_URL in Vercel]` | `app/api/contact/route.ts` (the form returns an error until set) |
 
 ## Posting cadence
 
@@ -41,16 +34,8 @@ Hunter confirmed on 2026-11-10 that he has what he needs to sell the Champion pl
 
 | Placeholder | Where |
 |---|---|
-| `[TODO: refund policy]` | `content/signals.ts` (`terms`), `content/faq.ts` (`refunds`), `content/legal/terms.mdx` §8 |
-| `[TODO: retry window]`, `[TODO: cancel subscription vs. mark unpaid — default cancel]` | `content/signals.ts` (`terms`), `content/faq.ts` (`payment-failed`), `content/legal/terms.mdx` §6 |
 | `[TODO: price change policy and notice period]`, `[TODO: notice period]` | `content/signals.ts` (`terms`), `content/legal/terms.mdx` §9 |
 
-## Upgrade mechanics
-
-| Placeholder | Where |
-|---|---|
-| `[TODO: prorate immediately vs. switch at next renewal]` | `content/signals.ts` (`switching`), `content/faq.ts` (`upgrade`), `content/legal/terms.mdx` §7 |
-| `[TODO: confirm]` (does an upgrading Core member leave the Core group?) | `content/signals.ts` (`switching`) |
 
 ## Signals, topics and markets
 
@@ -72,8 +57,6 @@ Hunter confirmed on 2026-11-10 that he has what he needs to sell the Champion pl
 
 | Placeholder | Where |
 |---|---|
-| `[TODO: delivery time]` (invite email) | `content/signals.ts` (`joining`), `content/faq.ts` (`telegram`) |
-| `[TODO: support email]` | `content/site.ts` (`email`), legal pages |
 | `[TODO: support Telegram handle]` | `content/site.ts` (`supportTelegram`) |
 | `[TODO: response time, e.g. within 2 business days]` | `content/contact.ts` |
 | `[TODO: X URL]`, `[TODO: YouTube URL]`, `[TODO: Instagram URL]` | `content/site.ts` (`socials`). Hidden until set; delete any you don't use |
