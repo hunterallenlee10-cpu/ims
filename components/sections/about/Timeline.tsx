@@ -52,7 +52,7 @@ export function Timeline() {
                   <PlaceholderImage
                     src={item.photo}
                     alt={`Photo for chapter ${i + 1}`}
-                    label={`[PHOTO: chapter ${i + 1}]`}
+                    label={`[TODO: photo for chapter ${i + 1}]`}
                     className="aspect-[16/10]"
                     sizes="(min-width: 768px) 520px, 100vw"
                   />

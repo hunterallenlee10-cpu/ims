@@ -2,6 +2,7 @@ import { faqGroups } from "@/content/faq";
 import { faqPage } from "@/content/faq-page";
 import { isPlaceholder } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
+import { plainText } from "@/lib/accent";
 import { Section } from "@/components/ui/Section";
 import { FaqItem } from "@/components/ui/FaqItem";
 import { PageHero } from "@/components/sections/shared/PageHero";
@@ -22,7 +23,7 @@ export default function FaqPage() {
     mainEntity: answered.map((f) => ({
       "@type": "Question",
       name: f.question,
-      acceptedAnswer: { "@type": "Answer", text: f.answer.replace(/\n\n/g, " ") },
+      acceptedAnswer: { "@type": "Answer", text: plainText(f.answer) },
     })),
   };
 
@@ -53,7 +54,7 @@ export default function FaqPage() {
                 </h2>
                 <div className="border-t border-line">
                   {g.items.map((f) => (
-                    <FaqItem key={f.id} question={f.question} answer={f.answer} />
+                    <FaqItem key={f.id} question={f.question} answer={f.answer} link={f.link} />
                   ))}
                 </div>
               </section>

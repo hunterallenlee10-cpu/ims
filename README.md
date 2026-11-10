@@ -1,6 +1,8 @@
 # Investing Mastery Signals — website
 
-Marketing site for Investing Mastery Signals. Next.js 16 (App Router), TypeScript, Tailwind CSS v4, MDX. Deploys on Vercel.
+Marketing and membership site for Investing Mastery Signals: three monthly tiers (Core, Pro, Champion) delivered in private Telegram groups, paid through Stripe. Next.js 16 (App Router), TypeScript, Tailwind CSS v4, MDX (legal pages). Deploys on Vercel.
+
+Payments: see **STRIPE.md**.
 
 ## Run it locally
 
@@ -19,19 +21,18 @@ All text lives in `content/`. You shouldn't need to touch components to change w
 
 | File | Page |
 |---|---|
-| `content/site.ts` | Name, nav, footer, socials, email, trust line, disclaimer, logo slot |
+| `content/site.ts` | Name, nav, footer, socials, support contacts, Manage membership link, trust line, disclaimer, logo slot |
 | `content/home.ts` | Home page |
-| `content/how-it-works.ts` | How It Works |
-| `content/signals.ts` | Membership tiers, terms |
+| `content/how-it-works.ts` | How It Works: signals, example post format, groups and topics, cadence, group rules |
+| `content/signals.ts` | Tiers and prices, the four signals, joining steps, upgrade/downgrade, billing terms |
 | `content/faq.ts` | Every FAQ (used on /faq, home and /signals) |
 | `content/about.ts` | Founders, timeline, principles |
-| `content/research.ts` + `content/research/*.mdx` | Research index and posts |
 | `content/contact.ts` | Contact page |
 | `content/legal.ts` + `content/legal/*.mdx` | Legal pages |
 
 Headlines are written as two short lines. `\n` breaks the line and `*asterisks*` color a part purple: `"Rules over\n*mood.*"`. In body copy, `**double asterisks**` make words bold.
 
-See **PLACEHOLDERS.md** for everything still to fill in.
+See **PLACEHOLDERS.md** for every `[TODO: ...]` still to fill in.
 
 ## Design tokens
 
@@ -48,16 +49,16 @@ Accessibility rules baked into the tokens:
 ## Structure
 
 ```
-app/                 routes, metadata, sitemap, robots, OG image, API route
+app/                 routes, metadata, sitemap, robots, OG image, API routes
 components/
   layout/            header (with mobile menu), footer, skip link
   brand/             wordmark
   ui/                buttons, cards, section header, stat, accordion, form field …
   art/               data-wave SVG, glow
-  sections/          page sections (shared, home, how, signals, about, research, legal, contact)
+  sections/          page sections (shared, home, how, signals, about, legal, contact)
 content/             all copy (edit here)
 hooks/               reveal-on-scroll, count-up, reduced motion, scroll state
-lib/                 helpers (metadata, research loader, JSON-LD, wave math)
+lib/                 helpers (metadata, JSON-LD, wave math)
 public/              brand/, media/, team/ (see the README in each)
 ```
 
@@ -67,7 +68,9 @@ public/              brand/, media/, team/ (see the README in each)
 2. Go to [vercel.com/new](https://vercel.com/new), import the `ims` GitHub repository. Framework preset: **Next.js** (auto-detected). Leave the build settings at their defaults.
 3. Under **Environment Variables**, add:
    - `NEXT_PUBLIC_SITE_URL` = `https://your-domain.com` (no trailing slash). Without it the site falls back to the Vercel production URL.
-   - `CONTACT_WEBHOOK_URL` = your form webhook (optional; see `app/api/contact/route.ts`).
+   - `CONTACT_WEBHOOK_URL` = your contact form webhook (required for the form to work; see `app/api/contact/route.ts`).
+   - `NEXT_PUBLIC_STRIPE_PORTAL_URL` = Stripe's customer portal login link (the **Manage membership** link).
+   - The Stripe variables listed in **STRIPE.md**.
 4. Click **Deploy**.
 5. Add your domain in **Project → Settings → Domains** and follow the DNS instructions. Then make sure `NEXT_PUBLIC_SITE_URL` matches it and redeploy.
 6. After launch, submit `https://your-domain.com/sitemap.xml` in Google Search Console.

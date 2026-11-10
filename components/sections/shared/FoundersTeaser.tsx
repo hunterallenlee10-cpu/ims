@@ -11,7 +11,7 @@ export function FoundersTeaser({ founders }: { founders: Founder[] }) {
             <PlaceholderImage
               src={f.photo}
               alt={`Portrait of ${f.name}`}
-              label={`[PHOTO: ${f.name}]`}
+              label={`[TODO: photo of ${f.name}]`}
               className="aspect-[4/5]"
               sizes="(min-width: 640px) 420px, 100vw"
             />

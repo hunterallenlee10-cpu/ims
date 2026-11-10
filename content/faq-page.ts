@@ -3,7 +3,7 @@ export const faqPage = {
   meta: {
     title: "FAQ",
     description:
-      "Plain answers about Investing Mastery Signals: financial advice, guarantees, personalization, how signals are delivered, markets covered and cancelling.",
+      "Plain answers about Investing Mastery Signals: financial advice, Core vs. Pro, getting into the Telegram group, sharing, cancelling, upgrading and failed payments.",
   },
   hero: {
     eyebrow: "FAQ",

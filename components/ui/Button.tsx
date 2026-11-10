@@ -7,8 +7,7 @@ import { Icon } from "./Icon";
 type Variant = "primary" | "secondary";
 type Size = "md" | "lg";
 
-// Square buttons with a double border (outer line, dark gap, fill), as on the
-// Business Mastery page, in IMS purple.
+// Square buttons with a double border (outer line, dark gap, fill) in IMS purple.
 const base =
   "inline-flex items-center justify-center gap-2 border-2 font-semibold tracking-[0.01em] whitespace-nowrap transition-colors duration-200 select-none";
 

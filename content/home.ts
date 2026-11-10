@@ -1,50 +1,41 @@
-// Home page copy. *Asterisks* mark the one accent word in a headline.
-// See PLACEHOLDERS.md for every [BRACKETED] item.
-
-import type { IconName } from "@/components/ui/Icon";
+// Home page copy. *Asterisks* mark the accent line in a headline.
+// See PLACEHOLDERS.md for every [TODO: ...] item.
 
 export const home = {
   meta: {
-    title: "Systematic Investment Research",
+    title: "Rules-Based Crypto Signals in Private Telegram Groups",
     description:
-      "Rules-based valuation, trend and risk signals, published the same way to every member, with the reasoning written down. General research, not personal advice.",
+      "Investing Mastery Signals posts rules-based crypto valuation and trend signals, each with its reasoning written out, in private Telegram groups. Core $25, Pro $50, Champion $399 per month.",
   },
 
   hero: {
     chipTag: "Signals",
-    eyebrow: "Systematic investment research",
+    eyebrow: "Rules-based crypto research",
     // "\n" breaks the line; *stars* color the second line purple.
     title: "Investing Mastery\n*Signals.*",
     sentence:
-      "A rules-based read on valuation, trend and risk, **published to every member at the same time.**",
-    tagline: "The science of wealth multiplication.", // [CONFIRM tagline]
-    support: "No hype and no guesswork. Every signal comes with the reasoning written down, so you always know why.",
-    primary: { label: "Join Signals", href: "/signals" },
-    secondary: { label: "See how it works", href: "/how-it-works" },
+      "Rules-based crypto valuation and trend signals, **each with its reasoning written out,** delivered in private Telegram groups.",
+    tagline: "The science of wealth multiplication.", // Kept at Hunter's request.
+    support: "For people who want a written, rules-based process behind their own crypto decisions. Signals are indicators, not buy or sell calls.",
+    primary: { label: "See membership", href: "#pricing" },
+    secondary: { label: "See an example signal", href: "/how-it-works#signal-anatomy" },
   },
 
-  console: {
-    eyebrow: "Inside the signal",
-    title: "One screen.\n*Three inputs.*",
-    subhead: "This is what a signal update looks like. **The numbers below are made up** to show the format.",
-    badge: "Example data",
-    caption: "Illustrative only. Not a real or current signal, and not a recommendation.",
-    asset: "Example asset",
-    trend: { label: "Trend state", value: "Uptrend", detail: "Rules met on 3 of 3 timeframes" },
-    valuation: { label: "Valuation Z-score", value: 0.8, detail: "Fair to slightly expensive" },
-    gate: { label: "Risk & leverage gate", value: "Closed", detail: "Conditions do not support added leverage" },
-    composite: { label: "Composite state", value: "Hold exposure" },
-    updated: "Last updated: Example · Mon 14:00 UTC",
+  sample: {
+    eyebrow: "Inside the group",
+    title: "What a signal\n*post looks like.*",
+    subhead: "Every post follows the same structure. **The values are hidden here** because this shows the format only.",
+    link: { label: "See the full breakdown", href: "/how-it-works#signal-anatomy" },
   },
 
   // Stats render only once a real value replaces null. All null = section hidden.
   stats: {
     eyebrow: "By the numbers",
     items: [
-      { value: null as string | null, label: "[NUMBER] Label one" },
-      { value: null as string | null, label: "[NUMBER] Label two" },
-      { value: null as string | null, label: "[NUMBER] Label three" },
-      { value: null as string | null, label: "[NUMBER] Label four" },
+      { value: null as string | null, label: "[TODO: stat label one]" },
+      { value: null as string | null, label: "[TODO: stat label two]" },
+      { value: null as string | null, label: "[TODO: stat label three]" },
+      { value: null as string | null, label: "[TODO: stat label four]" },
     ],
   },
 
@@ -65,104 +56,49 @@ export const home = {
       title: "Rules, data and a written process",
       points: [
         "Signals come from fixed rules, not mood",
-        "Every change comes with the reason in writing",
-        "The same signal for every member, at the same time",
-        "Risk is checked before any added exposure",
+        "Every signal comes with its reasoning written out",
+        "The same post for every member of a tier, at the same time",
+        "Indicators, not buy or sell calls. Your decisions stay yours",
       ],
     },
   },
 
-  // [CONFIRM list]
   program: {
-    eyebrow: "What members get",
-    title: "Five parts.\n*One signal.*",
-    subhead: "Each part is measured the same way every time, then combined into one read.",
-    hint: "Click through each one to see what it is",
-    items: [
-      {
-        icon: "valuation",
-        name: "Long-term valuation",
-        text: "Where price sits against its own long-run history, scored as a Z-score. Cheap, fair or expensive, measured the same way every time.",
-      },
-      {
-        icon: "trend",
-        name: "Trend state",
-        text: "Whether the market is trending up, down or sideways under a fixed set of trend rules. A reading, not a forecast.",
-      },
-      {
-        icon: "shield",
-        name: "Risk & leverage gate",
-        text: "A yes-or-no check on whether conditions support added risk. When the gate is closed, the signal says so plainly.",
-      },
-      {
-        icon: "macro",
-        name: "Macro & liquidity briefing",
-        text: "A plain-English read on rates, liquidity and the wider backdrop, and how each one feeds the signal.",
-      },
-      {
-        icon: "note",
-        name: "Weekly research note",
-        text: "What changed this week, why it changed, and what we are watching next. All in writing.",
-      },
-    ] satisfies { icon: IconName; name: string; text: string }[],
+    eyebrow: "The signals",
+    title: "Four signals.\n*Reasoning included.*",
+    subhead: "Valuation and trend indicators, each posted with the reasoning behind it. **Not direct buy or sell calls.**",
+    hint: "Select each one to see what it is",
+  },
+
+  pricing: {
+    eyebrow: "Membership",
+    title: "Three tiers.\n*Billed monthly.*",
+    subhead: "Each tier includes everything in the tiers below it.",
   },
 
   steps: {
-    eyebrow: "Next steps",
-    title: "How it\n*works for you.*",
-    subhead: "Simple on purpose. **The decisions stay yours.**",
+    eyebrow: "Joining",
+    title: "How\n*joining works.*",
+    subhead: "From checkout to the group in a few steps.",
     items: [
-      {
-        title: "Join",
-        text: "Choose a membership on the Signals page. Access details follow by [DISCORD/TELEGRAM/EMAIL].",
-      },
-      {
-        title: "Receive the signal",
-        text: "Signals and research notes go to every member at the same time, with the reasoning attached.",
-      },
-      {
-        title: "Execute with your own plan",
-        text: "You decide what to do with it, based on your own goals and risk tolerance. We never manage money or give personal advice.",
-      },
+      { title: "Choose and pay", text: "Pick a tier and pay with Stripe. Enter your Telegram username at checkout." },
+      { title: "Get your invite", text: "A private invite link arrives by email. Open it in Telegram and request to join." },
+      { title: "Read Start Here", text: "Once you're approved, start with the Start Here topic, then follow the signals." },
     ],
-  },
-
-  // [CONFIRM] all inclusions
-  features: {
-    eyebrow: "Membership",
-    title: "Everything\n*included.*",
-    subhead: "Every member gets the same access. **No upsells inside the membership.**",
-    cards: [
-      {
-        title: "The signals",
-        items: ["Valuation, trend and risk states", "An alert when any state changes", "Archive of past signal posts"],
-      },
-      {
-        title: "The research",
-        items: ["Weekly research note", "Macro & liquidity briefing", "Method notes on each input"],
-      },
-      {
-        title: "The membership",
-        items: [
-          "Member channel on [DISCORD/TELEGRAM/EMAIL]",
-          "Same access for every member",
-          "Cancel from your account [CONFIRM]",
-        ],
-      },
-    ],
+    link: { label: "Full joining steps", href: "/signals#joining" },
   },
 
   founders: {
     eyebrow: "Who's behind it",
-    title: "Built by two\n*operators.*",
-    subhead: "Investing Mastery Signals is run by Hunter Lee and Aaron Wathen.",
-    link: { label: "Read our story", href: "/about" },
+    title: "Run by its\n*co-founders.*",
+    subhead: "Hunter Lee and Aaron Wathen founded Investing Mastery Signals and run the member groups as admins.",
+    link: { label: "About the founders", href: "/about" },
   },
 
   faq: {
     eyebrow: "Questions",
     title: "Straight\n*answers.*",
-    ids: ["financial-advice", "guarantee", "personalized", "receive"],
+    ids: ["financial-advice", "core-vs-pro", "telegram", "cancel"],
     link: { label: "All questions", href: "/faq" },
   },
 
@@ -175,8 +111,8 @@ export const home = {
     },
     right: {
       title: "Follow a system",
-      text: "Rules-based signals, the reasoning in writing, and your own plan for what to do with them.",
+      text: "Rules-based signals with the reasoning written out, and your own decisions about what to do with them.",
     },
-    cta: { label: "Join Signals", href: "/signals" },
+    cta: { label: "Choose a tier", href: "#pricing" },
   },
 };

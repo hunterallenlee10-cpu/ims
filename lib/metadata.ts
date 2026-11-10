@@ -5,7 +5,7 @@ const ogImage = {
   url: "/opengraph-image",
   width: 1200,
   height: 630,
-  alt: `${site.name}: systematic investment research`,
+  alt: `${site.name}: rules-based crypto signals in private Telegram groups`,
 };
 
 /** Per-page metadata with consistent Open Graph fields and the shared OG image. */
