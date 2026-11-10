@@ -14,10 +14,11 @@ Find them all: `git grep -n "\[TODO:"`
 
 ## Compliance flag (resolve first)
 
+Hunter confirmed on 2026-11-10 that he has what he needs to sell the Champion plan. Still needed: the exact Champion description wording. Champion checkout opens when `CHAMPION_CHECKOUT_ENABLED=true` is set in Vercel (Hunter sets it).
+
 | Placeholder | Where |
 |---|---|
 | `[TODO: CHAMPION DESCRIPTION — pending legal/compliance wording from Hunter]` | `content/signals.ts` (Champion tier `pending`), `content/legal/terms.mdx` §4 |
-| `[TODO: Champion CTA — contact/apply until compliance is cleared]` | `content/signals.ts` (Champion `cta.href`) |
 | `[TODO: Champion answer, pending legal/compliance wording from Hunter]` | `content/faq.ts` (`manage-money`) |
 | `[TODO: how members move to or from Champion]` | `content/signals.ts` (`switching`), `content/faq.ts` (`upgrade`), `content/legal/terms.mdx` §7 |
 
@@ -25,10 +26,8 @@ Find them all: `git grep -n "\[TODO:"`
 
 | Placeholder | Where |
 |---|---|
-| `[TODO: checkout route, pending STRIPE.md approval]` (Core, Pro CTAs) | `content/signals.ts` (`tiers[].cta.href`). Replaced by the checkout button in Phase 3 |
-| `[TODO: Stripe customer portal login link]` | Vercel env `NEXT_PUBLIC_STRIPE_PORTAL_URL` (fallback in `content/site.ts`) |
-| `[TODO: whether sales tax or VAT is added at checkout or included in the price]` | `content/signals.ts` (`pricing.footnote`), `content/legal/terms.mdx` §6 |
-| `[TODO: if Stripe Managed Payments is approved, name Stripe as merchant of record here.]` | `content/legal/terms.mdx` §6 |
+| Terms of Service URL in Stripe → Settings → Business → Public details (`https://www.investingmasterysignals.com/terms`) | Stripe Dashboard. Checkout fails until it's set |
+| `STRIPE_SECRET_KEY` (live) | Vercel → Settings → Environment Variables (Production) |
 | `[TODO: set CONTACT_WEBHOOK_URL in Vercel]` | `app/api/contact/route.ts` (the form returns an error until set) |
 
 ## Posting cadence

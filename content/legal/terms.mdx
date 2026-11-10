@@ -28,8 +28,8 @@ Core and Pro members manage and move their own money. We provide signals and ana
 ## 6. Subscriptions and billing
 
 - Memberships are billed monthly, in advance, in US dollars, until cancelled.
-- Payments are processed by Stripe. You authorize us and Stripe to charge your payment method each month. [TODO: if Stripe Managed Payments is approved, name Stripe as merchant of record here.]
-- [TODO: whether sales tax or VAT is added at checkout or included in the price.]
+- Payments are processed by Stripe, which acts as the merchant of record for membership purchases through Stripe Managed Payments. You authorize Stripe to charge your payment method each month.
+- Depending on where you live, sales tax or VAT may apply. Stripe calculates and collects it at checkout.
 - If a payment fails, Stripe will retry it automatically. You keep access while retries run. If every retry fails, your membership is cancelled and your group access is removed. [TODO: retry window; cancel subscription vs. mark unpaid — default cancel]
 
 ## 7. Changing tiers

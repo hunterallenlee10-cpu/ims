@@ -4,7 +4,8 @@
 
 import type { IconName } from "@/components/ui/Icon";
 
-export type TierId = "core" | "pro" | "champion";
+import type { TierId } from "@/lib/tiers";
+export type { TierId };
 
 export const groups = {
   core: "Core Members - SIGNAL ONLY",
@@ -53,7 +54,8 @@ export type Tier = {
   note?: string;
   /** Champion only: shown instead of rows until compliance clears the wording. */
   pending?: string;
-  cta: { label: string; href: string };
+  /** Checkout button label. The button posts only the tier id to /api/checkout. */
+  cta: { label: string };
 };
 
 export const tiers: Tier[] = [
@@ -70,7 +72,7 @@ export const tiers: Tier[] = [
       { label: "Community", items: ["Read-only: members can't post or ask questions"] },
     ],
     whoFor: "People who want the portfolio signal and nothing else.",
-    cta: { label: "Join Core", href: "[TODO: checkout route, pending STRIPE.md approval]" },
+    cta: { label: "Join Core" },
   },
   {
     id: "pro",
@@ -87,7 +89,7 @@ export const tiers: Tier[] = [
     ],
     whoFor: "People who want the full system, the reasoning behind it, and the community.",
     note: "You manage and move your own money. IMS provides signals and analysis only.",
-    cta: { label: "Join Pro", href: "[TODO: checkout route, pending STRIPE.md approval]" },
+    cta: { label: "Join Pro" },
   },
   {
     id: "champion",
@@ -98,7 +100,7 @@ export const tiers: Tier[] = [
     inherits: "Everything in Pro",
     rows: [],
     pending: "[TODO: CHAMPION DESCRIPTION — pending legal/compliance wording from Hunter]",
-    cta: { label: "Join Champion", href: "[TODO: Champion CTA — contact/apply until compliance is cleared]" },
+    cta: { label: "Join Champion" },
   },
 ];
 
@@ -121,7 +123,23 @@ export const signals = {
     title: "Three tiers.\n*Billed monthly.*",
     canceled: "Checkout canceled. You haven't been charged. Pick a tier when you're ready.",
     agree: "By joining you agree to the",
-    footnote: "Prices in USD. [TODO: whether sales tax or VAT is added at checkout or included in the price]",
+    footnote: "Prices in USD. Depending on where you live, sales tax or VAT may apply at checkout. Stripe processes payments as the merchant of record.",
+    championClosed: "Champion checkout opens soon.",
+    redirecting: "Opening checkout…",
+    error: "Checkout couldn't start. Please try again, or contact support.",
+  },
+
+  success: {
+    meta: { title: "Payment Received", description: "Your Investing Mastery Signals payment went through. Your private Telegram invite link is on its way by email." },
+    eyebrow: "You're in",
+    title: "Payment\n*received.*",
+    intro: "Thanks for joining Investing Mastery Signals. **This page doesn't grant access.** Your invite comes by email.",
+    steps: [
+      { title: "Check your email", text: "Your private invite link arrives by email within [TODO: delivery time]. Check spam if you don't see it." },
+      { title: "Request to join", text: "Open the link in Telegram and tap Request to Join. Use the Telegram username you entered at checkout." },
+      { title: "Read Start Here", text: "Once you're approved, read the Start Here topic first." },
+    ],
+    help: "Invite didn't arrive, or your username changed? Contact support:",
   },
 
   joining: {

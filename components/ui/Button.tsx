@@ -31,7 +31,7 @@ export type ButtonProps = {
   arrow?: boolean;
 } & (
   | { href: string; type?: never; disabled?: never }
-  | { href?: undefined; type?: "button" | "submit"; disabled?: boolean }
+  | { href?: undefined; type?: "button" | "submit"; disabled?: boolean; onClick?: () => void; busy?: boolean }
 );
 
 export function Button({
@@ -85,7 +85,13 @@ export function Button({
   }
 
   return (
-    <button type={rest.type ?? "button"} disabled={rest.disabled} className={cn(classes, rest.disabled && "cursor-not-allowed opacity-60")}>
+    <button
+      type={rest.type ?? "button"}
+      disabled={rest.disabled}
+      onClick={rest.onClick}
+      aria-busy={rest.busy || undefined}
+      className={cn(classes, rest.disabled && "cursor-not-allowed opacity-60")}
+    >
       {content}
     </button>
   );

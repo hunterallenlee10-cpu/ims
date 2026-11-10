@@ -8,7 +8,9 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { Checklist } from "@/components/ui/Checklist";
 import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
+import { championCheckoutEnabled } from "@/lib/tiers";
 import { CheckoutCanceledNote } from "./CheckoutCanceledNote";
+import { CheckoutButton } from "./CheckoutButton";
 
 /**
  * Pricing table: Core, Pro and Champion side by side (stacked on mobile).
@@ -87,9 +89,19 @@ export function TierCards({
                 {tier.note ? <p className="mt-5 text-sm text-muted">{tier.note}</p> : null}
               </div>
 
-              <Button href={tier.cta.href} size="lg" className="mt-8 w-full">
-                {tier.cta.label}
-              </Button>
+              {tier.id === "champion" && !championCheckoutEnabled() ? (
+                <Button size="lg" className="mt-8 w-full" disabled>
+                  {c.championClosed}
+                </Button>
+              ) : (
+                <CheckoutButton
+                  tier={tier.id}
+                  label={tier.cta.label}
+                  busyLabel={c.redirecting}
+                  errorText={c.error}
+                  className="mt-8"
+                />
+              )}
             </article>
           </li>
         ))}
