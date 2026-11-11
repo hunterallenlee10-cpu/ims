@@ -21,9 +21,10 @@ const variants: Record<Variant, string> = {
 const sizes: Record<Size, string> = {
   md: "min-h-12 px-6 text-[0.95rem]",
   lg: "min-h-14 px-8 text-base",
-  // Site header CTA: 14px 28px / 17px from 1280px up, easing down to 900px; compact on phones.
+  // Site header CTA: 14px 28px / 17px at 1280px, growing to 17px 36px / 21px at 2560px,
+  // easing down to 900px; compact on phones.
   header:
-    "px-2.5 py-2.5 text-[13px] leading-none min-[420px]:px-4 min-[420px]:text-sm sm:px-5 sm:py-3 sm:text-[15px] nav:px-[clamp(18px,calc(2.632vw-5.68px),28px)] nav:py-3.5 nav:text-[clamp(15px,calc(10.26px+0.526vw),17px)]",
+    "px-2.5 py-2.5 text-[13px] leading-none min-[420px]:px-4 min-[420px]:text-sm sm:px-5 sm:py-3 sm:text-[15px] nav:px-[clamp(18px,calc(2.632vw-5.68px),28px)] nav:py-3.5 nav:text-[clamp(15px,calc(10.26px+0.526vw),17px)] xl:px-[clamp(28px,calc(20px+0.625vw),36px)] xl:py-[clamp(14px,calc(11px+0.234vw),17px)] xl:text-[clamp(17px,calc(13px+0.3125vw),21px)]",
 };
 
 export type ButtonProps = {

@@ -31,9 +31,10 @@ const sizes: Record<Size, { root: string; title: string; row: string; rule: stri
     img: [240, 64],
   },
   header: {
-    // 26px from 1280px up, easing down to 18px at 900px so the nav links keep room.
+    // 26px at 1280px, growing to 34px at 2560px so wide screens don't look empty;
+    // easing down to 18px at 900px so the nav links keep room.
     // Smaller on phones so the logo, CTA and menu button fit on one row.
-    root: "text-[clamp(11px,calc(2.6vw+2px),22px)] nav:text-[clamp(18px,calc(2.105vw-0.95px),26px)]",
+    root: "text-[clamp(11px,calc(2.6vw+2px),22px)] nav:text-[clamp(18px,calc(2.105vw-0.95px),26px)] xl:text-[clamp(26px,calc(18px+0.625vw),34px)]",
     title: "",
     row: "mt-[0.36em] gap-[0.48em]",
     rule: "h-[max(1px,0.06em)]",
