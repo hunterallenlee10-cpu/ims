@@ -20,7 +20,7 @@ Find them all: `git grep -n "TODO"`
 
 | What | Where |
 |---|---|
-| What the Portfolio Signal measures; which models post under IMS Signals; BTC DCA Signal and Trend Probability descriptions | `content/signals.ts` (`signalCatalog`, `TODO(Hunter)` comments) |
+| What the Portfolio Signal measures; BTC DCA Signal, TPI and IA descriptions | `content/signals.ts` (`signalCatalog`, `TODO(Hunter)` comments) |
 | Real, verifiable stats (hidden until set; no performance numbers) | `content/home.ts` (`stats`) |
 | X, YouTube, Instagram links (hidden until set) | `content/site.ts` (`socials`) |
 
