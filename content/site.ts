@@ -14,6 +14,7 @@ export const site = {
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : "http://localhost:3000"),
+  builtBy: "Website Built & Operated by Lee Enterprises Unlimited",
   legalEntity: "Investing Mastery Signals",
   // Support and contact phone number shown across the site.
   phone: { display: "(240) 538-3463", href: "tel:+12405383463" },

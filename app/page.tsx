@@ -15,7 +15,7 @@ import { TierCards } from "@/components/sections/signals/TierCards";
 import { StepPath } from "@/components/sections/shared/StepPath";
 import { FoundersTeaser } from "@/components/sections/shared/FoundersTeaser";
 import { FaqList } from "@/components/sections/shared/FaqList";
-import { TwoPathsCta } from "@/components/sections/shared/TwoPathsCta";
+import { PathsCompare } from "@/components/sections/home/PathsCompare";
 
 export const metadata = pageMetadata({
   title: `Investing Mastery Signals | ${home.meta.title}`,
@@ -85,7 +85,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <TwoPathsCta {...home.twoPaths} />
+      <PathsCompare />
     </>
   );
 }

@@ -117,16 +117,39 @@ export const home = {
     link: { label: "All questions", href: "/faq" },
   },
 
+  // Closing comparison. Left: the default places money sits. Right: IMS results.
   twoPaths: {
     eyebrow: "Your call",
     title: "Two paths.\n*Pick one.*",
     left: {
-      title: "Keep guessing",
-      text: "Same headlines, same second-guessing, and no written plan for when markets turn.",
+      tag: "Path one",
+      title: "The default path",
+      text: "Park it, automate it, and wait decades for it to compound.",
+      // Approximate typical yearly returns. TODO(Hunter): confirm current figures before launch.
+      // `bar` is the bar length as a percentage of the panel width.
+      rows: [
+        { label: "Savings account", note: "National average rate", value: "<1%", bar: 6 },
+        { label: "Inflation", note: "What your cash loses each year", value: "~3%", bar: 18, negative: true },
+        { label: "Bonds", note: "Government bond yields", value: "~4%", bar: 24 },
+        { label: "401(k) and Roth IRA", note: "Index funds on autopilot, long-run average", value: "~7-10%", bar: 48 },
+      ],
+      footnote: "Approximate typical yearly returns. Figures vary over time.",
     },
     right: {
-      title: "Follow a system",
-      text: "Rules-based signals with the reasoning written out, and your own decisions about what to do with them.",
+      tag: "Path two",
+      title: "Follow the system",
+      text: "Rules-based crypto signals, each with the reasoning written out, so you know why and when the reading changes.",
+      // Only real, verifiable results. Leave value null to show the placeholder.
+      // TODO(Hunter): e.g. value "+312%", period "Portfolio Signal, Jan 2023 to Oct 2026",
+      // basis "Actual results" or "Hypothetical backtest", plus how it was calculated.
+      result: {
+        value: null as string | null,
+        placeholder: "+[X]%",
+        period: "[TODO: which signal, start and end dates]",
+        basis: "[TODO: actual results or backtest, and how they were calculated]",
+      },
+      disclosure:
+        "Past performance does not guarantee future results. Crypto is highly volatile and you can lose money. Signals are research, not advice; your results depend on your own decisions.",
     },
     cta: { label: "Choose a tier", href: "#pricing" },
   },

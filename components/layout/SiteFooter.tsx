@@ -88,19 +88,22 @@ export function SiteFooter() {
             <p>
               © {year} {site.name}. {site.legalEntity}. All rights reserved.
             </p>
-            <p>
-              <Link href="/terms" className="hover:text-heading">
-                Terms of Service
-              </Link>
-              {" · "}
-              <Link href="/privacy" className="hover:text-heading">
-                Privacy Policy
-              </Link>
-              {" · "}
-              <Link href="/risk-disclosure" className="hover:text-heading">
-                Risk Disclosure
-              </Link>
-            </p>
+            <div className="flex flex-col gap-2 sm:items-end">
+              <p>
+                <Link href="/terms" className="hover:text-heading">
+                  Terms of Service
+                </Link>
+                {" · "}
+                <Link href="/privacy" className="hover:text-heading">
+                  Privacy Policy
+                </Link>
+                {" · "}
+                <Link href="/risk-disclosure" className="hover:text-heading">
+                  Risk Disclosure
+                </Link>
+              </p>
+              <p>{site.builtBy}</p>
+            </div>
           </div>
         </div>
       </div>
