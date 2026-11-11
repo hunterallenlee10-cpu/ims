@@ -16,6 +16,8 @@ import { StepPath } from "@/components/sections/shared/StepPath";
 import { FoundersTeaser } from "@/components/sections/shared/FoundersTeaser";
 import { FaqList } from "@/components/sections/shared/FaqList";
 import { PathsCompare } from "@/components/sections/home/PathsCompare";
+import { GrowthChart } from "@/components/sections/home/GrowthChart";
+import { trackRecord } from "@/content/track-record";
 
 export const metadata = pageMetadata({
   title: `Investing Mastery Signals | ${home.meta.title}`,
@@ -28,6 +30,13 @@ export default function HomePage() {
   return (
     <>
       <HomeHero />
+
+      <Section glow="right" aria-labelledby="track-title">
+        <SectionHeader id="track-title" eyebrow={trackRecord.eyebrow} title={trackRecord.title} subhead={trackRecord.subhead} />
+        <div data-reveal className="mx-auto max-w-6xl">
+          <GrowthChart />
+        </div>
+      </Section>
 
       <Section glow="center" aria-labelledby="sample-title">
         <SectionHeader id="sample-title" eyebrow={home.sample.eyebrow} title={home.sample.title} subhead={home.sample.subhead} />
