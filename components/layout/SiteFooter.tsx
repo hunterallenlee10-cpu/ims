@@ -24,11 +24,11 @@ export function SiteFooter() {
             <ul className="text-sm">
               <li>
                 <a
-                  href={isPlaceholder(site.email) ? "/contact" : `mailto:${site.email}`}
+                  href={site.phone.href}
                   className="inline-flex min-h-11 items-center gap-2 text-muted hover:text-heading sm:min-h-9"
                 >
-                  <Icon name="mail" size={16} className="text-accent-light" />
-                  {site.email}
+                  <Icon name="phone" size={16} className="text-accent-light" />
+                  {site.phone.display}
                 </a>
               </li>
               <li>

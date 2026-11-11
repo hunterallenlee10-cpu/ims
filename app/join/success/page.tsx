@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { signals } from "@/content/signals";
-import { isPlaceholder, site } from "@/content/site";
+import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/metadata";
 import { Section } from "@/components/ui/Section";
 import { Icon } from "@/components/ui/Icon";
@@ -24,17 +24,10 @@ export default function JoinSuccessPage() {
           <p className="text-body">{c.help}</p>
           <ul className="mt-4 flex flex-col items-center gap-2">
             <li>
-              {isPlaceholder(site.email) ? (
-                <span className="inline-flex items-center gap-2 text-heading">
-                  <Icon name="mail" size={18} className="text-accent-light" />
-                  {site.email}
-                </span>
-              ) : (
-                <a href={`mailto:${site.email}`} className="inline-flex min-h-11 items-center gap-2 text-heading hover:text-accent-lighter">
-                  <Icon name="mail" size={18} className="text-accent-light" />
-                  {site.email}
-                </a>
-              )}
+              <a href={site.phone.href} className="inline-flex min-h-11 items-center gap-2 text-heading hover:text-accent-lighter">
+                <Icon name="phone" size={18} className="text-accent-light" />
+                {site.phone.display}
+              </a>
             </li>
           </ul>
         </div>

@@ -11,7 +11,7 @@ export function organizationJsonLd() {
     url: site.url,
     description: site.description,
     ...(site.logoSrc ? { logo: `${site.url}${site.logoSrc}` } : {}),
-    ...(isPlaceholder(site.email) ? {} : { email: site.email }),
+    telephone: site.phone.href.replace("tel:", ""),
     ...(isPlaceholder(site.legalEntity) ? {} : { legalName: site.legalEntity }),
     founder: founders.map((f) => ({ "@type": "Person", name: f.name })),
     ...(sameAs.length ? { sameAs } : {}),
