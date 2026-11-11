@@ -26,10 +26,12 @@ function Waves({ seed, top, left, opacity }: { seed: number; top: number; left: 
 }
 
 export default async function OpengraphImage() {
-  const [cinzel, inter] = await Promise.all([
+  const [cinzel, inter, mark] = await Promise.all([
     readFile(path.join(process.cwd(), "assets/fonts/Cinzel.ttf")),
     readFile(path.join(process.cwd(), "assets/fonts/Inter.ttf")),
+    readFile(path.join(process.cwd(), "public/brand/logo-mark.png")),
   ]);
+  const markSrc = `data:image/png;base64,${mark.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -51,7 +53,8 @@ export default async function OpengraphImage() {
         <Waves seed={0.6} top={-150} left={420} opacity={0.55} />
         <Waves seed={3.3} top={380} left={-760} opacity={0.4} />
 
-        <div style={{ display: "flex", fontSize: 20, letterSpacing: 9, color: "#B7BFD3", textTransform: "uppercase", marginBottom: 34 }}>
+        <img src={markSrc} width={199} height={120} alt="" style={{ marginBottom: 26 }} />
+        <div style={{ display: "flex", fontSize: 20, letterSpacing: 9, color: "#B7BFD3", textTransform: "uppercase", marginBottom: 30 }}>
           Rules-Based Crypto Research
         </div>
         <div

@@ -10,7 +10,7 @@ export function organizationJsonLd() {
     name: site.name,
     url: site.url,
     description: site.description,
-    ...(site.logoSrc ? { logo: `${site.url}${site.logoSrc}` } : {}),
+    logo: `${site.url}${site.logo.square}`,
     telephone: site.phone.href.replace("tel:", ""),
     ...(isPlaceholder(site.legalEntity) ? {} : { legalName: site.legalEntity }),
     founder: founders.map((f) => ({ "@type": "Person", name: f.name })),

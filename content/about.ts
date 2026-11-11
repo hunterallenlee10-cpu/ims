@@ -29,6 +29,10 @@ export const founders: Founder[] = [
   },
 ];
 
+// Shared photo of both founders for the home page founders box.
+// Drop a landscape photo (about 1600x900 or larger) in public/team/ and set the path, e.g. "/team/founders.jpg".
+export const foundersPhoto: string | null = null; // [TODO: photo of Hunter Lee and Aaron Wathen together]
+
 export const about = {
   meta: {
     title: "About",

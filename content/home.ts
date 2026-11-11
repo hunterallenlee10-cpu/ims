@@ -24,6 +24,24 @@ export const home = {
     title: "What a signal\n*post looks like.*",
     subhead: "Every post follows the same structure. **The values are hidden here** because this shows the format only.",
     link: { label: "See the full breakdown", href: "/how-it-works#signal-anatomy" },
+    // The card stacks one example post per signal, top to bottom in this order.
+    // kind "reading" shows a reading and what changed; "analysis" shows a topic instead.
+    card: {
+      heading: "Example posts",
+      postedLabel: "Posted",
+      readingLabel: "Current reading",
+      changeText: "Moved from",
+      changeJoin: "to",
+      topicLabel: "Topic",
+      posts: [
+        { label: "Signal", name: "Portfolio Signal", kind: "reading" },
+        { label: "Signal", name: "BTC DCA Signal", kind: "reading" },
+        { label: "Signal example", name: "TPI Signal", kind: "reading" },
+        { label: "Analysis example", name: "Investing Analysis", kind: "analysis" },
+      ] as { label: string; name: string; kind: "reading" | "analysis" }[],
+      footer: "General research and educational information only. Not financial advice.",
+      caption: "Example format, not real signals.",
+    },
   },
 
   // Stats render only once a real value replaces null. All null = section hidden.
@@ -65,7 +83,6 @@ export const home = {
     eyebrow: "The signals",
     title: "Four signals.\n*Reasoning included.*",
     subhead: "Valuation and trend indicators, each posted with the reasoning behind it. **Not direct buy or sell calls.**",
-    hint: "Select each one to see what it is",
   },
 
   pricing: {

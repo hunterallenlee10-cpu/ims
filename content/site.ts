@@ -19,8 +19,12 @@ export const site = {
   phone: { display: "(240) 538-3463", href: "tel:+12405383463" },
   founders: ["Hunter Lee", "Aaron Wathen"],
 
-  // Set to "/brand/logo.svg" once the real logo file is in public/brand/.
-  logoSrc: null as string | null,
+  // IM logo mark (transparent PNG, 712x430) shown beside the text wordmark, and a
+  // square version on its dark background for search engines and app icons.
+  logo: {
+    mark: { src: "/brand/logo-mark.png", width: 712, height: 430 },
+    square: "/brand/logo-square.png",
+  },
 
   // Where every "Join" button outside the pricing cards points.
   joinHref: "/signals#pricing",

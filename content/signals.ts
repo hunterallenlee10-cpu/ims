@@ -97,8 +97,15 @@ export const tiers: Tier[] = [
     price: "$399",
     amount: 399,
     period: "USD / month, billed monthly",
-    inherits: "Everything in Pro, plus:",
-    rows: [{ label: "Portfolio management", items: ["We manage your portfolio for you"] }],
+    inherits: "Everything in Pro, and we manage it for you:",
+    rows: [
+      { label: "Portfolio management", items: ["We manage your portfolio for you, entirely"] },
+      { label: "Group", items: [`Full access to the main ${groups.main} group, every topic`] },
+      { label: "Signals", items: ["Portfolio Signal", "BTC DCA Signal", "TPI - Trend Probability Indicator", "IA - Investing Analysis"] },
+      { label: "Research", items: ["Weekly research note", "Macro and liquidity briefing", "Method notes on how the models work"] },
+      { label: "Community", items: ["All chats", "Live calls", "Ask the Founders", "Talk with other members and the founders"] },
+    ],
+    whoFor: "People who want everything in Pro and want their portfolio managed for them.",
     cta: { label: "Join Champion" },
   },
 ];

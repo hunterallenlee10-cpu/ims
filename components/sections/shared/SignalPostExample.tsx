@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/Badge";
 import { cn } from "@/lib/cn";
 
 /** A hidden value: a solid bar with a screen-reader label, so no number can pass for a live reading. */
-function Redacted({ w = "w-24" }: { w?: string }) {
+export function Redacted({ w = "w-24" }: { w?: string }) {
   return (
     <span className={cn("inline-block h-[1em] translate-y-[0.15em] bg-panel-line align-baseline", w)} role="img" aria-label="hidden value" />
   );
