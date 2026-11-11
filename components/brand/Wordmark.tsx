@@ -1,3 +1,4 @@
+import type { MouseEventHandler } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/content/site";
@@ -72,7 +73,18 @@ const sizes: Record<Size, { root: string; layout: string; mark: string; text?: s
   },
 };
 
-export function Wordmark({ size = "sm", href = "/", className }: { size?: Size; href?: string | null; className?: string }) {
+export function Wordmark({
+  size = "sm",
+  href = "/",
+  className,
+  onClick,
+}: {
+  size?: Size;
+  href?: string | null;
+  className?: string;
+  /** Lets the header scroll to the top when the logo is clicked on the home page. */
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
+}) {
   const s = sizes[size];
   const mark = (
     <span className={cn("inline-flex", s.layout, s.root)}>
@@ -93,7 +105,7 @@ export function Wordmark({ size = "sm", href = "/", className }: { size?: Size; 
   if (!href) return <span className={className}>{mark}</span>;
 
   return (
-    <Link href={href} className={cn("inline-flex min-h-11 items-center", className)}>
+    <Link href={href} onClick={onClick} className={cn("inline-flex min-h-11 items-center", className)}>
       {mark}
       <span className="sr-only"> home</span>
     </Link>
