@@ -72,7 +72,7 @@ export function SiteHeader() {
                     onClick={onNavClick(link.href)}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "group relative inline-flex min-h-11 items-center whitespace-nowrap px-1 text-[clamp(15px,calc(10.26px+0.526vw),17px)] font-medium tracking-[0.01em] transition-colors",
+                      "group relative inline-flex min-h-11 items-center whitespace-nowrap px-1 text-[clamp(15px,calc(10.26px+0.526vw),17px)] font-medium xl:text-[clamp(17px,calc(13px+0.3125vw),21px)] tracking-[0.01em] transition-colors",
                       active ? "text-heading" : "text-body hover:text-heading",
                     )}
                   >
