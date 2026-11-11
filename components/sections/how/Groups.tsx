@@ -9,7 +9,7 @@ export function Groups() {
   const c = howItWorks.groupsSection;
   const cards = [c.core, c.main];
   return (
-    <Section id="groups" divider aria-labelledby="groups-title" className="scroll-mt-20">
+    <Section id="groups" divider aria-labelledby="groups-title">
       <SectionHeader id="groups-title" eyebrow={c.eyebrow} title={c.title} subhead={c.subhead} />
 
       <ul className="grid gap-5 md:grid-cols-2">

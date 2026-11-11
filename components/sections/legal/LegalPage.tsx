@@ -17,7 +17,7 @@ export function LegalPage({ slug, Content }: { slug: LegalSlug; Content: Compone
   const page = legalPages[slug];
   const toc = headings(slug);
   return (
-    <article className="relative isolate overflow-x-clip pb-24 pt-[calc(var(--header-h)+3rem)] md:pb-32 md:pt-[calc(var(--header-h)+5rem)]">
+    <article className="relative isolate overflow-x-clip pb-24 pt-12 md:pb-32 md:pt-20">
       <Glow className="left-1/2 top-0 h-[320px] w-[700px] max-w-[130vw] -translate-x-1/2" strength={0.45} />
       <div className="container-site">
         <div className="grid gap-12 lg:grid-cols-[240px_1fr] lg:gap-16">

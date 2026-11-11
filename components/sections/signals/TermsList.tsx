@@ -18,7 +18,7 @@ type Props = {
 /** Label / text rows (billing terms, tier switching), with optional legal links. */
 export function TermsList({ id, eyebrow, title, subhead, items, links, manage, tone = "default" }: Props) {
   return (
-    <Section id={id} tone={tone} divider aria-labelledby={`${id}-title`} className="scroll-mt-20">
+    <Section id={id} tone={tone} divider aria-labelledby={`${id}-title`}>
       <SectionHeader id={`${id}-title`} eyebrow={eyebrow} title={title} subhead={subhead} />
       <dl data-reveal className="mx-auto max-w-3xl divide-y divide-line border-y border-line">
         {items.map((item) => (

@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/Card";
 export function GroupRules() {
   const c = howItWorks.rules;
   return (
-    <Section id="rules" divider aria-labelledby="rules-title" className="scroll-mt-20">
+    <Section id="rules" divider aria-labelledby="rules-title">
       <SectionHeader id="rules-title" eyebrow={c.eyebrow} title={c.title} />
       <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {c.items.map((item, i) => (

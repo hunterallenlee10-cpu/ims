@@ -44,6 +44,7 @@ export const site = {
     "Crypto is highly volatile. Past performance does not guarantee future results. You can lose some or all of your money. Do your own research and consider speaking with a licensed professional.",
 
   nav: [
+    { label: "Home", href: "/" },
     { label: "How It Works", href: "/how-it-works" },
     { label: "Membership", href: "/signals" },
     { label: "About", href: "/about" },

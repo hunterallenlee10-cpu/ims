@@ -21,7 +21,7 @@ export function HomeHero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="relative isolate flex min-h-[92svh] items-center overflow-hidden border-b border-panel-line pb-20 pt-[calc(var(--header-h)+3.5rem)]"
+      className="relative isolate flex min-h-[calc(92svh-var(--header-h))] items-center overflow-hidden border-b border-panel-line pb-20 pt-14"
     >
       {hasVideo ? (
         <>

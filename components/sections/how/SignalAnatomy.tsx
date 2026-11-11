@@ -7,7 +7,7 @@ import { SignalPostExample } from "@/components/sections/shared/SignalPostExampl
 export function SignalAnatomy() {
   const c = howItWorks.anatomy;
   return (
-    <Section id="signal-anatomy" divider glow="right" aria-labelledby="anatomy-title" className="scroll-mt-20">
+    <Section id="signal-anatomy" divider glow="right" aria-labelledby="anatomy-title">
       <SectionHeader id="anatomy-title" eyebrow={c.eyebrow} title={c.title} subhead={c.subhead} />
 
       <div className="grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:gap-14">
