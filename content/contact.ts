@@ -19,12 +19,12 @@ export const contact = {
     submit: "Send message",
     sending: "Sending…",
     success: "Thanks. Your message is in. We'll reply by email within 12 to 18 hours.",
-    error: "Something went wrong and your message wasn't sent. Please try again, or email us directly.",
+    error: "Something went wrong and your message wasn't sent. Please try again, or call us at (240) 538-3463.",
   },
   sidebar: {
-    emailTitle: "Email",
+    phoneTitle: "Phone",
     socialTitle: "Elsewhere",
-    note: "For billing questions, include the email address you joined with.",
+    note: "For billing questions, have the email address you joined with ready.",
     manageNote: "To cancel, switch tiers or update your card, use Manage membership.",
   },
 };

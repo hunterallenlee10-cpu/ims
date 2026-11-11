@@ -24,18 +24,11 @@ export default function ContactPage() {
           </div>
           <aside className="space-y-10" aria-label="Other ways to reach us">
             <div>
-              <p className="eyebrow mb-3 text-accent-light">{s.emailTitle}</p>
-              {isPlaceholder(site.email) ? (
-                <p className="inline-flex items-center gap-2 text-heading">
-                  <Icon name="mail" size={18} className="text-accent-light" />
-                  {site.email}
-                </p>
-              ) : (
-                <a href={`mailto:${site.email}`} className="inline-flex min-h-11 items-center gap-2 text-heading hover:text-accent-lighter">
-                  <Icon name="mail" size={18} className="text-accent-light" />
-                  {site.email}
-                </a>
-              )}
+              <p className="eyebrow mb-3 text-accent-light">{s.phoneTitle}</p>
+              <a href={site.phone.href} className="inline-flex min-h-11 items-center gap-2 text-heading hover:text-accent-lighter">
+                <Icon name="phone" size={18} className="text-accent-light" />
+                {site.phone.display}
+              </a>
               <p className="mt-3 text-sm text-muted">{s.note}</p>
             </div>
             <div>

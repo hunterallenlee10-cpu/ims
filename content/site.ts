@@ -15,7 +15,8 @@ export const site = {
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : "http://localhost:3000"),
   legalEntity: "Investing Mastery Signals",
-  email: "ceo@leeenterprisesunlimited.com",
+  // Support and contact phone number shown across the site.
+  phone: { display: "(240) 538-3463", href: "tel:+12405383463" },
   founders: ["Hunter Lee", "Aaron Wathen"],
 
   // Set to "/brand/logo.svg" once the real logo file is in public/brand/.
