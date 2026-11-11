@@ -45,7 +45,7 @@ export function SiteHeader() {
     setOpen(true);
   };
 
-  // "Home" on the home page scrolls back to the top instead of reloading the route.
+  // "Home" and the logo on the home page scroll back to the top instead of reloading the route.
   const onNavClick = (href: string) => (event: MouseEvent<HTMLAnchorElement>) => {
     dialogRef.current?.close();
     if (href !== "/" || pathname !== "/") return;
@@ -59,7 +59,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md supports-[backdrop-filter]:bg-bg/75">
       <div className="flex h-[calc(var(--header-h)-1px)] items-center justify-between gap-2.5 px-[var(--header-px)] nav:gap-[clamp(20px,2.5vw,48px)]">
-        <Wordmark size="header" className="shrink-0" />
+        <Wordmark size="header" className="shrink-0" onClick={onNavClick("/")} />
 
         <nav aria-label="Main" className="hidden min-w-0 flex-1 nav:flex">
           <ul className="flex flex-1 items-center justify-evenly">
@@ -117,7 +117,7 @@ export function SiteHeader() {
         className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none bg-bg p-0 text-body backdrop:bg-bg/80 nav:hidden"
       >
         <div className="flex h-[var(--header-h)] items-center justify-between gap-2.5 border-b border-line px-[var(--header-px)]">
-          <Wordmark size="header" className="shrink-0" />
+          <Wordmark size="header" className="shrink-0" onClick={onNavClick("/")} />
           <button
             type="button"
             onClick={() => dialogRef.current?.close()}
