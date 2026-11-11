@@ -102,7 +102,17 @@ export function SiteFooter() {
                   Risk Disclosure
                 </Link>
               </p>
-              <p>{site.builtBy}</p>
+              <p>
+                {site.builtBy.text}{" "}
+                <a
+                  href={site.builtBy.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-line underline-offset-2 hover:text-heading hover:decoration-accent-light"
+                >
+                  {site.builtBy.name}
+                </a>
+              </p>
             </div>
           </div>
         </div>
