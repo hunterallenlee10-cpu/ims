@@ -38,8 +38,8 @@ export const site = {
     href: process.env.NEXT_PUBLIC_STRIPE_PORTAL_URL ?? "[TODO: Stripe customer portal login link]",
   },
 
-  // Only true claims.
-  trustLine: ["Rules-based", "Reasoning written out", "Cancel anytime"],
+  // Only true claims. The return figure must be backed by records (which signal, actual or backtest).
+  trustLine: ["Rules-based", "Reasoning written out", "+281% Since August 2023"],
 
   ageNotice: "Membership is for adults 18 and over.",
 

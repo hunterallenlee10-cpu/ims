@@ -62,9 +62,9 @@ const sizes: Record<Size, { root: string; layout: string; mark: string; text?: s
     // Smaller on phones so the logo, CTA and menu button fit on one row.
     root: "text-[clamp(11px,calc(2.6vw+2px),22px)] nav:text-[clamp(18px,calc(2.105vw-0.95px),26px)] xl:text-[clamp(26px,calc(18px+0.625vw),34px)]",
     layout: "flex-row items-center gap-[0.5em]",
-    // Phones show the mark alone so the CTA and menu button still fit; the name is still read out.
-    mark: "h-9 sm:h-[2.15em]",
-    text: "max-sm:sr-only",
+    // The header shows the mark alone; the written name is kept for screen readers.
+    mark: "h-10 sm:h-[2.4em]",
+    text: "sr-only",
     title: "",
     row: "mt-[0.36em] gap-[0.48em]",
     rule: "h-[max(1px,0.06em)]",
