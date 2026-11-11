@@ -54,8 +54,6 @@ export function HomeHero() {
           {renderAccent(hero.title)}
         </h1>
         <p className="measure mx-auto mt-8 text-xl leading-relaxed text-body md:text-[1.4rem]">{renderRich(hero.sentence)}</p>
-        <p className="mt-4 font-semibold text-heading">{hero.tagline}</p>
-        <p className="measure mx-auto mt-4 text-muted">{hero.support}</p>
         <div className="mt-10 flex justify-center">
           <CtaArrows>
             <Button href={hero.primary.href} size="lg" className="sm:min-w-52">

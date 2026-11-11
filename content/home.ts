@@ -15,8 +15,6 @@ export const home = {
     title: "Investing Mastery\n*Signals.*",
     sentence:
       "Rules-based crypto valuation and trend signals, **each with its reasoning written out,** delivered in private Telegram groups.",
-    tagline: "The science of wealth multiplication.", // Kept at Hunter's request.
-    support: "For people who want a written, rules-based process behind their own crypto decisions. Signals are indicators, not buy or sell calls.",
     primary: { label: "See membership", href: "#pricing" },
     secondary: { label: "See an example signal", href: "/how-it-works#signal-anatomy" },
   },
