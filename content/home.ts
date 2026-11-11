@@ -139,14 +139,13 @@ export const home = {
       tag: "Path two",
       title: "Follow the system",
       text: "Rules-based crypto signals, each with the reasoning written out, so you know why and when the reading changes.",
-      // Only real, verifiable results. Leave value null to show the placeholder.
-      // TODO(Hunter): e.g. value "+312%", period "Portfolio Signal, Jan 2023 to Oct 2026",
-      // basis "Actual results" or "Hypothetical backtest", plus how it was calculated.
+      // Only real, verifiable results (keep records). Set value to null to show the placeholder.
+      // Keep in step with the trust line in content/site.ts.
       result: {
-        value: null as string | null,
+        value: "+281%" as string | null,
         placeholder: "+[X]%",
-        period: "[TODO: which signal, start and end dates]",
-        basis: "[TODO: actual results or backtest, and how they were calculated]",
+        period: "Portfolio Signal, since August 2023",
+        basis: "Actual results.",
       },
       disclosure:
         "Past performance does not guarantee future results. Crypto is highly volatile and you can lose money. Signals are research, not advice; your results depend on your own decisions.",
