@@ -21,12 +21,6 @@ export const signalCatalog: { icon: IconName; name: string; text: string; tiers:
     tiers: "Core, Pro and Champion",
   },
   {
-    icon: "pulse",
-    name: "IMS Signals",
-    text: "IMS's rules-based valuation, trend and risk indicators, each posted with its reasoning.", // TODO(Hunter): which models post here
-    tiers: "Pro and Champion",
-  },
-  {
     icon: "refresh",
     name: "BTC DCA Signal",
     text: "A rules-based signal for members who dollar-cost average into Bitcoin, posted with its reasoning.", // TODO(Hunter): confirm description
@@ -34,8 +28,14 @@ export const signalCatalog: { icon: IconName; name: string; text: string; tiers:
   },
   {
     icon: "trend",
-    name: "Trend Probability",
+    name: "TPI - Trend Probability Indicator",
     text: "A rules-based trend probability reading, posted with the reasoning behind it.", // TODO(Hunter): confirm description
+    tiers: "Pro and Champion",
+  },
+  {
+    icon: "note",
+    name: "IA - Investing Analysis",
+    text: "Investing analysis and research posts, with the reasoning written out.", // TODO(Hunter): confirm description
     tiers: "Pro and Champion",
   },
 ];
@@ -83,7 +83,7 @@ export const tiers: Tier[] = [
     inherits: "Everything in Core, plus:",
     rows: [
       { label: "Group", items: [`Full access to the main ${groups.main} group, every topic`] },
-      { label: "Signals", items: ["Portfolio Signal", "IMS Signals", "BTC DCA Signal", "Trend Probability"] },
+      { label: "Signals", items: ["Portfolio Signal", "BTC DCA Signal", "TPI - Trend Probability Indicator", "IA - Investing Analysis"] },
       { label: "Research", items: ["Weekly research note", "Macro and liquidity briefing", "Method notes on how the models work"] },
       { label: "Community", items: ["All chats", "Live calls", "Ask the Founders", "Talk with other members and the founders"] },
     ],
