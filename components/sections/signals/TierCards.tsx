@@ -27,7 +27,7 @@ export function TierCards({
 }) {
   const c = signals.pricing;
   return (
-    <Section id="pricing" glow="center" aria-labelledby="pricing-title" className="scroll-mt-20">
+    <Section id="pricing" glow="center" aria-labelledby="pricing-title">
       <div className="mb-12 text-center" data-reveal>
         <Eyebrow className="mb-4">{eyebrow}</Eyebrow>
         <h2 id="pricing-title" className="text-h2">

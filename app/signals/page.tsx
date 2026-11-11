@@ -51,7 +51,7 @@ export default function SignalsPage() {
       <PageHero eyebrow={hero.eyebrow} title={hero.title} intro={hero.intro} />
       <TierCards />
 
-      <Section id="joining" divider glow="left" aria-labelledby="joining-title" className="scroll-mt-20">
+      <Section id="joining" divider glow="left" aria-labelledby="joining-title">
         <SectionHeader id="joining-title" eyebrow={joining.eyebrow} title={joining.title} subhead={joining.subhead} />
         <StepPath items={joining.steps} />
       </Section>

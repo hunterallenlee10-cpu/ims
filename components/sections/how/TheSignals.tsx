@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/Card";
 export function TheSignals() {
   const c = howItWorks.signalsList;
   return (
-    <Section id="signals" tone="raised" divider glow="center" aria-labelledby="signals-title" className="scroll-mt-20">
+    <Section id="signals" tone="raised" divider glow="center" aria-labelledby="signals-title">
       <SectionHeader id="signals-title" eyebrow={c.eyebrow} title={c.title} subhead={c.subhead} />
       <ul className="grid gap-5 md:grid-cols-2">
         {signalCatalog.map((item, i) => (

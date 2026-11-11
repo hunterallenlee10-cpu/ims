@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/Card";
 export function UpdateCadence() {
   const c = howItWorks.cadence;
   return (
-    <Section id="cadence" tone="raised" divider aria-labelledby="cadence-title" className="scroll-mt-20">
+    <Section id="cadence" tone="raised" divider aria-labelledby="cadence-title">
       <SectionHeader id="cadence-title" eyebrow={c.eyebrow} title={c.title} subhead={c.subhead} />
       <ul className={cn("grid gap-5 sm:grid-cols-2", c.items.length > 2 ? "lg:grid-cols-4" : "mx-auto max-w-4xl")}>
         {c.items.map((item, i) => (

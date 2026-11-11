@@ -56,6 +56,8 @@
   --section-y: clamp(4rem, 10vw, 8.75rem);
   --gap: clamp(1.25rem, 3vw, 2rem);
   --header-h: 72px;
+  /* Side padding of the full-width header */
+  --header-px: clamp(20px, 4vw, 64px);
 
   /* Shape & motion */
   --radius: 0px;
@@ -69,6 +71,13 @@
 @media (min-width: 768px) {
   :root {
     --body: 1.125rem;
+  }
+}
+
+/* Desktop header (matches the nav: breakpoint) */
+@media (min-width: 56.25rem) {
+  :root {
+    --header-h: 88px;
   }
 }
 
@@ -116,6 +125,11 @@
   --ease-site: var(--ease);
 }
 
+/* Header switches from hamburger to full nav at 900px. */
+@theme {
+  --breakpoint-nav: 56.25rem;
+}
+
 /* Layout helpers */
 @utility container-site {
   width: 100%;
@@ -149,7 +163,12 @@
   html {
     color-scheme: dark;
     -webkit-text-size-adjust: 100%;
-    scroll-padding-top: calc(var(--header-h) + 1rem);
+    scroll-behavior: smooth;
+  }
+
+  /* Anchor links stop just below the sticky header. */
+  section {
+    scroll-margin-top: var(--header-h);
   }
 
   body {
