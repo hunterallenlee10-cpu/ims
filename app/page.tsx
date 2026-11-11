@@ -9,13 +9,13 @@ import { Button } from "@/components/ui/Button";
 import { HomeHero } from "@/components/sections/home/HomeHero";
 import { StatStrip } from "@/components/sections/shared/StatStrip";
 import { VsCompare } from "@/components/sections/shared/VsCompare";
-import { ProgramExplorer } from "@/components/sections/home/ProgramExplorer";
-import { SignalPostExample } from "@/components/sections/shared/SignalPostExample";
+import { SignalRows } from "@/components/sections/home/SignalRows";
+import { SignalFeedExample } from "@/components/sections/shared/SignalFeedExample";
 import { TierCards } from "@/components/sections/signals/TierCards";
 import { StepPath } from "@/components/sections/shared/StepPath";
 import { FoundersTeaser } from "@/components/sections/shared/FoundersTeaser";
 import { FaqList } from "@/components/sections/shared/FaqList";
-import { TwoPathsCta } from "@/components/sections/shared/TwoPathsCta";
+import { PathsCompare } from "@/components/sections/home/PathsCompare";
 
 export const metadata = pageMetadata({
   title: `Investing Mastery Signals | ${home.meta.title}`,
@@ -32,7 +32,7 @@ export default function HomePage() {
       <Section glow="center" aria-labelledby="sample-title">
         <SectionHeader id="sample-title" eyebrow={home.sample.eyebrow} title={home.sample.title} subhead={home.sample.subhead} />
         <div data-reveal className="mx-auto max-w-2xl">
-          <SignalPostExample />
+          <SignalFeedExample />
         </div>
         <div className="mt-10 text-center" data-reveal>
           <Button href={home.sample.link.href} variant="secondary" arrow>
@@ -50,7 +50,7 @@ export default function HomePage() {
 
       <Section aria-labelledby="program-title">
         <SectionHeader id="program-title" eyebrow={home.program.eyebrow} title={home.program.title} subhead={home.program.subhead} />
-        <ProgramExplorer items={signalCatalog} hint={home.program.hint} />
+        <SignalRows items={signalCatalog} />
       </Section>
 
       <TierCards eyebrow={home.pricing.eyebrow} title={home.pricing.title} subhead={home.pricing.subhead} />
@@ -85,7 +85,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <TwoPathsCta {...home.twoPaths} />
+      <PathsCompare />
     </>
   );
 }

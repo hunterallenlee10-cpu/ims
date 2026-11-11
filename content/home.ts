@@ -24,6 +24,24 @@ export const home = {
     title: "What a signal\n*post looks like.*",
     subhead: "Every post follows the same structure. **The values are hidden here** because this shows the format only.",
     link: { label: "See the full breakdown", href: "/how-it-works#signal-anatomy" },
+    // The card stacks one example post per signal, top to bottom in this order.
+    // kind "reading" shows a reading and what changed; "analysis" shows a topic instead.
+    card: {
+      heading: "Example posts",
+      postedLabel: "Posted",
+      readingLabel: "Current reading",
+      changeText: "Moved from",
+      changeJoin: "to",
+      topicLabel: "Topic",
+      posts: [
+        { label: "Signal", name: "Portfolio Signal", kind: "reading" },
+        { label: "Signal", name: "BTC DCA Signal", kind: "reading" },
+        { label: "Signal example", name: "TPI Signal", kind: "reading" },
+        { label: "Analysis example", name: "Investing Analysis", kind: "analysis" },
+      ] as { label: string; name: string; kind: "reading" | "analysis" }[],
+      footer: "General research and educational information only. Not financial advice.",
+      caption: "Example format, not real signals.",
+    },
   },
 
   // Stats render only once a real value replaces null. All null = section hidden.
@@ -65,7 +83,6 @@ export const home = {
     eyebrow: "The signals",
     title: "Four signals.\n*Reasoning included.*",
     subhead: "Valuation and trend indicators, each posted with the reasoning behind it. **Not direct buy or sell calls.**",
-    hint: "Select each one to see what it is",
   },
 
   pricing: {
@@ -100,16 +117,39 @@ export const home = {
     link: { label: "All questions", href: "/faq" },
   },
 
+  // Closing comparison. Left: the default places money sits. Right: IMS results.
   twoPaths: {
     eyebrow: "Your call",
     title: "Two paths.\n*Pick one.*",
     left: {
-      title: "Keep guessing",
-      text: "Same headlines, same second-guessing, and no written plan for when markets turn.",
+      tag: "Path one",
+      title: "The default path",
+      text: "Park it, automate it, and wait decades for it to compound.",
+      // Approximate typical yearly returns. TODO(Hunter): confirm current figures before launch.
+      // `bar` is the bar length as a percentage of the panel width.
+      rows: [
+        { label: "Savings account", note: "National average rate", value: "<1%", bar: 6 },
+        { label: "Inflation", note: "What your cash loses each year", value: "~3%", bar: 18, negative: true },
+        { label: "Bonds", note: "Government bond yields", value: "~4%", bar: 24 },
+        { label: "401(k) and Roth IRA", note: "Index funds on autopilot, long-run average", value: "~7-10%", bar: 48 },
+      ],
+      footnote: "Approximate typical yearly returns. Figures vary over time.",
     },
     right: {
-      title: "Follow a system",
-      text: "Rules-based signals with the reasoning written out, and your own decisions about what to do with them.",
+      tag: "Path two",
+      title: "Follow the system",
+      text: "Rules-based crypto signals, each with the reasoning written out, so you know why and when the reading changes.",
+      // Only real, verifiable results. Leave value null to show the placeholder.
+      // TODO(Hunter): e.g. value "+312%", period "Portfolio Signal, Jan 2023 to Oct 2026",
+      // basis "Actual results" or "Hypothetical backtest", plus how it was calculated.
+      result: {
+        value: null as string | null,
+        placeholder: "+[X]%",
+        period: "[TODO: which signal, start and end dates]",
+        basis: "[TODO: actual results or backtest, and how they were calculated]",
+      },
+      disclosure:
+        "Past performance does not guarantee future results. Crypto is highly volatile and you can lose money. Signals are research, not advice; your results depend on your own decisions.",
     },
     cta: { label: "Choose a tier", href: "#pricing" },
   },

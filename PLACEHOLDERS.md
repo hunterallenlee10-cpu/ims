@@ -13,7 +13,8 @@ Find them all: `git grep -n "TODO"`
 | What | Where |
 |---|---|
 | Founder one-line bios and bios (also on the home page) | `content/about.ts` (`founders`) |
-| Founder photos | Add `public/team/hunter.jpg` and `aaron.jpg`, then set `photo` in `content/about.ts` |
+| Founder portraits (About page) | Add `public/team/hunter.jpg` and `aaron.jpg`, then set `photo` in `content/about.ts` |
+| Photo of both founders (home page) | Add a landscape photo such as `public/team/founders.jpg`, then set `foundersPhoto` in `content/about.ts` |
 | About page timeline: years, milestones, launch details, photos | `content/about.ts` (`timeline`) |
 
 ## Code comments only (not visible)
@@ -26,4 +27,4 @@ Find them all: `git grep -n "TODO"`
 
 ## Logo
 
-The share image is generated from the brand styles in `app/opengraph-image.tsx`. When a logo exists, put it at `public/brand/logo.svg` and set `logoSrc` in `content/site.ts`.
+The share image is generated from the brand styles in `app/opengraph-image.tsx`. It includes the IM logo mark. Logo files live in `public/brand/` (see its README); paths are in `site.logo` in `content/site.ts`.

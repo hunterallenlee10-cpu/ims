@@ -4,6 +4,7 @@ import Link from "next/link";
 import { home } from "@/content/home";
 import { renderAccent, renderRich } from "@/lib/accent";
 import { DataWave } from "@/components/art/DataWave";
+import { LogoMark } from "@/components/brand/Wordmark";
 import { Glow } from "@/components/art/Glow";
 import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
@@ -49,6 +50,10 @@ export function HomeHero() {
       <Glow className="left-1/2 top-[40%] h-[520px] w-[900px] max-w-[160vw] -translate-x-1/2 -translate-y-1/2" strength={0.7} />
 
       <div className="container-site relative text-center">
+        <LogoMark
+          priority
+          className="mx-auto mb-8 h-16 drop-shadow-[0_0_28px_rgba(138,30,241,0.45)] sm:h-20"
+        />
         <Chip tag={hero.chipTag} label={hero.eyebrow} className="mb-8" />
         <h1 id="hero-title" className="sheen mx-auto max-w-6xl text-[clamp(3.2rem,9.6vw,7.6rem)] leading-[0.92]">
           {renderAccent(hero.title)}

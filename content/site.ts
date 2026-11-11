@@ -14,13 +14,18 @@ export const site = {
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : "http://localhost:3000"),
+  builtBy: "Website Built & Operated by Lee Enterprises Unlimited",
   legalEntity: "Investing Mastery Signals",
   // Support and contact phone number shown across the site.
   phone: { display: "(240) 538-3463", href: "tel:+12405383463" },
   founders: ["Hunter Lee", "Aaron Wathen"],
 
-  // Set to "/brand/logo.svg" once the real logo file is in public/brand/.
-  logoSrc: null as string | null,
+  // IM logo mark (transparent PNG, 712x430) shown beside the text wordmark, and a
+  // square version on its dark background for search engines and app icons.
+  logo: {
+    mark: { src: "/brand/logo-mark.png", width: 712, height: 430 },
+    square: "/brand/logo-square.png",
+  },
 
   // Where every "Join" button outside the pricing cards points.
   joinHref: "/signals#pricing",
