@@ -1,5 +1,5 @@
 // /signals (membership) copy, plus the tier and signal data used across the site.
-// Source of truth: three monthly tiers. Each higher tier includes everything below it.
+// Source of truth: three monthly tiers, plus a yearly option on Pro. Each higher tier includes everything below it.
 // No countdowns, no "spots left", no strikethrough prices, no "most popular" labels.
 
 import type { IconName } from "@/components/ui/Icon";
@@ -64,6 +64,8 @@ export type Tier = {
   pending?: string;
   /** Checkout button label. The button posts only the tier id to /api/checkout. */
   cta: { label: string };
+  /** Optional yearly billing, shown under the monthly price with its own checkout button. */
+  yearly?: { price: string; amount: number; period: string; note: string; cta: { label: string } };
 };
 
 export const tiers: Tier[] = [
@@ -106,7 +108,15 @@ export const tiers: Tier[] = [
     ],
     whoFor: "People who want the full system, the reasoning behind it, and the community.",
     note: "You manage and move your own money. IMS provides signals and analysis only.",
-    cta: { label: "Join Pro" },
+    cta: { label: "Join Pro monthly" },
+    // Keep in sync with the ims_pro_yearly price in scripts/stripe-setup.mts.
+    yearly: {
+      price: "$249",
+      amount: 249,
+      period: "USD / year, billed yearly",
+      note: "$51 less than 12 monthly payments.",
+      cta: { label: "Join Pro yearly" },
+    },
   },
   {
     id: "champion",
@@ -131,19 +141,19 @@ export const signals = {
   meta: {
     title: "Membership and Pricing",
     description:
-      "Core ($20/month), Pro ($25/month) and Champion ($399/month) memberships for Investing Mastery Signals, delivered in private Telegram groups. How joining, billing, cancelling and switching tiers work.",
+      "Core ($20/month), Pro ($25/month or $249/year) and Champion ($399/month) memberships for Investing Mastery Signals, delivered in private Telegram groups. How joining, billing, cancelling and switching tiers work.",
   },
 
   hero: {
     eyebrow: "Membership",
     title: "Pick your\n*tier.*",
     intro:
-      "Three monthly memberships, all delivered in private Telegram groups. **Each tier includes everything in the tiers below it.**",
+      "Three memberships, all delivered in private Telegram groups. Pay monthly, or pay for Pro yearly. **Each tier includes everything in the tiers below it.**",
   },
 
   pricing: {
     eyebrow: "Pricing",
-    title: "Three tiers.\n*Billed monthly.*",
+    title: "Three tiers.\n*Cancel anytime.*",
     canceled: "Checkout canceled. You haven't been charged. Pick a tier when you're ready.",
     agree: "By joining you agree to the",
     footnote: "Prices in USD. Depending on where you live, sales tax or VAT may apply at checkout. Stripe processes payments as the merchant of record.",
@@ -194,6 +204,10 @@ export const signals = {
         text: "Takes effect at the end of your current billing period. Then you're removed from the main group and invited to " + groups.core + ".",
       },
       {
+        label: "Pro monthly to yearly",
+        text: "Takes effect right away. You're charged $249 for the year, minus a credit for the unused part of your current month. Moving from yearly back to monthly takes effect when your year ends.",
+      },
+      {
         label: "Champion",
         text: "Contact us anytime to move up to Champion. Champion members can cancel in Manage membership, or contact us to switch tiers.",
       },
@@ -205,7 +219,7 @@ export const signals = {
     title: "Clear\n*terms.*",
     subhead: "Read these before you join.",
     items: [
-      { label: "Billing", text: "Every tier is billed monthly in USD, in advance, through Stripe, until you cancel." },
+      { label: "Billing", text: "Core and Champion are billed monthly. Pro is billed monthly ($25) or yearly ($249), whichever you pick. All in USD, in advance, through Stripe, until you cancel." },
       { label: "Cancelling", text: "Cancel any time in Manage membership. Sign in with the email you paid with." },
       { label: "After you cancel", text: "Access continues to the end of the period you've paid for. Then your membership ends and you're removed from the group." },
       {

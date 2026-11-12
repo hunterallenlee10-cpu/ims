@@ -80,11 +80,12 @@ Created by `scripts/stripe-setup.mts`. It's idempotent: prices are found by `loo
 |---|---|---|---|---|---|
 | IMS Core | The Portfolio Signal only, in the read-only "Core Members - SIGNAL ONLY" Telegram group. | $20.00 / month | `ims_core_monthly` | `prod_VbKNJCHQYGbJqg` | `price_1Ub6EPRj5B5P2OabewSN5uz2` |
 | IMS Pro | All IMS signals (Portfolio Signal, IMS Signals, BTC DCA Signal, Trend Probability), a weekly research note, a macro and liquidity briefing, method notes, and full access to the main "Investing Mastery Signals" Telegram group. | $25.00 / month | `ims_pro_monthly` | `prod_VbKNU4iJNqFG5p` | `price_1Ub6EQRj5B5P2Oabgp1DACwM` |
+| IMS Pro (yearly) | Same product as IMS Pro. | $249.00 / year | `ims_pro_yearly` | `prod_VbKNU4iJNqFG5p` | `price_1Ub6IIRj5B5P2OabqoZgYRtM` |
 | IMS Champion | Everything in Pro, plus we manage your portfolio for you. | $399.00 / month | `ims_champion_monthly` | `prod_VbKNqZs5VvVvc8` | `price_1Ua7irRj5B5P2OabVfNyjMdL` |
 
 Customer portal configuration: `bpc_1Ua7irRj5B5P2OabBz6cKtBZ`.
 
-Price history: on 2026-11-12 Core went from $25 to $20 and Pro from $50 to $25. The old prices (`price_1Ua7ipRj5B5P2OabVBxlHkN3`, `price_1Ua7iqRj5B5P2OabEHqlT3U1`) are archived. There were no subscribers at the time.
+Price history: on 2026-11-12 Core went from $25 to $20 and Pro from $50 to $25. The old prices (`price_1Ua7ipRj5B5P2OabVBxlHkN3`, `price_1Ua7iqRj5B5P2OabEHqlT3U1`) are archived. There were no subscribers at the time. The same day, a yearly Pro price ($249/year, `ims_pro_yearly`) was added; members can switch Pro between monthly and yearly in the customer portal (quantity changes are off).
 
 To change a price, edit `amount` in `scripts/stripe-setup.mts` (and the site copy in `content/signals.ts`, `content/home.ts`, `content/faq.ts`) and re-run the script. Stripe prices can't be edited, so the script creates a new price on the same product, moves the `lookup_key` to it, archives the old price and points the customer portal at the new one. Existing subscriptions stay on the old price until moved.
 
@@ -103,12 +104,12 @@ NODE_USE_ENV_PROXY=1 STRIPE_SECRET_KEY=<key or proxy placeholder> SITE_URL=https
 | `lib/tiers.ts` | Tier ids, lookup keys, the Champion flag |
 | `lib/stripe.ts` | Server-only Stripe client (fetch-based) and cached price lookup by `lookup_key` |
 | `lib/rate-limit.ts` | 5 requests per minute per IP, per server instance |
-| `app/api/checkout/route.ts` | `POST { tier, attempt }` → `{ url }` |
+| `app/api/checkout/route.ts` | `POST { tier, billing?, attempt }` → `{ url }`. `billing` is `monthly` (default) or `yearly` (Pro only) |
 | `components/sections/signals/CheckoutButton.tsx` | Sends only the tier; disables itself while working; one attempt id per click, so double clicks reuse one session |
 | `app/join/success/page.tsx` | "Payment received" page. Grants nothing; `noindex` |
 | `scripts/stripe-setup.mts` | Products, prices, tax codes, customer portal |
 
-Session settings: `mode: subscription`; required text field "Telegram username (so we can approve your join request)" (5 to 33 characters); `consent_collection.terms_of_service: required`; `metadata` and `subscription_data.metadata` = `{ tier }`; success URL `/join/success?session_id={CHECKOUT_SESSION_ID}`; cancel URL `/signals?canceled=1#pricing`; promotion codes off; idempotency key `checkout:<tier>:<attempt>`.
+Session settings: `mode: subscription`; required text field "Telegram username (so we can approve your join request)" (5 to 33 characters); `consent_collection.terms_of_service: required`; `metadata` and `subscription_data.metadata` = `{ tier, billing }`; success URL `/join/success?session_id={CHECKOUT_SESSION_ID}`; cancel URL `/signals?canceled=1#pricing`; promotion codes off; idempotency key `checkout:<tier>:<billing>:<attempt>`.
 
 **Managed Payments** (Stripe as merchant of record) is on by default for this account (confirmed: sessions report `managed_payments.enabled: true`). It doesn't allow Checkout's `custom_text`, so the "invite by email" note lives on the success page.
 

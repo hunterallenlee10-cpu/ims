@@ -15,7 +15,7 @@
 // Going from test to live means running it again with the live key. No code changes.
 
 import Stripe from "stripe";
-import { LOOKUP_KEYS, TIER_IDS, type TierId } from "../lib/tiers.ts";
+import { LOOKUP_KEYS, TIER_IDS, YEARLY_LOOKUP_KEYS, type TierId } from "../lib/tiers.ts";
 
 const DRY = process.argv.includes("--dry-run");
 const EXPECTED_ACCOUNT = process.env.EXPECTED_ACCOUNT ?? "acct_1Ua6qPRj5B5P2Oab";
@@ -30,7 +30,8 @@ if (!SITE_URL.startsWith("https://")) throw new Error("Set SITE_URL to the publi
 const stripe = new Stripe(key, { appInfo: { name: "ims-setup-script" }, httpClient: Stripe.createFetchHttpClient() });
 
 // Facts only. Champion wording confirmed by Hunter on 2026-11-10.
-const PRODUCTS: Record<TierId, { name: string; description: string; amount: number }> = {
+// amount is the monthly price in cents; yearly (Pro only) is the yearly price in cents, sold under YEARLY_LOOKUP_KEYS.
+const PRODUCTS: Record<TierId, { name: string; description: string; amount: number; yearly?: number }> = {
   core: {
     name: "IMS Core",
     description: 'The Portfolio Signal only, in the read-only "Core Members - SIGNAL ONLY" Telegram group.',
@@ -41,6 +42,7 @@ const PRODUCTS: Record<TierId, { name: string; description: string; amount: numb
     description:
       'All IMS signals (Portfolio Signal, IMS Signals, BTC DCA Signal, Trend Probability), a weekly research note, a macro and liquidity briefing, method notes, and full access to the main "Investing Mastery Signals" Telegram group.',
     amount: 2500,
+    yearly: 24900,
   },
   champion: { name: "IMS Champion", description: "Everything in Pro, plus we manage your portfolio for you.", amount: 39900 },
 };
@@ -137,7 +139,51 @@ async function ensureTier(tier: TierId) {
   return { product: product.id, price: price.id };
 }
 
-async function ensurePortal(ids: Record<TierId, { product: string; price: string }>) {
+/** Yearly price for a tier that has one. Same create / change / reactivate rules as the monthly price. */
+async function ensureYearly(tier: TierId, productId: string): Promise<string | undefined> {
+  const amount = PRODUCTS[tier].yearly;
+  const lookup_key = YEARLY_LOOKUP_KEYS[tier];
+  if (!amount || !lookup_key) return undefined;
+  const existing = (await stripe.prices.list({ lookup_keys: [lookup_key], limit: 1 })).data[0];
+  const create = async (transfer: boolean) =>
+    (
+      await stripe.prices.create(
+        {
+          product: productId,
+          currency: "usd",
+          unit_amount: amount,
+          recurring: { interval: "year" },
+          lookup_key,
+          ...(transfer ? { transfer_lookup_key: true } : {}),
+          metadata: { tier, billing: "yearly" },
+        },
+        { idempotencyKey: `ims-price-${tier}-yearly-${amount}` },
+      )
+    ).id;
+
+  if (!existing) {
+    log(`${lookup_key}: creating price (${amount / 100} USD/year)`);
+    return DRY ? "(new)" : create(false);
+  }
+  if (existing.currency !== "usd" || existing.recurring?.interval !== "year") {
+    throw new Error(`${lookup_key} exists but is not a USD yearly price. Fix it in the Dashboard.`);
+  }
+  if (existing.unit_amount !== amount) {
+    log(`${lookup_key}: changing ${existing.unit_amount! / 100} -> ${amount / 100} USD/year (new price, old one archived)`);
+    if (DRY) return "(new)";
+    const id = await create(true);
+    await stripe.prices.update(existing.id, { active: false });
+    return id;
+  }
+  if (!existing.active) {
+    log(`${lookup_key}: reactivating price`);
+    if (!DRY) await stripe.prices.update(existing.id, { active: true });
+  }
+  log(`${lookup_key}: exists (price ${existing.id})`);
+  return existing.id;
+}
+
+async function ensurePortal(ids: Record<TierId, { product: string; price: string; yearly?: string }>) {
   const params: Stripe.BillingPortal.ConfigurationCreateParams = {
     business_profile: {
       headline: "Investing Mastery Signals: manage your membership",
@@ -160,7 +206,12 @@ async function ensurePortal(ids: Record<TierId, { product: string; price: string
         products: [
           // One membership per subscription: members can switch tier but not change quantity.
           { product: ids.core.product, prices: [ids.core.price], adjustable_quantity: { enabled: false } },
-          { product: ids.pro.product, prices: [ids.pro.price], adjustable_quantity: { enabled: false } },
+          // Pro members can also switch between monthly and yearly billing.
+          {
+            product: ids.pro.product,
+            prices: ids.pro.yearly ? [ids.pro.price, ids.pro.yearly] : [ids.pro.price],
+            adjustable_quantity: { enabled: false },
+          },
         ],
         // Downgrades (Pro -> Core) wait until the end of the period.
         schedule_at_period_end: { conditions: [{ type: "decreasing_item_amount" }] },
@@ -185,12 +236,19 @@ async function ensurePortal(ids: Record<TierId, { product: string; price: string
 
 async function main() {
   const live = await checkAccount();
-  const ids = {} as Record<TierId, { product: string; price: string }>;
-  for (const tier of TIER_IDS) ids[tier] = await ensureTier(tier);
-  const portalUrl = DRY && (ids.core.price === "(new)" || ids.pro.price === "(new)") ? null : await ensurePortal(ids);
+  const ids = {} as Record<TierId, { product: string; price: string; yearly?: string }>;
+  for (const tier of TIER_IDS) {
+    ids[tier] = await ensureTier(tier);
+    if (ids[tier].product !== "(new)") ids[tier].yearly = await ensureYearly(tier, ids[tier].product);
+  }
+  const pending = [ids.core.price, ids.pro.price, ids.pro.yearly].includes("(new)");
+  const portalUrl = DRY && pending ? null : await ensurePortal(ids);
 
   console.log("\nRecord these in STRIPE.md (IDs only):");
-  for (const tier of TIER_IDS) console.log(`  ${PRODUCTS[tier].name}: product ${ids[tier].product}, price ${ids[tier].price} (${LOOKUP_KEYS[tier]})`);
+  for (const tier of TIER_IDS) {
+    console.log(`  ${PRODUCTS[tier].name}: product ${ids[tier].product}, price ${ids[tier].price} (${LOOKUP_KEYS[tier]})`);
+    if (ids[tier].yearly) console.log(`  ${PRODUCTS[tier].name} yearly: price ${ids[tier].yearly} (${YEARLY_LOOKUP_KEYS[tier]})`);
+  }
   console.log(`  Mode: ${live ? "LIVE" : "test"}`);
   if (portalUrl) console.log(`  Portal login link (set as NEXT_PUBLIC_STRIPE_PORTAL_URL): ${portalUrl}`);
 }

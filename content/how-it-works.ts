@@ -120,6 +120,6 @@ export const howItWorks = {
 
   cta: {
     title: "See the\n*membership.*",
-    text: "Core, Pro and Champion. Billed monthly. Cancel anytime.",
+    text: "Core, Pro and Champion. Monthly, or yearly for Pro. Cancel anytime.",
   },
 };
