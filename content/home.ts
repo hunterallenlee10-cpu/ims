@@ -138,7 +138,7 @@ export const home = {
         "Signals come from fixed rules, not mood",
         "Every signal comes with its reasoning written out",
         "Portfolio Signal: +281% from August 2023 to November 2026",
-        "Indicators, not buy or sell calls. Your decisions stay yours",
+        "Tutorials on exactly how to execute",
       ],
     },
     cta: { label: "Get the signals", href: "#pricing" },
