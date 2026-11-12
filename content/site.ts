@@ -39,7 +39,7 @@ export const site = {
   },
 
   // Only true claims. The return figure must be backed by records (which signal, actual or backtest).
-  trustLine: ["Rules-based", "Reasoning written out", "+281% Since August 2023"],
+  trustLine: ["Rules-based", "Reasoning written out", "+281% From August 2023 - November 2026"],
 
   ageNotice: "Membership is for adults 18 and over.",
 

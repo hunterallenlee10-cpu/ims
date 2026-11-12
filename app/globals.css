@@ -36,6 +36,10 @@
   --cyan: #2ff0fe;
   --blue-mid: #1697f4;
 
+  /* Direction of a change in example posts only: up green, down red. Purple stays the main accent. */
+  --up: #4ade80;
+  --down: #f87171;
+
   --gradient-signature: linear-gradient(90deg, #2ff0fe, #8a1ef1);
   --gradient-wave: linear-gradient(90deg, #2ff0fe, #1697f4, #8a1ef1);
   --sheen-platinum: linear-gradient(180deg, #f9f9fb 0%, #c5cede 58%, #9ca2ab 100%);
@@ -101,6 +105,8 @@
   --color-accent-lighter: var(--accent-lighter);
   --color-cyan: var(--cyan);
   --color-blue-mid: var(--blue-mid);
+  --color-up: var(--up);
+  --color-down: var(--down);
 
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;

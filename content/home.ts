@@ -1,6 +1,17 @@
 // Home page copy. *Asterisks* mark the accent line in a headline.
 // See PLACEHOLDERS.md for every [TODO: ...] item.
 
+type PostBase = { label: string; name: string; match: string; tag: string; time: { label: string; datetime: string } };
+export type ExamplePost =
+  | (PostBase & {
+      kind: "reading";
+      reading: string;
+      change: { from: string; to: string; dir: "up" | "down" };
+      body: string;
+      gauge?: { value: number; label: string };
+    })
+  | (PostBase & { kind: "analysis"; topic: string; lines: string[]; more: string; locked: string });
+
 export const home = {
   meta: {
     title: "Rules-Based Crypto Signals in Private Telegram Groups",
@@ -10,7 +21,7 @@ export const home = {
 
   hero: {
     chipTag: "Signals",
-    eyebrow: "Rules-based crypto research",
+    eyebrow: "Rules-based investment research",
     // "\n" breaks the line; *stars* color the second line purple.
     title: "Investing Mastery\n*Signals.*",
     sentence:
@@ -22,24 +33,76 @@ export const home = {
   sample: {
     eyebrow: "Inside the group",
     title: "What a signal\n*post looks like.*",
-    subhead: "Every post follows the same structure. **The values are hidden here** because this shows the format only.",
+    subhead:
+      "Every post follows the same structure: the reading, what changed, and why. **The values below are illustrative,** written the way we post them in Telegram.",
     link: { label: "See the full breakdown", href: "/how-it-works#signal-anatomy" },
-    // The card stacks one example post per signal, top to bottom in this order.
-    // kind "reading" shows a reading and what changed; "analysis" shows a topic instead.
+    plansCta: { label: "See all plans", href: "#pricing" },
+    // The card stacks one example Telegram post per signal, top to bottom in this order.
+    // Values are illustrative, not live signals or past results. Timestamps are weekday + time only, never a real date.
+    // Tier pills are not typed here: they're read from the pricing tiers in content/signals.ts (see `match`).
     card: {
       heading: "Example posts",
-      postedLabel: "Posted",
+      sender: "Investing Mastery Signals",
+      avatar: "IMS",
       readingLabel: "Current reading",
-      changeText: "Moved from",
-      changeJoin: "to",
+      changeLabel: "Moved from",
       topicLabel: "Topic",
+      tiersLabel: "Included in",
       posts: [
-        { label: "Signal", name: "Portfolio Signal", kind: "reading" },
-        { label: "Signal", name: "BTC DCA Signal", kind: "reading" },
-        { label: "Signal example", name: "TPI Signal", kind: "reading" },
-        { label: "Analysis example", name: "Investing Analysis", kind: "analysis" },
-      ] as { label: string; name: string; kind: "reading" | "analysis" }[],
-      footer: "General research and educational information only. Not financial advice.",
+        {
+          kind: "reading",
+          label: "Signal",
+          name: "Portfolio Signal",
+          // Text that identifies this signal in the pricing tiers' "Signals" rows.
+          match: "Portfolio Signal",
+          tag: "#portfolio",
+          time: { label: "Mon · 9:00 AM ET", datetime: "09:00" },
+          reading: "60% BTC / 25% ETH / 15% Cash",
+          change: { from: "40% Cash", to: "15% Cash", dir: "down" },
+          body: "Our trend and liquidity models both turned positive this week, so we're lowering cash and adding to BTC and ETH. Rebalance once and don't chase intraday moves.",
+        },
+        {
+          kind: "reading",
+          label: "Signal",
+          name: "BTC DCA Signal",
+          match: "BTC DCA Signal",
+          tag: "#btc-dca",
+          time: { label: "Mon · 9:15 AM ET", datetime: "09:15" },
+          reading: "ACCUMULATE (1.5x)",
+          change: { from: "Neutral (1x)", to: "Accumulate (1.5x)", dir: "up" },
+          body: "Valuation z-score is -1.3, in our accumulate zone. Raise your normal weekly BTC buy to 1.5x until the next update.",
+        },
+        {
+          kind: "reading",
+          label: "Signal",
+          name: "TPI Signal",
+          match: "TPI",
+          tag: "#tpi",
+          time: { label: "Tue · 8:30 AM ET", datetime: "08:30" },
+          reading: "+0.42 · LONG",
+          change: { from: "-0.18", to: "+0.42", dir: "up" },
+          body: "The Trend Probability Indicator flipped long. 7 of 10 inputs are positive. A long TPI means trend-following positions can stay on.",
+          gauge: { value: 0.42, label: "TPI reading" },
+        },
+        {
+          kind: "analysis",
+          label: "Analysis",
+          name: "Investing Analysis",
+          match: "Investing Analysis",
+          tag: "#analysis",
+          time: { label: "Thu · 6:00 PM ET", datetime: "18:00" },
+          topic: "Global liquidity is turning up. What it means for the next 3 months.",
+          lines: [
+            "Liquidity trend: our global liquidity composite has turned up after months of decline.",
+            "BTC link: BTC has tended to follow liquidity turns with a lag of several weeks.",
+            "What we're watching: central bank balance sheets and the dollar.",
+          ],
+          more: "Full breakdown + chart inside the group.",
+          locked: "Members only",
+        },
+      ] as ExamplePost[],
+      footer:
+        "Illustrative examples of our post format. Values shown are not live signals or past results. General research and educational information only. Not financial advice.",
       caption: "Example format, not real signals.",
     },
   },
