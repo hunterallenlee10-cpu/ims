@@ -1,7 +1,7 @@
 import { cn } from "@/lib/cn";
 import { Icon, type IconName } from "@/components/ui/Icon";
 
-type Item = { icon: IconName; name: string; text: string; tiers?: string };
+type Item = { icon: IconName; name: string; tagline?: string; text: string; tiers?: string };
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -22,6 +22,7 @@ export function SignalRows({ items }: { items: Item[] }) {
                 {pad(i + 1)} / {pad(items.length)}
               </p>
               <h3 className="mt-4 text-[clamp(2.2rem,4.4vw,3.6rem)] leading-[0.95]">{item.name}</h3>
+              {item.tagline ? <p className="mt-4 text-xl font-semibold text-accent-lighter">{item.tagline}</p> : null}
               <span
                 aria-hidden="true"
                 className={cn("mt-6 block h-0.5 w-24 bg-accent-light", flip && "lg:ml-auto")}

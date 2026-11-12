@@ -12,30 +12,34 @@ export const groups = {
   main: "Investing Mastery Signals",
 } as const;
 
-/** The four signals. `tiers` lists who gets each one. */
-export const signalCatalog: { icon: IconName; name: string; text: string; tiers: string }[] = [
+/** The four signals. `tagline` is the one-line promise under the name; `tiers` lists who gets each one. */
+export const signalCatalog: { icon: IconName; name: string; tagline: string; text: string; tiers: string }[] = [
   {
     icon: "valuation",
     name: "Portfolio Signal",
-    text: "The portfolio-level signal, posted with its reasoning written out.", // TODO(Hunter): one-line description of what it measures
+    tagline: "What to hold, and how much.",
+    text: "The full allocation in one post: which assets, what share of your portfolio each one gets, and how much stays in cash. You match it once. After that you only adjust what changes.",
     tiers: "Core, Pro and Champion",
   },
   {
     icon: "refresh",
     name: "BTC DCA Signal",
-    text: "A rules-based signal for members who dollar-cost average into Bitcoin, posted with its reasoning.", // TODO(Hunter): confirm description
+    tagline: "When to buy Bitcoin, and how hard.",
+    text: "A valuation model reads whether Bitcoin is cheap or expensive and turns that into one number each day: how much of your cash to put into BTC today. You buy more when it's cheap and slow down when it isn't.",
     tiers: "Pro and Champion",
   },
   {
     icon: "trend",
-    name: "TPI - Trend Probability Indicator",
-    text: "A rules-based trend probability reading, posted with the reasoning behind it.", // TODO(Hunter): confirm description
+    name: "TPI (Trend Probability Indicator)",
+    tagline: "Is the market trending up or down?",
+    text: "Dozens of trend indicators combined into one reading from -1 to +1. Above zero, the trend is up. Below zero, it's down. It tells you when it makes sense to take on more risk and when to pull back.",
     tiers: "Pro and Champion",
   },
   {
     icon: "note",
-    name: "IA - Investing Analysis",
-    text: "Investing analysis and research posts, with the reasoning written out.", // TODO(Hunter): confirm description
+    name: "IA (Investing Analysis)",
+    tagline: "The why behind every move.",
+    text: "Written breakdowns of the market, macro and liquidity, plus what the models are saying and why. You learn the system instead of just copying it.",
     tiers: "Pro and Champion",
   },
 ];
