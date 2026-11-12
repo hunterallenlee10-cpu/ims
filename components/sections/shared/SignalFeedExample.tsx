@@ -76,7 +76,7 @@ function Post({ post, n }: { post: ExamplePost; n: number }) {
       <div className="mt-3 flex items-start gap-2.5 sm:gap-3">
         <span
           aria-hidden="true"
-          className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent font-mono text-[0.5625rem] font-bold tracking-wider text-heading ring-1 ring-accent-light/60 sm:h-9 sm:w-9 sm:text-[0.625rem]"
+          className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent font-mono text-[0.5625rem] font-bold tracking-wider text-heading ring-1 ring-accent-light/60 sm:h-9 sm:w-9 sm:text-[0.6875rem]"
         >
           {c.avatar}
         </span>
@@ -106,7 +106,7 @@ function Post({ post, n }: { post: ExamplePost; n: number }) {
 function Field({ label, children, className }: { label: string; children: ReactNode; className?: string }) {
   return (
     <div className={className}>
-      <dt className="mono-label text-[0.625rem] text-eyebrow">{label}</dt>
+      <dt className="mono-label text-[0.6875rem] text-eyebrow">{label}</dt>
       <dd className="mt-1 font-mono text-[0.8125rem] leading-snug text-heading sm:text-sm">{children}</dd>
     </div>
   );
@@ -185,7 +185,7 @@ function AnalysisBody({ post }: { post: Extract<ExamplePost, { kind: "analysis" 
   return (
     <>
       <div className="mt-3 border-y border-panel-line/70 py-3">
-        <p className="mono-label text-[0.625rem] text-eyebrow">{c.topicLabel}</p>
+        <p className="mono-label text-[0.6875rem] text-eyebrow">{c.topicLabel}</p>
         <p className="mt-1 text-sm font-semibold leading-snug text-heading">{post.topic}</p>
       </div>
 

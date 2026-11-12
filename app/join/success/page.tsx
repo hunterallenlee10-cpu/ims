@@ -18,7 +18,10 @@ export default function JoinSuccessPage() {
   return (
     <>
       <PageHero eyebrow={c.eyebrow} title={c.title} intro={c.intro} />
-      <Section aria-label="What happens next">
+      <Section aria-labelledby="next-steps-title">
+        <h2 id="next-steps-title" className="sr-only">
+          What happens next
+        </h2>
         <StepPath items={c.steps} />
         <div className="mx-auto mt-16 max-w-xl border border-line p-6 text-center">
           <p className="text-body">{c.help}</p>

@@ -86,19 +86,19 @@ export function SiteFooter() {
           </p>
           <div className="mt-8 flex flex-col gap-2 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
             <p>
-              © {year} {site.name}. {site.legalEntity}. All rights reserved.
+              © {year} {site.name}.{site.legalEntity !== site.name ? ` ${site.legalEntity}.` : ""} All rights reserved.
             </p>
             <div className="flex flex-col gap-2 sm:items-end">
               <p>
-                <Link href="/terms" className="hover:text-heading">
+                <Link href="/terms" className="inline-block py-1.5 hover:text-heading">
                   Terms of Service
                 </Link>
                 {" · "}
-                <Link href="/privacy" className="hover:text-heading">
+                <Link href="/privacy" className="inline-block py-1.5 hover:text-heading">
                   Privacy Policy
                 </Link>
                 {" · "}
-                <Link href="/risk-disclosure" className="hover:text-heading">
+                <Link href="/risk-disclosure" className="inline-block py-1.5 hover:text-heading">
                   Risk Disclosure
                 </Link>
               </p>
@@ -108,7 +108,7 @@ export function SiteFooter() {
                   href={site.builtBy.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline decoration-line underline-offset-2 hover:text-heading hover:decoration-accent-light"
+                  className="inline-block py-1.5 underline decoration-line underline-offset-2 hover:text-heading hover:decoration-accent-light"
                 >
                   {site.builtBy.name}
                 </a>
