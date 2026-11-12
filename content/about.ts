@@ -48,7 +48,7 @@ export const about = {
   timeline: {
     eyebrow: "The story",
     title: "Year by\n*year.*",
-    subhead: "The Portfolio Signal track record, one year at a time. **Actual results since August 28, 2023.**",
+    subhead: "If you had invested $10,000 in the Portfolio Signal on August 28, 2023, **here's where it would stand at the end of each year.**",
     // `chart` renders that year's Growth of $10,000 card from content/track-record.ts.
     // Set `photo` to a real image path to show a photo instead.
     // Keep titles and text free of figures (the cards compute them), except the 2026 title,
@@ -59,28 +59,28 @@ export const about = {
       {
         year: "2023",
         title: "The track record starts",
-        text: "On August 28, 2023 we started following the Portfolio Signal and recording every result, with the reasoning for every change written out.",
+        text: "The Portfolio Signal's track record starts on August 28, 2023. If you had put $10,000 into it that day, this is what it would have been worth by the end of the year.",
         photo: null as string | null,
         chart: 2023 as number | null,
       },
       {
         year: "2024",
         title: "The breakout year",
-        text: "The strongest year of the track record so far. Same written rules, posted the same way, with a market that gave them room to work.",
+        text: "If you had kept following the signal, this is the year your $10,000 would have grown the most. Same written rules, posted the same way.",
         photo: null as string | null,
         chart: 2024 as number | null,
       },
       {
         year: "2025",
         title: "Holding the gains",
-        text: "A slower year. The rules kept the portfolio positioned through it and still finished the year up.",
+        text: "A slower year. If you had stayed with the signal, your $10,000 would still have finished the year up.",
         photo: null as string | null,
         chart: 2025 as number | null,
       },
       {
         year: "2026",
         title: "Up 281% since day one",
-        text: "Three years in, $10,000 that followed the Portfolio Signal from the first post is worth more than three and a half times what it started at.",
+        text: "If you had invested $10,000 when the signal started and followed every post, it would now be worth more than three and a half times what you put in.",
         photo: null as string | null,
         chart: 2026 as number | null,
       },
@@ -100,7 +100,7 @@ export const about = {
       { icon: "layers", title: "Same post, same time", text: "Every member of a tier gets the same post at the same moment. No early access." },
       { icon: "shield", title: "Risk in plain view", text: "Crypto is volatile and signals can be wrong. We say so plainly." },
       { icon: "eye", title: "Reasoning in writing", text: "Every signal explains itself. You should never have to guess why a reading changed." },
-      { icon: "ban", title: "No hype", text: "No guarantees, no performance claims, no countdowns. If it sounds too good, we won't say it." },
+      { icon: "ban", title: "No hype", text: "No guarantees, no countdowns, no made-up numbers. Every result we show comes from the record. If it sounds too good, we won't say it." },
       { icon: "compass", title: "Indicators, not instructions", text: "Signals are valuation and trend indicators, not direct buy or sell calls." },
     ] satisfies { icon: IconName; title: string; text: string }[],
   },

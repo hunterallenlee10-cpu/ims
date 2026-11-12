@@ -7,7 +7,7 @@
 export const trackRecord = {
   eyebrow: "Track record",
   title: "$10,000 in.\n*Here's what happened.*",
-  subhead: "What $10,000 would be worth if you'd followed the Portfolio Signal, or bought the S&P 500, when we started on August 28, 2023.",
+  subhead: "What $10,000 would be worth today if you had invested it in the Portfolio Signal, or in the S&P 500, when the signal started on August 28, 2023.",
   start: 10000,
   series: [
     { key: "signals", label: "Portfolio Signal", color: "#B946FB" },

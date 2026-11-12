@@ -4,7 +4,7 @@ const W = 640;
 const H = 260;
 
 /**
- * Rendered "photo" for a timeline chapter: where $10,000 in the Portfolio Signal stood at the
+ * Rendered "photo" for a timeline chapter: where $10,000 invested in the Portfolio Signal would have stood at the
  * end of that year, the year's return, and the track record line up to that point.
  * Drawn from content/track-record.ts, so it updates with the data. No image request.
  */
@@ -13,7 +13,7 @@ export function YearChart({ year }: { year: number }) {
   if (!s) return null;
   const p = yearPaths(year, W, H);
   const id = `yc-${year}`;
-  const label = `Growth of $10,000 in the Portfolio Signal: ${fmtUsd(s.startValue)} on ${fmtDate(s.startDate)} to ${fmtUsd(
+  const label = `If you had invested $10,000 in the Portfolio Signal on August 28, 2023: ${fmtUsd(s.startValue)} on ${fmtDate(s.startDate)} to ${fmtUsd(
     s.endValue,
   )} on ${fmtDate(s.endDate)}, ${s.yearPct} ${s.isLatest ? "year to date" : "for the year"}, ${s.totalPct} since August 28, 2023.`;
 
@@ -26,8 +26,8 @@ export function YearChart({ year }: { year: number }) {
     >
       <div aria-hidden="true" className="relative z-10 flex items-start justify-between gap-3">
         <div>
-          <p className="mono-label text-[0.625rem] text-eyebrow sm:text-xs">
-            Growth of $10,000<span className="hidden sm:inline"> · {year}</span>
+          <p className="mono-label text-[0.6875rem] text-eyebrow sm:text-xs">
+            If you invested $10,000<span className="hidden sm:inline"> · {year}</span>
           </p>
           <p className="text-signature mt-1 font-display text-[clamp(1.9rem,4.2vw,3rem)] leading-none">{fmtUsd(s.endValue)}</p>
         </div>
@@ -61,7 +61,7 @@ export function YearChart({ year }: { year: number }) {
         />
       </div>
 
-      <p aria-hidden="true" className="relative z-10 mt-2 flex justify-between gap-3 font-mono text-[0.625rem] text-muted sm:text-[0.6875rem]">
+      <p aria-hidden="true" className="relative z-10 mt-2 flex justify-between gap-3 font-mono text-[0.6875rem] text-muted">
         <span className="hidden sm:inline">{s.isFirst ? `Start ${fmtDate(s.startDate)}` : `${fmtUsd(s.startValue)} on ${fmtDate(s.startDate)}`}</span>
         <span className="ml-auto whitespace-nowrap text-accent-lighter">{s.totalPct} since day one</span>
       </p>
