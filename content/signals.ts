@@ -54,6 +54,10 @@ export type Tier = {
   /** "Everything in Core, plus:" style line. */
   inherits?: string;
   rows: { label: string; items: string[] }[];
+  /** What this tier leaves out, shown with a cross. */
+  excludes?: string[];
+  /** Highlighted with a purple frame. A visual cue only: never a "most popular" label. */
+  featured?: boolean;
   whoFor?: string;
   note?: string;
   /** Champion only: shown instead of rows until compliance clears the wording. */
@@ -70,12 +74,20 @@ export const tiers: Tier[] = [
     amount: 25,
     period: "USD / month, billed monthly",
     rows: [
-      { label: "Group", items: [`${groups.core} (read-only)`] },
+      // The exact group name (groups.core) stays in the FAQ, Terms and joining steps; the card uses plain words.
+      { label: "Group", items: ["The Core Members group, signals only (read-only)"] },
       { label: "Signals", items: ["Portfolio Signal only"] },
-      { label: "Research", items: ["None"] },
       { label: "Community", items: ["Read-only: members can't post or ask questions"] },
     ],
+    excludes: [
+      "BTC DCA Signal",
+      "TPI (Trend Probability Indicator)",
+      "IA (Investing Analysis)",
+      "Daily research note, briefings and tutorials",
+      "Live calls and Ask the Founders",
+    ],
     whoFor: "People who want the portfolio signal and nothing else.",
+    note: "Move up to Pro any time in Manage membership. It takes effect right away.",
     cta: { label: "Join Core" },
   },
   {
@@ -85,6 +97,7 @@ export const tiers: Tier[] = [
     amount: 50,
     period: "USD / month, billed monthly",
     inherits: "Everything in Core, plus:",
+    featured: true,
     rows: [
       { label: "Group", items: [`Full access to the main ${groups.main} group, every topic`] },
       { label: "Signals", items: ["Portfolio Signal", "BTC DCA Signal", "TPI (Trend Probability Indicator)", "IA (Investing Analysis)"] },
