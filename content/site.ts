@@ -78,7 +78,6 @@ export const site = {
         title: "The signals",
         links: [
           { label: "How It Works", href: "/how-it-works" },
-          { label: "Example signal", href: "/how-it-works#signal-anatomy" },
           { label: "The groups", href: "/how-it-works#groups" },
           { label: "Group rules", href: "/how-it-works#rules" },
         ],

@@ -38,7 +38,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section glow="center" aria-labelledby="sample-title">
+      <Section id="example-signal" glow="center" aria-labelledby="sample-title">
         <SectionHeader id="sample-title" eyebrow={home.sample.eyebrow} title={home.sample.title} subhead={home.sample.subhead} />
         <div data-reveal className="mx-auto max-w-2xl">
           <SignalFeedExample />
@@ -46,9 +46,6 @@ export default function HomePage() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3" data-reveal>
           <Button href={home.sample.plansCta.href} arrow>
             {home.sample.plansCta.label}
-          </Button>
-          <Button href={home.sample.link.href} variant="secondary" arrow>
-            {home.sample.link.label}
           </Button>
         </div>
       </Section>
