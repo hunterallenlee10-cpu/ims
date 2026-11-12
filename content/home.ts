@@ -16,7 +16,7 @@ export const home = {
   meta: {
     title: "Rules-Based Crypto Signals in Private Telegram Groups",
     description:
-      "Investing Mastery Signals posts rules-based crypto valuation and trend signals, each with its reasoning written out, in private Telegram groups. Core $25, Pro $50, Champion $399 per month.",
+      "Investing Mastery Signals posts rules-based crypto valuation and trend signals, each with its reasoning written out, in private Telegram groups. Core $20, Pro $25, Champion $399 per month, or Pro at $249 a year.",
   },
 
   hero: {
@@ -27,7 +27,7 @@ export const home = {
     sentence:
       "Rules-based crypto valuation and trend signals, **each with its reasoning written out,** delivered in private Telegram groups.",
     primary: { label: "See membership", href: "#pricing" },
-    secondary: { label: "See an example signal", href: "/how-it-works#signal-anatomy" },
+    secondary: { label: "See an example signal", href: "/#example-signal" },
   },
 
   sample: {
@@ -35,7 +35,6 @@ export const home = {
     title: "What a signal\n*post looks like.*",
     subhead:
       "Every post follows the same structure: the reading, what changed, and why. **The values below are illustrative,** written the way we post them in Telegram.",
-    link: { label: "See the full breakdown", href: "/how-it-works#signal-anatomy" },
     plansCta: { label: "See all plans", href: "#pricing" },
     // The card stacks one example Telegram post per signal, top to bottom in this order.
     // Values are illustrative, not live signals or past results. Timestamps are weekday + time only, never a real date.
@@ -153,8 +152,8 @@ export const home = {
 
   pricing: {
     eyebrow: "Membership",
-    title: "Three tiers.\n*Billed monthly.*",
-    subhead: "Each tier includes everything in the tiers below it.",
+    title: "Three tiers.\n*Cancel anytime.*",
+    subhead: "Each tier includes everything in the tiers below it. Pro can also be paid yearly.",
   },
 
   steps: {

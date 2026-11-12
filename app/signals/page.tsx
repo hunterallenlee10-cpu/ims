@@ -13,7 +13,7 @@ import { TermsList } from "@/components/sections/signals/TermsList";
 
 export const metadata = pageMetadata({ ...signals.meta, path: "/signals" });
 
-/** Product/Offer structured data for the three monthly tiers. Facts only. */
+/** Product/Offer structured data for the three tiers (and Pro's yearly option). Facts only. */
 function offersJsonLd() {
   const descriptions: Record<string, string> = {
     core: "The Portfolio Signal only, in the read-only Core Members Telegram group.",
@@ -27,19 +27,22 @@ function offersJsonLd() {
       name: `${site.name} ${t.name}`,
       description: descriptions[t.id],
       brand: { "@type": "Brand", name: site.name },
-      offers: {
+      offers: [
+        { amount: t.amount, unit: "MON" },
+        ...(t.yearly ? [{ amount: t.yearly.amount, unit: "ANN" }] : []),
+      ].map(({ amount, unit }) => ({
         "@type": "Offer",
-        price: t.amount.toFixed(2),
+        price: amount.toFixed(2),
         priceCurrency: "USD",
         url: `${site.url}/signals#pricing`,
         priceSpecification: {
           "@type": "UnitPriceSpecification",
-          price: t.amount.toFixed(2),
+          price: amount.toFixed(2),
           priceCurrency: "USD",
-          unitCode: "MON",
-          referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
+          unitCode: unit,
+          referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: unit },
         },
-      },
+      })),
     })),
   };
 }

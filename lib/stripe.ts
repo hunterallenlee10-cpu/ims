@@ -1,6 +1,6 @@
 import "server-only";
 import Stripe from "stripe";
-import { LOOKUP_KEYS, type TierId } from "@/lib/tiers";
+import { lookupKeyFor, type Billing, type TierId } from "@/lib/tiers";
 
 let client: Stripe | null = null;
 
@@ -14,16 +14,18 @@ export function stripe(): Stripe {
   return client;
 }
 
-const priceCache = new Map<TierId, { id: string; at: number }>();
+const priceCache = new Map<string, { id: string; at: number }>();
 const PRICE_TTL_MS = 10 * 60 * 1000;
 
-/** Resolve a tier to its active Stripe Price id by lookup_key (cached for 10 minutes). */
-export async function priceIdForTier(tier: TierId): Promise<string> {
-  const hit = priceCache.get(tier);
+/** Resolve a tier and billing period to its active Stripe Price id by lookup_key (cached for 10 minutes). */
+export async function priceIdFor(tier: TierId, billing: Billing): Promise<string> {
+  const key = lookupKeyFor(tier, billing);
+  if (!key) throw new Error(`No ${billing} price for tier ${tier}`);
+  const hit = priceCache.get(key);
   if (hit && Date.now() - hit.at < PRICE_TTL_MS) return hit.id;
-  const { data } = await stripe().prices.list({ lookup_keys: [LOOKUP_KEYS[tier]], active: true, limit: 1 });
+  const { data } = await stripe().prices.list({ lookup_keys: [key], active: true, limit: 1 });
   const price = data[0];
-  if (!price) throw new Error(`No active Stripe price for lookup_key ${LOOKUP_KEYS[tier]}`);
-  priceCache.set(tier, { id: price.id, at: Date.now() });
+  if (!price) throw new Error(`No active Stripe price for lookup_key ${key}`);
+  priceCache.set(key, { id: price.id, at: Date.now() });
   return price.id;
 }

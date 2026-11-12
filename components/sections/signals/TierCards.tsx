@@ -65,6 +65,12 @@ export function TierCards({
                 <span className="font-display text-[clamp(2.8rem,6vw,3.6rem)] leading-none text-heading">{tier.price}</span>
                 <span className="text-sm text-muted">{tier.period}</span>
               </p>
+              {tier.yearly ? (
+                <p className="mt-3 text-sm text-body">
+                  or <span className="font-semibold text-heading">{tier.yearly.price}</span> {tier.yearly.period}.{" "}
+                  <span className="text-muted">{tier.yearly.note}</span>
+                </p>
+              ) : null}
 
               {tier.inherits ? (
                 <p className="mono-label mt-6 text-accent-light">{tier.inherits}</p>
@@ -118,13 +124,19 @@ export function TierCards({
                   {c.championClosed}
                 </Button>
               ) : (
-                <CheckoutButton
-                  tier={tier.id}
-                  label={tier.cta.label}
-                  busyLabel={c.redirecting}
-                  errorText={c.error}
-                  className="mt-8"
-                />
+                <div className="mt-8 space-y-3">
+                  <CheckoutButton tier={tier.id} label={tier.cta.label} busyLabel={c.redirecting} errorText={c.error} />
+                  {tier.yearly ? (
+                    <CheckoutButton
+                      tier={tier.id}
+                      billing="yearly"
+                      variant="secondary"
+                      label={tier.yearly.cta.label}
+                      busyLabel={c.redirecting}
+                      errorText={c.error}
+                    />
+                  ) : null}
+                </div>
               )}
             </article>
           </li>

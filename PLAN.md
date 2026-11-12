@@ -118,7 +118,7 @@ components/
     shared/ PageHero, VsCompare, StepPath, ProgramGrid, FeatureChecklists, FaqList, TwoPathsCta, CtaBand,
             StatStrip, FoundersTeaser
     home/   HomeHero, SignalConsole (TrendChip, ZScoreGauge, RiskGate, UpdatedStamp)
-    how/    WhySystematic, ThreeInputs, UpdateCadence, Delivery, SignalAnatomy, WhatItIsNot
+    how/    WhySystematic, ThreeInputs, UpdateCadence, Delivery, WhatItIsNot
     signals/TierCards, IncludedList, BillingTerms
     about/  Timeline, FounderBios, Principles
     research/ PostCard, TagFilter, ArticleLayout

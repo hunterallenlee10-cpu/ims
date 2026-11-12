@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { stripe, priceIdForTier } from "@/lib/stripe";
-import { championCheckoutEnabled, isTierId } from "@/lib/tiers";
+import { stripe, priceIdFor } from "@/lib/stripe";
+import { championCheckoutEnabled, isBilling, isTierId, lookupKeyFor } from "@/lib/tiers";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
@@ -14,8 +14,9 @@ function siteOrigin(request: Request): string {
 }
 
 /**
- * POST { tier, attempt } → { url }
- * The browser sends only a tier id. The server maps it to a Stripe Price by lookup_key.
+ * POST { tier, billing?, attempt } → { url }
+ * The browser sends only a tier id and a billing period ("monthly" by default, or "yearly" where
+ * offered). The server maps them to a Stripe Price by lookup_key.
  * Access is granted later from webhooks, never from this route or the success page.
  */
 export async function POST(request: Request) {
@@ -27,7 +28,7 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: { tier?: unknown; attempt?: unknown };
+  let body: { tier?: unknown; billing?: unknown; attempt?: unknown };
   try {
     body = await request.json();
   } catch {
@@ -35,7 +36,11 @@ export async function POST(request: Request) {
   }
 
   const { tier, attempt } = body;
+  const billing = body.billing ?? "monthly";
   if (!isTierId(tier)) return NextResponse.json({ error: "Unknown membership tier." }, { status: 400 });
+  if (!isBilling(billing) || !lookupKeyFor(tier, billing)) {
+    return NextResponse.json({ error: "That billing option isn't available for this tier." }, { status: 400 });
+  }
   if (typeof attempt !== "string" || !ATTEMPT.test(attempt)) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
@@ -45,7 +50,7 @@ export async function POST(request: Request) {
 
   const origin = siteOrigin(request);
   try {
-    const price = await priceIdForTier(tier);
+    const price = await priceIdFor(tier, billing);
     const session = await stripe().checkout.sessions.create(
       {
         mode: "subscription",
@@ -60,8 +65,8 @@ export async function POST(request: Request) {
           },
         ],
         consent_collection: { terms_of_service: "required" },
-        metadata: { tier },
-        subscription_data: { metadata: { tier } },
+        metadata: { tier, billing },
+        subscription_data: { metadata: { tier, billing } },
         success_url: `${origin}/join/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/signals?canceled=1#pricing`,
         allow_promotion_codes: false,
@@ -70,13 +75,13 @@ export async function POST(request: Request) {
         // Set STRIPE_MANAGED_PAYMENTS=false to turn it off for checkout (then IMS owes sales tax/VAT itself).
         ...(process.env.STRIPE_MANAGED_PAYMENTS === "false" ? { managed_payments: { enabled: false } } : {}),
       },
-      { idempotencyKey: `checkout:${tier}:${attempt}` },
+      { idempotencyKey: `checkout:${tier}:${billing}:${attempt}` },
     );
     if (!session.url) throw new Error("Checkout session has no URL");
     return NextResponse.json({ url: session.url });
   } catch (err) {
     const e = err as { type?: string; code?: string; message?: string };
-    console.error("[checkout] failed", { tier, type: e.type, code: e.code, message: e.message });
+    console.error("[checkout] failed", { tier, billing, type: e.type, code: e.code, message: e.message });
     return NextResponse.json(
       { error: "Checkout is unavailable right now. Please try again, or contact support." },
       { status: 502 },

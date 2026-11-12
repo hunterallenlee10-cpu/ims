@@ -49,29 +49,6 @@ export const howItWorks = {
     subhead: home.program.subhead,
   },
 
-  anatomy: {
-    eyebrow: "Anatomy of a signal post",
-    title: "What a signal\n*post looks like.*",
-    subhead:
-      "Every signal post follows the same structure. **The values below are illustrative,** written the way we post them in Telegram.",
-    label: "Example format, not a real signal.",
-    // The example post itself (values, time, reasoning) is the BTC DCA post in content/home.ts.
-    post: {
-      signalLabel: "Signal",
-      signalName: "BTC DCA Signal",
-      postedLabel: "Posted",
-      readingLabel: "Current reading",
-      changeLabel: "What changed",
-      reasoningLabel: "The reasoning",
-    },
-    callouts: [
-      { n: 1, title: "Signal name and time", text: "Which signal it is, and exactly when it was posted." },
-      { n: 2, title: "Current reading", text: "The signal's reading right now, under the same rules every time." },
-      { n: 3, title: "What changed", text: "How the reading moved since the last post, in one line, with an up or down arrow." },
-      { n: 4, title: "The reasoning", text: "Why the reading is what it is, written out in plain English." },
-    ],
-  },
-
   groupsSection: {
     eyebrow: "The Telegram groups",
     title: "Two private\n*groups.*",
@@ -143,6 +120,6 @@ export const howItWorks = {
 
   cta: {
     title: "See the\n*membership.*",
-    text: "Core, Pro and Champion. Billed monthly. Cancel anytime.",
+    text: "Core, Pro and Champion. Monthly, or yearly for Pro. Cancel anytime.",
   },
 };

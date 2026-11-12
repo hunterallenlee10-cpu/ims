@@ -61,7 +61,7 @@ export const faqGroups: FaqGroup[] = [
         id: "core-vs-pro",
         question: "What's the difference between Core and Pro?",
         answer:
-          `Core ($25/month) gets the Portfolio Signal only, in the read-only ${groups.core} group. Members can't post or ask questions.\n\nPro ($50/month) gets every signal: the Portfolio Signal, the BTC DCA Signal, the TPI (Trend Probability Indicator) and IA (Investing Analysis). It adds the daily research note, the macro and liquidity briefing, method notes on how the models work, and full access to the main ${groups.main} group, including live calls and Ask the Founders.`,
+          `Core ($20/month) gets the Portfolio Signal only, in the read-only ${groups.core} group. Members can't post or ask questions.\n\nPro ($25/month, or $249/year) gets every signal: the Portfolio Signal, the BTC DCA Signal, the TPI (Trend Probability Indicator) and IA (Investing Analysis). It adds the daily research note, the macro and liquidity briefing, method notes on how the models work, and full access to the main ${groups.main} group, including live calls and Ask the Founders.`,
       },
       {
         id: "personalized",
@@ -118,7 +118,7 @@ export const faqGroups: FaqGroup[] = [
         id: "upgrade",
         question: "Can I upgrade or downgrade?",
         answer:
-          `Yes, between Core and Pro, in Manage membership. Moving from Core to Pro takes effect right away: the price difference for the rest of the month is added to your next bill, you get an invite to the main ${groups.main} group, and you leave the Core group once you've joined.\n\nMoving from Pro to Core takes effect at the end of your current billing period. Then you're removed from the main group and invited to ${groups.core}. To move up to Champion, contact us anytime.`,
+          `Yes, between Core and Pro, in Manage membership. Moving from Core to Pro takes effect right away: the price difference for the rest of the month is added to your next bill, you get an invite to the main ${groups.main} group, and you leave the Core group once you've joined.\n\nMoving from Pro to Core takes effect at the end of your current billing period. Then you're removed from the main group and invited to ${groups.core}. To move up to Champion, contact us anytime.\n\nYou can also switch Pro between monthly and yearly billing in Manage membership. Monthly to yearly takes effect right away, with a credit for the unused part of your current month. Yearly to monthly takes effect when your year ends.`,
         link: "manage",
       },
       {
