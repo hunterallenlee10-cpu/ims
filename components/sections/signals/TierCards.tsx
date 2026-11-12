@@ -7,6 +7,8 @@ import { Section } from "@/components/ui/Section";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { Checklist } from "@/components/ui/Checklist";
+import { Icon } from "@/components/ui/Icon";
+import { cn } from "@/lib/cn";
 import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { championCheckoutEnabled } from "@/lib/tiers";
 import { CheckoutCanceledNote } from "./CheckoutCanceledNote";
@@ -14,7 +16,7 @@ import { CheckoutButton } from "./CheckoutButton";
 
 /**
  * Pricing table: Core, Pro and Champion side by side (stacked on mobile).
- * No "most popular", no strikethrough, no countdown.
+ * No "most popular", no strikethrough, no countdown. A `featured` tier gets a purple frame only.
  */
 export function TierCards({
   eyebrow = signals.pricing.eyebrow,
@@ -40,12 +42,16 @@ export function TierCards({
         <CheckoutCanceledNote text={c.canceled} />
       </Suspense>
 
-      <ul className="grid gap-6 lg:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {tiers.map((tier, i) => (
           <li key={tier.id} data-reveal style={{ ["--reveal-delay" as string]: `${i * 120}ms` }}>
             <article
               aria-labelledby={`tier-${tier.id}`}
-              className="frame frame-hover flex h-full flex-col p-7 [--cut:22px] sm:p-8"
+              className={cn(
+                "frame frame-hover flex h-full flex-col p-7 [--cut:22px] sm:p-8",
+                tier.featured && "frame-accent [--fill:var(--bg-lift-2)]",
+              )}
+              style={tier.featured ? { boxShadow: "0 30px 100px -40px rgba(138,30,241,0.6)" } : undefined}
             >
               <span
                 aria-hidden="true"
@@ -77,6 +83,24 @@ export function TierCards({
                         </dd>
                       </div>
                     ))}
+                    {tier.excludes?.length ? (
+                      <div>
+                        <dt className="mono-label mb-2 text-eyebrow">Not included</dt>
+                        <dd>
+                          <ul className="space-y-2 text-[0.97rem] text-muted">
+                            {tier.excludes.map((item) => (
+                              <li key={item} className="flex gap-3">
+                                <Icon name="close" size={18} className="mt-[0.25em] shrink-0 text-muted/70" />
+                                <span>
+                                  <span className="sr-only">Not included: </span>
+                                  {item}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </dd>
+                      </div>
+                    ) : null}
                     {tier.whoFor ? (
                       <div>
                         <dt className="mono-label mb-2 text-eyebrow">Who it&apos;s for</dt>
@@ -90,7 +114,7 @@ export function TierCards({
               </div>
 
               {tier.id === "champion" && !championCheckoutEnabled() ? (
-                <Button size="lg" className="mt-8 w-full" disabled>
+                <Button size="lg" className="mt-8 w-full whitespace-normal text-center" disabled>
                   {c.championClosed}
                 </Button>
               ) : (
