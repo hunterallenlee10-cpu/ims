@@ -34,13 +34,13 @@ const PRODUCTS: Record<TierId, { name: string; description: string; amount: numb
   core: {
     name: "IMS Core",
     description: 'The Portfolio Signal only, in the read-only "Core Members - SIGNAL ONLY" Telegram group.',
-    amount: 2500,
+    amount: 2000,
   },
   pro: {
     name: "IMS Pro",
     description:
       'All IMS signals (Portfolio Signal, IMS Signals, BTC DCA Signal, Trend Probability), a weekly research note, a macro and liquidity briefing, method notes, and full access to the main "Investing Mastery Signals" Telegram group.',
-    amount: 5000,
+    amount: 2500,
   },
   champion: { name: "IMS Champion", description: "Everything in Pro, plus we manage your portfolio for you.", amount: 39900 },
 };
@@ -71,8 +71,29 @@ async function ensureTier(tier: TierId) {
 
   if (existing) {
     const product = existing.product as Stripe.Product;
-    const ok = existing.unit_amount === spec.amount && existing.currency === "usd" && existing.recurring?.interval === "month";
-    if (!ok) throw new Error(`${lookup_key} exists but is not ${spec.amount / 100} USD/month. Fix it in the Dashboard.`);
+    const ok = existing.currency === "usd" && existing.recurring?.interval === "month";
+    if (!ok) throw new Error(`${lookup_key} exists but is not a USD monthly price. Fix it in the Dashboard.`);
+    if (existing.unit_amount !== spec.amount) {
+      // Price change. Stripe prices can't be edited, so create a new one on the same product,
+      // move the lookup_key to it, and archive the old one. Existing subscriptions stay on the
+      // old price until they are moved; new checkouts use the new one.
+      log(`${lookup_key}: changing ${existing.unit_amount! / 100} -> ${spec.amount / 100} USD/month (new price, old one archived)`);
+      if (DRY) return { product: product.id, price: "(new)" };
+      const price = await stripe.prices.create(
+        {
+          product: product.id,
+          currency: "usd",
+          unit_amount: spec.amount,
+          recurring: { interval: "month" },
+          lookup_key,
+          transfer_lookup_key: true,
+          metadata: { tier },
+        },
+        { idempotencyKey: `ims-price-${tier}-${spec.amount}` },
+      );
+      await stripe.prices.update(existing.id, { active: false });
+      return { product: product.id, price: price.id };
+    }
     const taxCode = typeof product.tax_code === "string" ? product.tax_code : product.tax_code?.id;
     if (product.description !== spec.description || product.name !== spec.name || taxCode !== TAX_CODE) {
       log(`${spec.name}: updating name/description/tax code`);
@@ -165,7 +186,7 @@ async function main() {
   const live = await checkAccount();
   const ids = {} as Record<TierId, { product: string; price: string }>;
   for (const tier of TIER_IDS) ids[tier] = await ensureTier(tier);
-  const portalUrl = DRY && ids.core.price === "(new)" ? null : await ensurePortal(ids);
+  const portalUrl = DRY && (ids.core.price === "(new)" || ids.pro.price === "(new)") ? null : await ensurePortal(ids);
 
   console.log("\nRecord these in STRIPE.md (IDs only):");
   for (const tier of TIER_IDS) console.log(`  ${PRODUCTS[tier].name}: product ${ids[tier].product}, price ${ids[tier].price} (${LOOKUP_KEYS[tier]})`);

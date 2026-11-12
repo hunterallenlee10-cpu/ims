@@ -84,6 +84,8 @@ Created by `scripts/stripe-setup.mts`. It's idempotent: prices are found by `loo
 
 Customer portal configuration: `bpc_1Ua7irRj5B5P2OabBz6cKtBZ`.
 
+To change a price, edit `amount` in `scripts/stripe-setup.mts` (and the site copy in `content/signals.ts`, `content/home.ts`, `content/faq.ts`) and re-run the script. Stripe prices can't be edited, so the script creates a new price on the same product, moves the `lookup_key` to it, archives the old price and points the customer portal at the new one. Existing subscriptions stay on the old price until moved.
+
 Re-run (e.g. to change proration):
 
 ```bash

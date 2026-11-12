@@ -70,8 +70,8 @@ export const tiers: Tier[] = [
   {
     id: "core",
     name: "Core",
-    price: "$25",
-    amount: 25,
+    price: "$20",
+    amount: 20,
     period: "USD / month, billed monthly",
     rows: [
       // The exact group name (groups.core) stays in the FAQ, Terms and joining steps; the card uses plain words.
@@ -93,8 +93,8 @@ export const tiers: Tier[] = [
   {
     id: "pro",
     name: "Pro",
-    price: "$50",
-    amount: 50,
+    price: "$25",
+    amount: 25,
     period: "USD / month, billed monthly",
     inherits: "Everything in Core, plus:",
     featured: true,
@@ -131,7 +131,7 @@ export const signals = {
   meta: {
     title: "Membership and Pricing",
     description:
-      "Core ($25/month), Pro ($50/month) and Champion ($399/month) memberships for Investing Mastery Signals, delivered in private Telegram groups. How joining, billing, cancelling and switching tiers work.",
+      "Core ($20/month), Pro ($25/month) and Champion ($399/month) memberships for Investing Mastery Signals, delivered in private Telegram groups. How joining, billing, cancelling and switching tiers work.",
   },
 
   hero: {

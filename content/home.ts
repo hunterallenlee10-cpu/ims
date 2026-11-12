@@ -16,7 +16,7 @@ export const home = {
   meta: {
     title: "Rules-Based Crypto Signals in Private Telegram Groups",
     description:
-      "Investing Mastery Signals posts rules-based crypto valuation and trend signals, each with its reasoning written out, in private Telegram groups. Core $25, Pro $50, Champion $399 per month.",
+      "Investing Mastery Signals posts rules-based crypto valuation and trend signals, each with its reasoning written out, in private Telegram groups. Core $20, Pro $25, Champion $399 per month.",
   },
 
   hero: {
