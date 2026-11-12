@@ -19,8 +19,9 @@ export function SignalFeedExample({ className }: { className?: string }) {
         style={{ boxShadow: "0 30px 100px -40px rgba(138,30,241,0.5)" }}
       >
         <div className="flex flex-wrap items-center justify-between gap-3 px-1 sm:px-0">
-          <p className="mono-label text-eyebrow">{c.heading}</p>
-          <Badge>Example format</Badge>
+          {/* Sized up so nobody mistakes these for real posts. */}
+          <p className="mono-label text-sm text-heading sm:text-base">{c.heading}</p>
+          <Badge size="lg" className="bg-accent/10">Example format</Badge>
         </div>
 
         <ol className="mt-5 divide-y divide-line border-y border-line">

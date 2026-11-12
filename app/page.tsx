@@ -58,6 +58,11 @@ export default function HomePage() {
       <Section tone="band" aria-labelledby="vs-title">
         <SectionHeader id="vs-title" eyebrow={home.vs.eyebrow} title={home.vs.title} subhead={home.vs.subhead} />
         <VsCompare theirs={home.vs.theirs} ours={home.vs.ours} />
+        <div className="mt-12 text-center" data-reveal>
+          <Button href={home.vs.cta.href} size="lg" arrow>
+            {home.vs.cta.label}
+          </Button>
+        </div>
       </Section>
 
       <Section aria-labelledby="program-title">
