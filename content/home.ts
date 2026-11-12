@@ -120,15 +120,16 @@ export const home = {
 
   vs: {
     eyebrow: "Two ways to invest",
-    title: "Stop guessing.\n*Follow a process.*",
-    subhead: "Most investors decide on feel. **A system decides the same way every time.**",
+    title: "Stop parking it.\n*Put it on a plan.*",
+    subhead: "Money that sits still loses to inflation. **A rules-based process gives it a plan.**",
+    // Keep every line here literally true: no "will" predictions, no claims about returns we can't back.
     theirs: {
-      title: "Guessing, hype and influencer calls",
+      title: "Park your money and hope",
       points: [
-        "Decisions follow headlines and mood",
-        "Calls arrive without the reasoning behind them",
-        "Different answers depending on who you ask",
-        "No plan written down for when the market turns",
+        "Cash sitting still loses buying power to inflation",
+        "Savings accounts often pay less than inflation. You lose slowly",
+        "Bonds can lose to inflation too. In 2022 they fell while prices jumped",
+        "Retirement accounts lock your money up until 59½, often in a default fund on autopilot",
       ],
     },
     ours: {
@@ -136,10 +137,11 @@ export const home = {
       points: [
         "Signals come from fixed rules, not mood",
         "Every signal comes with its reasoning written out",
-        "The same post for every member of a tier, at the same time",
+        "Portfolio Signal: +281% from August 2023 to November 2026. Past results don't guarantee future returns",
         "Indicators, not buy or sell calls. Your decisions stay yours",
       ],
     },
+    cta: { label: "Get the signals", href: "#pricing" },
   },
 
   program: {
