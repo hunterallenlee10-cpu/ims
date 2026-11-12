@@ -131,6 +131,12 @@ const paths = {
       <circle cx="17.2" cy="6.8" r=".6" />
     </>
   ),
+  lock: (
+    <>
+      <rect x="5" y="10.5" width="14" height="10" rx="1.5" />
+      <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3M12 14.5v2" />
+    </>
+  ),
   chat: (
     <>
       <path d="M4 5.5h16v10H10l-4.5 3.5v-3.5H4z" />

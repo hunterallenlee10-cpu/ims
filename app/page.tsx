@@ -43,7 +43,10 @@ export default function HomePage() {
         <div data-reveal className="mx-auto max-w-2xl">
           <SignalFeedExample />
         </div>
-        <div className="mt-10 text-center" data-reveal>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3" data-reveal>
+          <Button href={home.sample.plansCta.href} arrow>
+            {home.sample.plansCta.label}
+          </Button>
           <Button href={home.sample.link.href} variant="secondary" arrow>
             {home.sample.link.label}
           </Button>
