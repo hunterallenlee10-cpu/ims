@@ -78,11 +78,13 @@ Created by `scripts/stripe-setup.mts`. It's idempotent: prices are found by `loo
 
 | Product | Description | Price | `lookup_key` | Product ID | Price ID |
 |---|---|---|---|---|---|
-| IMS Core | The Portfolio Signal only, in the read-only "Core Members - SIGNAL ONLY" Telegram group. | $25.00 / month | `ims_core_monthly` | `prod_VbKNJCHQYGbJqg` | `price_1Ua7ipRj5B5P2OabVBxlHkN3` |
-| IMS Pro | All IMS signals (Portfolio Signal, IMS Signals, BTC DCA Signal, Trend Probability), a weekly research note, a macro and liquidity briefing, method notes, and full access to the main "Investing Mastery Signals" Telegram group. | $50.00 / month | `ims_pro_monthly` | `prod_VbKNU4iJNqFG5p` | `price_1Ua7iqRj5B5P2OabEHqlT3U1` |
+| IMS Core | The Portfolio Signal only, in the read-only "Core Members - SIGNAL ONLY" Telegram group. | $20.00 / month | `ims_core_monthly` | `prod_VbKNJCHQYGbJqg` | `price_1Ub6EPRj5B5P2OabewSN5uz2` |
+| IMS Pro | All IMS signals (Portfolio Signal, IMS Signals, BTC DCA Signal, Trend Probability), a weekly research note, a macro and liquidity briefing, method notes, and full access to the main "Investing Mastery Signals" Telegram group. | $25.00 / month | `ims_pro_monthly` | `prod_VbKNU4iJNqFG5p` | `price_1Ub6EQRj5B5P2Oabgp1DACwM` |
 | IMS Champion | Everything in Pro, plus we manage your portfolio for you. | $399.00 / month | `ims_champion_monthly` | `prod_VbKNqZs5VvVvc8` | `price_1Ua7irRj5B5P2OabVfNyjMdL` |
 
 Customer portal configuration: `bpc_1Ua7irRj5B5P2OabBz6cKtBZ`.
+
+Price history: on 2026-11-12 Core went from $25 to $20 and Pro from $50 to $25. The old prices (`price_1Ua7ipRj5B5P2OabVBxlHkN3`, `price_1Ua7iqRj5B5P2OabEHqlT3U1`) are archived. There were no subscribers at the time.
 
 To change a price, edit `amount` in `scripts/stripe-setup.mts` (and the site copy in `content/signals.ts`, `content/home.ts`, `content/faq.ts`) and re-run the script. Stripe prices can't be edited, so the script creates a new price on the same product, moves the `lookup_key` to it, archives the old price and points the customer portal at the new one. Existing subscriptions stay on the old price until moved.
 
