@@ -70,7 +70,7 @@ export const home = {
           time: { label: "Mon · 9:15 AM ET", datetime: "09:15" },
           reading: "ACCUMULATE (1.5x)",
           change: { from: "Neutral (1x)", to: "Accumulate (1.5x)", dir: "up" },
-          body: "Valuation z-score is -1.3, in our accumulate zone. Raise your normal weekly BTC buy to 1.5x until the next update.",
+          body: "Valuation z-score is -1.3, in our accumulate zone. Today's number is 1.5x, so put in 1.5x your normal daily BTC amount until it changes.",
         },
         {
           kind: "reading",
@@ -81,7 +81,7 @@ export const home = {
           time: { label: "Tue · 8:30 AM ET", datetime: "08:30" },
           reading: "+0.42 · LONG",
           change: { from: "-0.18", to: "+0.42", dir: "up" },
-          body: "The Trend Probability Indicator flipped long. 7 of 10 inputs are positive. A long TPI means trend-following positions can stay on.",
+          body: "The Trend Probability Indicator flipped long. Most of its trend inputs are now positive. A long TPI means trend-following positions can stay on.",
           gauge: { value: 0.42, label: "TPI reading" },
         },
         {

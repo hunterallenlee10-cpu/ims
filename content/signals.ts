@@ -87,8 +87,8 @@ export const tiers: Tier[] = [
     inherits: "Everything in Core, plus:",
     rows: [
       { label: "Group", items: [`Full access to the main ${groups.main} group, every topic`] },
-      { label: "Signals", items: ["Portfolio Signal", "BTC DCA Signal", "TPI - Trend Probability Indicator", "IA - Investing Analysis"] },
-      { label: "Research", items: ["Weekly research note", "Macro and liquidity briefing", "Method notes on how the models work"] },
+      { label: "Signals", items: ["Portfolio Signal", "BTC DCA Signal", "TPI (Trend Probability Indicator)", "IA (Investing Analysis)"] },
+      { label: "Research", items: ["Weekly research note", "Macro and liquidity briefing", "Method notes on how the models work", "Tutorials on exactly how to execute each signal"] },
       { label: "Community", items: ["All chats", "Live calls", "Ask the Founders", "Talk with other members and the founders"] },
     ],
     whoFor: "People who want the full system, the reasoning behind it, and the community.",
@@ -105,8 +105,8 @@ export const tiers: Tier[] = [
     rows: [
       { label: "Portfolio management", items: ["We manage your portfolio for you, entirely"] },
       { label: "Group", items: [`Full access to the main ${groups.main} group, every topic`] },
-      { label: "Signals", items: ["Portfolio Signal", "BTC DCA Signal", "TPI - Trend Probability Indicator", "IA - Investing Analysis"] },
-      { label: "Research", items: ["Weekly research note", "Macro and liquidity briefing", "Method notes on how the models work"] },
+      { label: "Signals", items: ["Portfolio Signal", "BTC DCA Signal", "TPI (Trend Probability Indicator)", "IA (Investing Analysis)"] },
+      { label: "Research", items: ["Weekly research note", "Macro and liquidity briefing", "Method notes on how the models work", "Tutorials on exactly how to execute each signal"] },
       { label: "Community", items: ["All chats", "Live calls", "Ask the Founders", "Talk with other members and the founders"] },
     ],
     whoFor: "People who want everything in Pro and want their portfolio managed for them.",
