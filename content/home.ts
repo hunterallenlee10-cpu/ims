@@ -137,7 +137,7 @@ export const home = {
       points: [
         "Signals come from fixed rules, not mood",
         "Every signal comes with its reasoning written out",
-        "Portfolio Signal: +281% from August 2023 to November 2026. Past results don't guarantee future returns",
+        "Portfolio Signal: +281% from August 2023 to November 2026",
         "Indicators, not buy or sell calls. Your decisions stay yours",
       ],
     },
