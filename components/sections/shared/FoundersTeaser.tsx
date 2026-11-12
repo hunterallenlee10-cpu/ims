@@ -2,15 +2,8 @@ import { foundersPhoto, type Founder } from "@/content/about";
 import { home } from "@/content/home";
 import { isPlaceholder } from "@/content/site";
 import { Icon } from "@/components/ui/Icon";
+import { Monogram } from "@/components/ui/Monogram";
 import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
-
-const initials = (name: string) =>
-  name
-    .split(/\s+/)
-    .map((w) => w[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
 
 /**
  * One wide panel with each founder's name and role.
@@ -36,13 +29,7 @@ export function FoundersTeaser({ founders }: { founders: Founder[] }) {
         {founders.map((f) => (
           <li key={f.name} className="flex items-start gap-5">
             {foundersPhoto ? null : (
-              <span
-                aria-hidden="true"
-                className="chamfer flex h-16 w-16 shrink-0 items-center justify-center bg-accent font-display text-2xl tracking-wide text-heading [--cut:12px] sm:h-20 sm:w-20 sm:text-3xl"
-                style={{ backgroundImage: "linear-gradient(135deg, var(--accent) 0%, #5a12a8 100%)", boxShadow: "0 0 32px var(--accent-glow)" }}
-              >
-                {initials(f.name)}
-              </span>
+              <Monogram name={f.name} className="h-16 w-16 text-2xl [--cut:12px] sm:h-20 sm:w-20 sm:text-3xl" />
             )}
             <div className="min-w-0">
               <p className="mono-label text-accent-light">{f.role}</p>

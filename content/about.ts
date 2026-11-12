@@ -48,13 +48,42 @@ export const about = {
   timeline: {
     eyebrow: "The story",
     title: "Year by\n*year.*",
-    subhead: "Milestones only.",
+    subhead: "The Portfolio Signal track record, one year at a time. **Actual results since August 28, 2023.**",
+    // `chart` renders that year's Growth of $10,000 card from content/track-record.ts.
+    // Set `photo` to a real image path to show a photo instead.
+    // Keep titles and text free of figures (the cards compute them), except the 2026 title,
+    // which must stay in step with the +281% trust line in content/site.ts.
+    disclosure:
+      "Portfolio Signal: actual results since August 28, 2023, before taxes and fees. Yearly figures are approximate. Past performance does not guarantee future results. Crypto is highly volatile and you can lose money.",
     items: [
-      { year: "[TODO: year]", title: "[TODO: milestone]", text: "[TODO: what happened and why it mattered]", photo: null as string | null },
-      { year: "[TODO: year]", title: "[TODO: milestone]", text: "[TODO: what happened and why it mattered]", photo: null as string | null },
-      { year: "[TODO: year]", title: "[TODO: milestone]", text: "[TODO: what happened and why it mattered]", photo: null as string | null },
-      { year: "[TODO: year]", title: "[TODO: milestone]", text: "[TODO: what happened and why it mattered]", photo: null as string | null },
-      { year: "[TODO: year]", title: "Investing Mastery Signals launches", text: "[TODO: launch details]", photo: null as string | null },
+      {
+        year: "2023",
+        title: "The track record starts",
+        text: "On August 28, 2023 we started following the Portfolio Signal and recording every result, with the reasoning for every change written out.",
+        photo: null as string | null,
+        chart: 2023 as number | null,
+      },
+      {
+        year: "2024",
+        title: "The breakout year",
+        text: "The strongest year of the track record so far. Same written rules, posted the same way, with a market that gave them room to work.",
+        photo: null as string | null,
+        chart: 2024 as number | null,
+      },
+      {
+        year: "2025",
+        title: "Holding the gains",
+        text: "A slower year. The rules kept the portfolio positioned through it and still finished the year up.",
+        photo: null as string | null,
+        chart: 2025 as number | null,
+      },
+      {
+        year: "2026",
+        title: "Up 281% since day one",
+        text: "Three years in, $10,000 that followed the Portfolio Signal from the first post is worth more than three and a half times what it started at.",
+        photo: null as string | null,
+        chart: 2026 as number | null,
+      },
     ],
   },
   founders: {
