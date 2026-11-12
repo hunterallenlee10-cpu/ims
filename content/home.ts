@@ -173,6 +173,11 @@ export const home = {
     eyebrow: "Who's behind it",
     title: "Run by its\n*co-founders.*",
     subhead: "Hunter Lee and Aaron Wathen founded Investing Mastery Signals and run the member groups as admins.",
+    // Shown under the founder names. Keep these true to what the tiers include (content/signals.ts).
+    facts: [
+      "Admins of both member Telegram groups",
+      "Answer member questions in Ask the Founders (Pro and Champion)",
+    ],
     link: { label: "About the founders", href: "/about" },
   },
 
