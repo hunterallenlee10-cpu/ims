@@ -10,7 +10,7 @@ export const home = {
 
   hero: {
     chipTag: "Signals",
-    eyebrow: "Rules-based crypto research",
+    eyebrow: "Rules-based investment research",
     // "\n" breaks the line; *stars* color the second line purple.
     title: "Investing Mastery\n*Signals.*",
     sentence:
