@@ -158,8 +158,9 @@ async function ensurePortal(ids: Record<TierId, { product: string; price: string
         default_allowed_updates: ["price"],
         proration_behavior: PRORATION,
         products: [
-          { product: ids.core.product, prices: [ids.core.price] },
-          { product: ids.pro.product, prices: [ids.pro.price] },
+          // One membership per subscription: members can switch tier but not change quantity.
+          { product: ids.core.product, prices: [ids.core.price], adjustable_quantity: { enabled: false } },
+          { product: ids.pro.product, prices: [ids.pro.price], adjustable_quantity: { enabled: false } },
         ],
         // Downgrades (Pro -> Core) wait until the end of the period.
         schedule_at_period_end: { conditions: [{ type: "decreasing_item_amount" }] },
