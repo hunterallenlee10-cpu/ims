@@ -101,7 +101,7 @@ export const about = {
       { icon: "shield", title: "Risk in plain view", text: "Crypto is volatile and signals can be wrong. We say so plainly." },
       { icon: "eye", title: "Reasoning in writing", text: "Every signal explains itself. You should never have to guess why a reading changed." },
       { icon: "ban", title: "No hype", text: "No guarantees, no countdowns, no made-up numbers. Every result we show comes from the record. If it sounds too good, we won't say it." },
-      { icon: "compass", title: "Indicators, not instructions", text: "Signals are valuation and trend indicators, not direct buy or sell calls." },
+      { icon: "compass", title: "Positions, not quick trades", text: "Signals are positions you hold for weeks to years, not buy-now, sell-now calls. What you do with them is always your decision." },
     ] satisfies { icon: IconName; title: string; text: string }[],
   },
 };

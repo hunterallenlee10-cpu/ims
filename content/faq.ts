@@ -55,7 +55,7 @@ export const faqGroups: FaqGroup[] = [
         id: "what-signals",
         question: "What are the signals?",
         answer:
-          "Rules-based valuation and trend indicators, each posted with its reasoning written out. Examples include the BTC Valuation Z-Score model, the SDCA accumulation and distribution rate, and trend probability. They are indicators, not direct buy or sell calls.",
+          "Four rules-based signals, each posted with its reasoning written out: the Portfolio Signal (what to hold, and how much), the BTC DCA Signal (how much of your cash to put into Bitcoin each day), the TPI or Trend Probability Indicator (whether the market is trending up or down), and IA, Investing Analysis (the why behind every move). They are positions you hold for weeks to years, not quick buy-now, sell-now trade calls.",
       },
       {
         id: "core-vs-pro",
