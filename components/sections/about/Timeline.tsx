@@ -3,8 +3,9 @@ import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
 import { cn } from "@/lib/cn";
+import { YearChart } from "./YearChart";
 
-/** Year-by-year founder story: big years, short chapters, photo slots, alternating sides. */
+/** Year-by-year story: big years, short chapters, a rendered track-record card (or photo) each, alternating sides. */
 export function Timeline() {
   const c = about.timeline;
   return (
@@ -49,19 +50,25 @@ export function Timeline() {
                   <p className={cn("measure mt-3 text-body", !right && "md:ml-auto")}>{item.text}</p>
                 </div>
                 <div data-reveal style={{ ["--reveal-delay" as string]: "120ms" }} className={cn(right ? "md:order-1 md:pr-4" : "md:pl-4")}>
-                  <PlaceholderImage
-                    src={item.photo}
-                    alt={`Photo for chapter ${i + 1}`}
-                    label={`[TODO: photo for chapter ${i + 1}]`}
-                    className="aspect-[16/10]"
-                    sizes="(min-width: 768px) 520px, 100vw"
-                  />
+                  {item.photo ? (
+                    <PlaceholderImage
+                      src={item.photo}
+                      alt={`Photo for chapter ${i + 1}`}
+                      label={`[TODO: photo for chapter ${i + 1}]`}
+                      className="aspect-[16/10]"
+                      sizes="(min-width: 768px) 520px, 100vw"
+                    />
+                  ) : item.chart ? (
+                    <YearChart year={item.chart} />
+                  ) : null}
                 </div>
               </div>
             </li>
           );
         })}
       </ol>
+
+      <p className="measure mx-auto mt-16 text-center text-xs leading-relaxed text-muted">{c.disclosure}</p>
     </Section>
   );
 }
