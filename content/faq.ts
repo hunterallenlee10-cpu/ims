@@ -61,7 +61,7 @@ export const faqGroups: FaqGroup[] = [
         id: "core-vs-pro",
         question: "What's the difference between Core and Pro?",
         answer:
-          `Core ($25/month) gets the Portfolio Signal only, in the read-only ${groups.core} group. Members can't post or ask questions.\n\nPro ($50/month) gets every signal: the Portfolio Signal, the BTC DCA Signal, the TPI (Trend Probability Indicator) and IA (Investing Analysis). It adds the weekly research note, the macro and liquidity briefing, method notes on how the models work, and full access to the main ${groups.main} group, including live calls and Ask the Founders.`,
+          `Core ($25/month) gets the Portfolio Signal only, in the read-only ${groups.core} group. Members can't post or ask questions.\n\nPro ($50/month) gets every signal: the Portfolio Signal, the BTC DCA Signal, the TPI (Trend Probability Indicator) and IA (Investing Analysis). It adds the daily research note, the macro and liquidity briefing, method notes on how the models work, and full access to the main ${groups.main} group, including live calls and Ask the Founders.`,
       },
       {
         id: "personalized",
@@ -78,7 +78,7 @@ export const faqGroups: FaqGroup[] = [
       {
         id: "cadence",
         question: "How often do signals go out?",
-        answer: "Signals are posted every day. Pro and Champion members also get a weekly research note.",
+        answer: "Everything is posted every day: signals, analysis and research. Pro and Champion members get the daily analysis and research note as well as every signal.",
       },
       {
         id: "markets",

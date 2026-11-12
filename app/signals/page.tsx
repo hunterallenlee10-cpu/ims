@@ -17,7 +17,7 @@ export const metadata = pageMetadata({ ...signals.meta, path: "/signals" });
 function offersJsonLd() {
   const descriptions: Record<string, string> = {
     core: "The Portfolio Signal only, in the read-only Core Members - SIGNAL ONLY Telegram group.",
-    pro: "All signals (Portfolio Signal, BTC DCA Signal, TPI (Trend Probability Indicator), IA (Investing Analysis)), a weekly research note, a macro and liquidity briefing, method notes, execution tutorials, and full access to the main Investing Mastery Signals Telegram group.",
+    pro: "All signals (Portfolio Signal, BTC DCA Signal, TPI (Trend Probability Indicator), IA (Investing Analysis)), a daily research note, a macro and liquidity briefing, method notes, execution tutorials, and full access to the main Investing Mastery Signals Telegram group.",
     champion: "Everything in Pro",
   };
   return {

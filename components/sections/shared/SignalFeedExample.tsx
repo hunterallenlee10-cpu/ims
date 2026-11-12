@@ -44,7 +44,7 @@ export function SignalFeedExample({ className }: { className?: string }) {
 }
 
 /** Tier names whose pricing card lists this signal under "Signals" (content/signals.ts). */
-function tiersFor(match: string) {
+export function tiersFor(match: string) {
   return tiers
     .filter((t) => t.rows.some((r) => r.label === "Signals" && r.items.some((item) => item.includes(match))))
     .map((t) => t.name);

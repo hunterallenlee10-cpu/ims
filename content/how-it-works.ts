@@ -51,25 +51,22 @@ export const howItWorks = {
   anatomy: {
     eyebrow: "Anatomy of a signal post",
     title: "What a signal\n*post looks like.*",
-    subhead: "Every signal post follows the same structure. **Values are hidden here** because this shows the format, not a reading.",
+    subhead:
+      "Every signal post follows the same structure. **The values below are illustrative,** written the way we post them in Telegram.",
     label: "Example format, not a real signal.",
+    // The example post itself (values, time, reasoning) is the BTC DCA post in content/home.ts.
     post: {
       signalLabel: "Signal",
       signalName: "BTC DCA Signal",
       postedLabel: "Posted",
       readingLabel: "Current reading",
       changeLabel: "What changed",
-      changeText: "Reading moved from",
-      changeJoin: "to",
       reasoningLabel: "The reasoning",
-      reasoningText:
-        "A plain-English explanation of which inputs moved, why the reading is what it is, and which rule produced it.",
-      footer: "General research and educational information only. Not financial advice.",
     },
     callouts: [
       { n: 1, title: "Signal name and time", text: "Which signal it is, and exactly when it was posted." },
       { n: 2, title: "Current reading", text: "The signal's reading right now, under the same rules every time." },
-      { n: 3, title: "What changed", text: "How the reading moved since the last post, in one line." },
+      { n: 3, title: "What changed", text: "How the reading moved since the last post, in one line, with an up or down arrow." },
       { n: 4, title: "The reasoning", text: "Why the reading is what it is, written out in plain English." },
     ],
   },
@@ -108,11 +105,12 @@ export const howItWorks = {
 
   cadence: {
     eyebrow: "Timing",
-    title: "How often\n*posts go out.*",
-    subhead: "New posts go up every day.",
+    title: "We post everything\n*every day.*",
+    subhead: "Signals, analysis and research. **New posts go up every single day.**",
     items: [
-      { label: "Signals", value: "Daily", text: "Signals are posted every day, each with its reasoning written out." },
-      { label: "Research note", value: "Weekly", text: "A written research note for Pro and Champion members." },
+      { label: "Signals", value: "Every day", text: "Every signal is posted daily, each with its reasoning written out." },
+      { label: "Investing Analysis", value: "Every day", text: "Market, macro and liquidity breakdowns for Pro and Champion members." },
+      { label: "Research note", value: "Every day", text: "A written research note for Pro and Champion members." },
     ],
   },
 

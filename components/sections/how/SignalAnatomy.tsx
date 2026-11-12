@@ -3,7 +3,7 @@ import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SignalPostExample } from "@/components/sections/shared/SignalPostExample";
 
-/** The signal post structure with numbered callouts. Values are hidden. */
+/** An example signal post with numbered callouts. Values are illustrative. */
 export function SignalAnatomy() {
   const c = howItWorks.anatomy;
   return (
