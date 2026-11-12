@@ -137,8 +137,8 @@ export const home = {
       points: [
         "Signals come from fixed rules, not mood",
         "Every signal comes with its reasoning written out",
-        "Portfolio Signal: +281% from August 2023 to November 2026. Past results don't guarantee future returns",
-        "Indicators, not buy or sell calls. Your decisions stay yours",
+        "Portfolio Signal: +281% from August 2023 to November 2026",
+        "Tutorials on exactly how to execute",
       ],
     },
     cta: { label: "Get the signals", href: "#pricing" },
@@ -147,7 +147,8 @@ export const home = {
   program: {
     eyebrow: "The signals",
     title: "Four signals.\n*Reasoning included.*",
-    subhead: "Valuation and trend indicators, each posted with the reasoning behind it. **Not direct buy or sell calls.**",
+    subhead:
+      "Every signal comes from written rules, not a feeling, and is posted with the reasoning behind it. **These are positions you hold for weeks to years.** They are not quick buy-now, sell-now trade calls.",
   },
 
   pricing: {

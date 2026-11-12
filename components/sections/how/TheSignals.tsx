@@ -15,6 +15,7 @@ export function TheSignals() {
           <li key={item.name} data-reveal style={{ ["--reveal-delay" as string]: `${(i % 2) * 100}ms` }}>
             <Card icon={item.icon} className="flex h-full flex-col">
               <h3 className="text-h3">{item.name}</h3>
+              <p className="mt-2 font-semibold text-accent-lighter">{item.tagline}</p>
               <p className="mt-3 flex-1 text-body">{item.text}</p>
               <p className="mono-label mt-6 border-t border-panel-line pt-4 text-muted">Included in {item.tiers}</p>
             </Card>
