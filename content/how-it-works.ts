@@ -2,6 +2,7 @@
 // components/sections/how/. Reorder sections in app/how-it-works/page.tsx.
 
 import { groups } from "@/content/signals";
+import { home } from "@/content/home";
 
 export const howItWorks = {
   meta: {
@@ -14,7 +15,7 @@ export const howItWorks = {
     eyebrow: "How it works",
     title: "What members\n*actually see.*",
     intro:
-      "The signals, the structure of every post, the two Telegram groups, and the rules that keep them private. **No black box.**",
+      "The four signals, the structure of every post, the two Telegram groups, how often we post, and the rules that keep it all private. **No black box.**",
   },
 
   why: {
@@ -44,8 +45,8 @@ export const howItWorks = {
   signalsList: {
     eyebrow: "The signals",
     title: "Four signals.\n*Reasoning included.*",
-    subhead:
-      "Rules-based valuation and trend indicators. Examples include the BTC Valuation Z-Score model, the SDCA accumulation and distribution rate, and trend probability. **They are indicators, not direct buy or sell calls.**",
+    // Same intro as the home page Signals section, so the two never drift apart.
+    subhead: home.program.subhead,
   },
 
   anatomy: {
@@ -87,17 +88,19 @@ export const howItWorks = {
       name: groups.main,
       tier: "Pro and Champion",
       points: [
-        "Every signal, the research, live calls and Ask the Founders",
+        "Every signal, the daily research and analysis, and the execution tutorials",
+        "Live calls and Ask the Founders",
         "Members can ask questions and talk with each other and the founders",
       ],
     },
     topicsTitle: "Topics in the main group",
     topics: [
       { name: "Start Here", text: "Read this first. How the group works and how to read the signals." },
-      { name: "IMS Signals", text: "IMS's rules-based valuation, trend and risk signals, with their reasoning." },
-      { name: "IA - Investing Analysis", text: "Investing analysis and research posts." },
-      { name: "BTC DCA Signal", text: "BTC DCA Signal posts and their reasoning." },
-      { name: "Trend Probability", text: "Trend Probability posts and their reasoning." },
+      // Topic names match the Telegram group exactly; descriptions use the signal names from the rest of the site.
+      { name: "IMS Signals", text: "The Portfolio Signal and IMS's other rules-based signals, each with its reasoning." },
+      { name: "IA - Investing Analysis", text: "IA (Investing Analysis): daily market, macro and liquidity breakdowns, the research note and tutorials." },
+      { name: "BTC DCA Signal", text: "The daily BTC DCA number and the reasoning behind it." },
+      { name: "Trend Probability", text: "TPI (Trend Probability Indicator) readings and their reasoning." },
       { name: "Questions", text: "Ask questions about the signals and how the models work." },
       { name: "Member Chat", text: "General conversation with other members and the founders." },
     ],
@@ -108,7 +111,7 @@ export const howItWorks = {
     title: "We post everything\n*every day.*",
     subhead: "Signals, analysis and research. **New posts go up every single day.**",
     items: [
-      { label: "Signals", value: "Every day", text: "Every signal is posted daily, each with its reasoning written out." },
+      { label: "Signals", value: "Every day", text: "Every signal is updated daily, each with its reasoning written out." },
       { label: "Investing Analysis", value: "Every day", text: "Market, macro and liquidity breakdowns for Pro and Champion members." },
       { label: "Research note", value: "Every day", text: "A written research note for Pro and Champion members." },
     ],
@@ -133,7 +136,7 @@ export const howItWorks = {
     items: [
       { title: "Not personal advice", text: "It doesn't know your goals, finances or risk tolerance." },
       { title: "Not a guarantee", text: "Signals can be wrong. Crypto is highly volatile and you can lose money." },
-      { title: "Not a buy or sell call", text: "Signals are valuation and trend indicators. What you do is your decision." },
+      { title: "Not a quick trade call", text: "Signals are positions you hold for weeks to years, not buy-now, sell-now calls. What you do is always your decision." },
       { title: "Not early access for a few", text: "Every member of a tier gets the same post at the same time." },
     ],
   },
