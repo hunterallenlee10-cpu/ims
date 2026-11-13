@@ -192,6 +192,8 @@ export const signals = {
         { label: "Network", text: "Bitcoin network only (on-chain BTC). Don't send Bitcoin Cash (BCH), Lightning, wrapped BTC or any other coin or network: it will be lost." },
         { label: "Address", text: "" },
       ],
+      qrLabel: "QR code for the IMS Bitcoin address",
+      qrNote: "Scan with your wallet, then enter $199 worth of BTC yourself.",
       copy: "Copy address",
       copied: "Copied",
       closed: "The Bitcoin address isn't published yet. Bitcoin payment opens soon.",

@@ -9,6 +9,7 @@ import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { PageHero } from "@/components/sections/shared/PageHero";
 import { StepPath } from "@/components/sections/shared/StepPath";
 import { CopyAddress } from "./CopyAddress";
+import { AddressQr } from "./AddressQr";
 
 // Not a checkout: this page only shows where to send BTC. Access is granted by hand once the payment confirms.
 export const metadata: Metadata = {
@@ -40,7 +41,9 @@ export default function JoinBtcPage() {
                   {row.label === "Address" ? (
                     address ? (
                       <>
-                        <code className="block break-all font-mono text-[1.05rem] text-heading">{address}</code>
+                        <AddressQr address={address} label={c.details.qrLabel} />
+                        <p className="mt-2 text-sm text-muted">{c.details.qrNote}</p>
+                        <code className="mt-5 block break-all font-mono text-[1.05rem] text-heading">{address}</code>
                         <CopyAddress address={address} label={c.details.copy} copiedLabel={c.details.copied} />
                       </>
                     ) : (
