@@ -99,9 +99,9 @@ export const about = {
       { icon: "rule", title: "Rules over opinions", text: "Signals come from written rules. If we change a rule, we say what changed and why." },
       { icon: "layers", title: "Same post, same time", text: "Every member of a tier gets the same post at the same moment. No early access." },
       { icon: "shield", title: "Risk in plain view", text: "Crypto is volatile and signals can be wrong. We say so plainly." },
-      { icon: "eye", title: "Reasoning in writing", text: "Every signal explains itself. You should never have to guess why a reading changed." },
+      { icon: "eye", title: "Reasoning in writing", text: "The reasoning behind the signals is written up daily in the Investing Analysis topic, so Pro and BTC-year members never have to guess why a reading changed." },
       { icon: "ban", title: "No hype", text: "No guarantees, no countdowns, no made-up numbers. Every result we show comes from the record. If it sounds too good, we won't say it." },
-      { icon: "compass", title: "Positions, not quick trades", text: "Signals are positions you hold for weeks to years, not buy-now, sell-now calls. What you do with them is always your decision." },
+      { icon: "compass", title: "Actively managed", text: "Positions can change any day, including short positions. We post every evening, and you check in daily. What you do with the signals is always your decision." },
     ] satisfies { icon: IconName; title: string; text: string }[],
   },
 };

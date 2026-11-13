@@ -8,14 +8,14 @@ export const howItWorks = {
   meta: {
     title: "How It Works",
     description:
-      "What Investing Mastery Signals posts, what a signal post looks like, how the private Telegram groups and topics work, how often posts go out, and the group rules.",
+      "What Investing Mastery Signals posts, when signals go out each evening, how the private Telegram groups and their topics work, and the group rules.",
   },
 
   hero: {
     eyebrow: "How it works",
     title: "What members\n*actually see.*",
     intro:
-      "The four signals, the structure of every post, the two Telegram groups, how often we post, and the rules that keep it all private. **No black box.**",
+      "The four signals, the two Telegram groups and their topics, when we post, and the rules that keep it all private. **Example posts are on the home page.**",
   },
 
   why: {
@@ -36,7 +36,7 @@ export const howItWorks = {
       points: [
         "The same inputs produce the same output, every time",
         "Rules are written before the decision, not after it",
-        "Every reading comes with the reasoning behind it",
+        "The reasoning is written up in the Investing Analysis topic",
       ],
     },
     note: "A system is not a crystal ball. It can be wrong, and sometimes will be. Its value is consistency and transparency, not certainty.",
@@ -44,7 +44,7 @@ export const howItWorks = {
 
   signalsList: {
     eyebrow: "The signals",
-    title: "Four signals.\n*Reasoning included.*",
+    title: "Four signals.\n*Posted daily.*",
     // Same intro as the home page Signals section, so the two never drift apart.
     subhead: home.program.subhead,
   },
@@ -57,40 +57,41 @@ export const howItWorks = {
       name: groups.core,
       tier: "Core",
       points: [
-        "The Portfolio Signal only",
-        "Read-only: members can't post or ask questions",
+        "The Portfolio Signal every day, without the short positions",
+        "Read-only: only the founders post, members can't post or ask questions",
       ],
     },
     main: {
       name: groups.main,
       tier: "Pro and the BTC year",
       points: [
-        "Every signal, the daily research and analysis, and the execution tutorials",
-        "Live calls and Ask the Founders",
-        "Members can ask questions and talk with each other and the founders",
+        "All four signals, including the Portfolio Signal's short positions",
+        "Investing Analysis: daily chart-based commentary and the BTC valuation update",
+        "Member Chat, and Questions where the founders answer",
+        "Training videos coming soon",
       ],
     },
-    topicsTitle: "Topics in the main group",
+    topicsTitle: "Topics in the main group, in order",
+    // Topic names, order and emoji match the Telegram group exactly (read Nov 12, 2026).
+    // Keep in step with home.sample.topics.
     topics: [
-      { name: "Start Here", text: "Read this first. How the group works and how to read the signals." },
-      // Topic names match the Telegram group exactly; descriptions use the signal names from the rest of the site.
-      { name: "IMS Signals", text: "The Portfolio Signal and IMS's other rules-based signals, each with its reasoning." },
-      { name: "IA - Investing Analysis", text: "IA (Investing Analysis): daily market, macro and liquidity breakdowns, the research note and tutorials." },
-      { name: "BTC DCA Signal", text: "The daily BTC DCA number and the reasoning behind it." },
-      { name: "Trend Probability", text: "TPI (Trend Probability Indicator) readings and their reasoning." },
-      { name: "Questions", text: "Ask questions about the signals and how the models work." },
-      { name: "Member Chat", text: "General conversation with other members and the founders." },
+      { name: "💎 Portfolio Signal", text: "Posted by the founders every evening: cash allocation, short positions, net positions and the BTC leverage condition." },
+      { name: "🟠 BTC DCA Signal", text: "Posted by the founders every evening: the SDCA rate, the share of your remaining cash to put into BTC." },
+      { name: "🧭 Trend Probability Indicator", text: "Posted by the founders every evening: the LTPI and MTPI dials. Locked." },
+      { name: "📈 IA - Investing Analysis", text: "Posted by the founders: chart-based commentary and the daily BTC valuation update. The reasoning lives here." },
+      { name: "📌 Start Here", text: "Welcome, setup steps, rules and disclaimer. Read it first. Locked." },
+      { name: "💬 Member Chat", text: "Members and the founders talk." },
+      { name: "🧠 Questions", text: "Members ask, the founders answer." },
     ],
   },
 
   cadence: {
     eyebrow: "Timing",
-    title: "We post everything\n*every day.*",
-    subhead: "Signals, analysis and research. **New posts go up every single day.**",
+    title: "Posted every\n*evening.*",
+    subhead: "Signals go up daily between 6pm and midnight ET, usually 7 to 9pm. **Positions can change any day, so check in daily.**",
     items: [
-      { label: "Signals", value: "Every day", text: "Every signal is updated daily, each with its reasoning written out." },
-      { label: "Investing Analysis", value: "Every day", text: "Market, macro and liquidity breakdowns for Pro and BTC-year members." },
-      { label: "Research note", value: "Every day", text: "A written research note for Pro and BTC-year members." },
+      { label: "Signals", value: "Every evening", text: "Portfolio Signal, BTC DCA Signal and TPI, each in its fixed format, between 6pm and midnight ET." },
+      { label: "Investing Analysis", value: "Every day", text: "Chart-based commentary and the BTC valuation update, for Pro and the BTC year." },
     ],
   },
 
@@ -113,7 +114,7 @@ export const howItWorks = {
     items: [
       { title: "Not personal advice", text: "It doesn't know your goals, finances or risk tolerance." },
       { title: "Not a guarantee", text: "Signals can be wrong. Crypto is highly volatile and you can lose money." },
-      { title: "Not a quick trade call", text: "Signals are positions you hold for weeks to years, not buy-now, sell-now calls. What you do is always your decision." },
+      { title: "Not set-and-forget", text: "Positions are actively managed and can change any day, including short positions. Check in daily. What you do is always your decision." },
       { title: "Not early access for a few", text: "Every member of a tier gets the same post at the same time." },
     ],
   },

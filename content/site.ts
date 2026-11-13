@@ -7,7 +7,7 @@ export const site = {
   name: "Investing Mastery Signals",
   shortName: "IMS",
   description:
-    "Rules-based crypto valuation and trend signals, each with its reasoning written out, delivered in private Telegram groups. Core or Pro by card, or a full year of Pro access paid in Bitcoin.",
+    "Rules-based crypto signals posted every evening in private Telegram groups. Core or Pro by card, or a full year of Pro access paid in Bitcoin.",
   // Set NEXT_PUBLIC_SITE_URL in Vercel to the production domain, e.g. https://example.com
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
@@ -39,7 +39,7 @@ export const site = {
   },
 
   // Only true claims. The return figure must be backed by records (which signal, actual or backtest).
-  trustLine: ["Rules-based", "Reasoning written out", "+281% From August 2023 - November 2026"],
+  trustLine: ["Rules-based", "Posted daily", "+281% From August 2023 - November 2026"],
 
   ageNotice: "Membership is for adults 18 and over.",
 

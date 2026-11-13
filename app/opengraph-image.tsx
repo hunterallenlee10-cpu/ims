@@ -77,7 +77,7 @@ export default async function OpengraphImage() {
           <div style={{ display: "flex", flex: 1, height: 2, backgroundImage: "linear-gradient(90deg, #B946FB, rgba(185,70,251,0))" }} />
         </div>
         <div style={{ display: "flex", marginTop: 44, fontSize: 26, color: "#C5CEDE" }}>
-          Rules-based crypto signals, reasoning written out. Private Telegram groups.
+          Rules-based crypto signals, posted daily. Private Telegram groups.
         </div>
       </div>
     ),

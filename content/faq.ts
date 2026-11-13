@@ -21,7 +21,7 @@ export const faqGroups: FaqGroup[] = [
         id: "experience",
         question: "Do I need experience?",
         answer:
-          "There's no experience requirement to join. Every signal comes with its reasoning written out, and Pro includes method notes on how the models work. You do need to be comfortable making your own decisions, because the signals are indicators, not instructions.",
+          "There's no experience requirement to join. Pro and the BTC year include the Investing Analysis topic, where the reasoning behind the signals is written up, and the Questions topic, where the founders answer. Training videos are coming soon. You do need to be comfortable making your own decisions, because the signals are general research, not instructions.",
       },
       {
         id: "exchange",
@@ -55,13 +55,13 @@ export const faqGroups: FaqGroup[] = [
         id: "what-signals",
         question: "What are the signals?",
         answer:
-          "Four rules-based signals, each posted with its reasoning written out: the Portfolio Signal (what to hold, and how much), the BTC DCA Signal (how much of your cash to put into Bitcoin each day), the TPI or Trend Probability Indicator (whether the market is trending up or down), and IA, Investing Analysis (the why behind every move). They are positions you hold for weeks to years, not quick buy-now, sell-now trade calls.",
+          "Four rules-based signals, posted daily: the Portfolio Signal (cash allocation, short positions, net positions and the BTC leverage condition), the BTC DCA Signal (the SDCA rate: the share of your remaining cash to put into BTC each day), the TPI or Trend Probability Indicator (long-term and medium-term trend readings), and IA, Investing Analysis (chart-based commentary and the daily BTC valuation update, where the reasoning is written up).\n\nPositions are actively managed and can change any day, and the Portfolio Signal can include short positions. Check in daily.",
       },
       {
         id: "core-vs-pro",
         question: "What's the difference between Core and Pro?",
         answer:
-          `Core ($20/month) gets the Portfolio Signal only, in the read-only ${groups.core} group. Members can't post or ask questions.\n\nPro ($25/month, or $249/year) gets every signal: the Portfolio Signal, the BTC DCA Signal, the TPI (Trend Probability Indicator) and IA (Investing Analysis). It adds the daily research note, the macro and liquidity briefing, method notes on how the models work, and full access to the main ${groups.main} group, including live calls and Ask the Founders.`,
+          `Core ($20/month) gets the Portfolio Signal every day, without the short positions, in the read-only ${groups.core} group. Only the founders post there; members can't post or ask questions.\n\nPro ($25/month, or $249/year) and the BTC year ($199 in Bitcoin for 12 months) get all four signals: the Portfolio Signal including short positions, the BTC DCA Signal, the TPI (Trend Probability Indicator) and IA (Investing Analysis). They also get full access to the main ${groups.main} group: Start Here, Member Chat, and Questions, where the founders answer. Training videos are coming soon.`,
       },
       {
         id: "personalized",
@@ -78,7 +78,7 @@ export const faqGroups: FaqGroup[] = [
       {
         id: "cadence",
         question: "How often do signals go out?",
-        answer: "Everything is posted every day: signals, analysis and research. Pro and BTC-year members get the daily analysis and research note as well as every signal.",
+        answer: "Every day. Signals go up in the evening, between 6pm and midnight ET, usually 7 to 9pm. Positions are actively managed and can change any day, so check in daily. Pro and the BTC year also get daily Investing Analysis posts.",
       },
       {
         id: "markets",

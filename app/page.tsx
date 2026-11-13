@@ -10,6 +10,7 @@ import { HomeHero } from "@/components/sections/home/HomeHero";
 import { StatStrip } from "@/components/sections/shared/StatStrip";
 import { VsCompare } from "@/components/sections/shared/VsCompare";
 import { SignalRows } from "@/components/sections/home/SignalRows";
+import { GroupTopics } from "@/components/sections/home/GroupTopics";
 import { SignalFeedExample } from "@/components/sections/shared/SignalFeedExample";
 import { TierCards } from "@/components/sections/signals/TierCards";
 import { StepPath } from "@/components/sections/shared/StepPath";
@@ -40,8 +41,11 @@ export default function HomePage() {
 
       <Section id="example-signal" glow="center" aria-labelledby="sample-title">
         <SectionHeader id="sample-title" eyebrow={home.sample.eyebrow} title={home.sample.title} subhead={home.sample.subhead} />
-        <div data-reveal className="mx-auto max-w-2xl">
-          <SignalFeedExample />
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start lg:gap-10">
+          <GroupTopics className="lg:sticky lg:top-28" />
+          <div data-reveal className="min-w-0">
+            <SignalFeedExample />
+          </div>
         </div>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3" data-reveal>
           <Button href={home.sample.plansCta.href} arrow>
