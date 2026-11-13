@@ -38,7 +38,7 @@ export const faqGroups: FaqGroup[] = [
         id: "manage-money",
         question: "Does IMS manage my money?",
         answer:
-          "Only for Champion members. In Champion, we manage your portfolio for you. Core and Pro members manage and move their own money, and IMS provides signals and analysis only.",
+          "No. Every member manages and moves their own money. IMS provides signals and analysis only.",
       },
       {
         id: "performance",
@@ -78,7 +78,7 @@ export const faqGroups: FaqGroup[] = [
       {
         id: "cadence",
         question: "How often do signals go out?",
-        answer: "Everything is posted every day: signals, analysis and research. Pro and Champion members get the daily analysis and research note as well as every signal.",
+        answer: "Everything is posted every day: signals, analysis and research. Pro and BTC-year members get the daily analysis and research note as well as every signal.",
       },
       {
         id: "markets",
@@ -94,7 +94,7 @@ export const faqGroups: FaqGroup[] = [
         id: "telegram",
         question: "How do I get into the Telegram group after I pay?",
         answer:
-          `Enter your Telegram username during checkout. After you pay, a private invite link arrives by email within 12 hours. Open it in Telegram and tap Request to Join. Once your request is approved, read the Start Here topic first.\n\nCore members join ${groups.core}. Pro and Champion members join the main ${groups.main} group.`,
+          `Enter your Telegram username during checkout. After you pay, a private invite link arrives by email within 12 hours. Open it in Telegram and tap Request to Join. Once your request is approved, read the Start Here topic first.\n\nCore members join ${groups.core}. Pro and BTC-year members join the main ${groups.main} group.\n\nPaying in Bitcoin? There's no checkout: after you send the BTC, send us the transaction ID, your email and your Telegram username through the contact form, and your invite follows within 12 hours of the payment confirming.`,
       },
       {
         id: "share",
@@ -118,7 +118,7 @@ export const faqGroups: FaqGroup[] = [
         id: "upgrade",
         question: "Can I upgrade or downgrade?",
         answer:
-          `Yes, between Core and Pro, in Manage membership. Moving from Core to Pro takes effect right away: the price difference for the rest of the month is added to your next bill, you get an invite to the main ${groups.main} group, and you leave the Core group once you've joined.\n\nMoving from Pro to Core takes effect at the end of your current billing period. Then you're removed from the main group and invited to ${groups.core}. To move up to Champion, contact us anytime.\n\nYou can also switch Pro between monthly and yearly billing in Manage membership. Monthly to yearly takes effect right away, with a credit for the unused part of your current month. Yearly to monthly takes effect when your year ends.`,
+          `Yes, between Core and Pro, in Manage membership. Moving from Core to Pro takes effect right away: the price difference for the rest of the month is added to your next bill, you get an invite to the main ${groups.main} group, and you leave the Core group once you've joined.\n\nMoving from Pro to Core takes effect at the end of your current billing period. Then you're removed from the main group and invited to ${groups.core}.\n\nYou can also switch Pro between monthly and yearly billing in Manage membership. Monthly to yearly takes effect right away, with a credit for the unused part of your current month. Yearly to monthly takes effect when your year ends.`,
         link: "manage",
       },
       {

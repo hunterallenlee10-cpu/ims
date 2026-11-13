@@ -12,7 +12,7 @@ export const legalPages = {
   },
   terms: {
     title: "Terms of Service",
-    description: "The terms that govern the Investing Mastery Signals website and the Core, Pro and Champion memberships.",
+    description: "The terms that govern the Investing Mastery Signals website and the Core and Pro memberships, including Pro access paid in Bitcoin.",
     updated: "November 10, 2026",
   },
   privacy: {

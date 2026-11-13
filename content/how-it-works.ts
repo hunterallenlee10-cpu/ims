@@ -63,7 +63,7 @@ export const howItWorks = {
     },
     main: {
       name: groups.main,
-      tier: "Pro and Champion",
+      tier: "Pro and the BTC year",
       points: [
         "Every signal, the daily research and analysis, and the execution tutorials",
         "Live calls and Ask the Founders",
@@ -89,8 +89,8 @@ export const howItWorks = {
     subhead: "Signals, analysis and research. **New posts go up every single day.**",
     items: [
       { label: "Signals", value: "Every day", text: "Every signal is updated daily, each with its reasoning written out." },
-      { label: "Investing Analysis", value: "Every day", text: "Market, macro and liquidity breakdowns for Pro and Champion members." },
-      { label: "Research note", value: "Every day", text: "A written research note for Pro and Champion members." },
+      { label: "Investing Analysis", value: "Every day", text: "Market, macro and liquidity breakdowns for Pro and BTC-year members." },
+      { label: "Research note", value: "Every day", text: "A written research note for Pro and BTC-year members." },
     ],
   },
 
@@ -120,6 +120,6 @@ export const howItWorks = {
 
   cta: {
     title: "See the\n*membership.*",
-    text: "Core, Pro and Champion. Monthly, or yearly for Pro. Cancel anytime.",
+    text: "Core or Pro, monthly or yearly by card, or a full year of Pro paid in Bitcoin.",
   },
 };

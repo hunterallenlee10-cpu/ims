@@ -29,7 +29,7 @@ if (!SITE_URL.startsWith("https://")) throw new Error("Set SITE_URL to the publi
 // fetch-based client: respects HTTPS_PROXY when run with NODE_USE_ENV_PROXY=1.
 const stripe = new Stripe(key, { appInfo: { name: "ims-setup-script" }, httpClient: Stripe.createFetchHttpClient() });
 
-// Facts only. Champion wording confirmed by Hunter on 2026-11-10.
+// Facts only. Champion ($399/month) was retired on 2026-11-13; its Stripe price and product are archived.
 // amount is the monthly price in cents; yearly (Pro only) is the yearly price in cents, sold under YEARLY_LOOKUP_KEYS.
 const PRODUCTS: Record<TierId, { name: string; description: string; amount: number; yearly?: number }> = {
   core: {
@@ -44,7 +44,6 @@ const PRODUCTS: Record<TierId, { name: string; description: string; amount: numb
     amount: 2500,
     yearly: 24900,
   },
-  champion: { name: "IMS Champion", description: "Everything in Pro, plus we manage your portfolio for you.", amount: 39900 },
 };
 
 const log = (msg: string) => console.log(`${DRY ? "[dry run] " : ""}${msg}`);
@@ -198,7 +197,7 @@ async function ensurePortal(ids: Record<TierId, { product: string; price: string
       payment_method_update: { enabled: true },
       customer_update: { enabled: true, allowed_updates: ["email"] },
       subscription_cancel: { enabled: true, mode: "at_period_end", cancellation_reason: { enabled: true, options: ["too_expensive", "unused", "other"] } },
-      // Core <-> Pro only. Champion is not offered here.
+      // Core <-> Pro only.
       subscription_update: {
         enabled: true,
         default_allowed_updates: ["price"],

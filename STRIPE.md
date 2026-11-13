@@ -7,13 +7,13 @@ Stripe account: `acct_1Ua6qPRj5B5P2Oab` (IMS, owned by Hunter). Verified with `G
 ### Changes to the original plan (Hunter, 2026-11-10)
 
 - **Live first.** Hunter asked for Stripe to be set up straight in live mode, skipping the sandbox. Consequence: renewals, failed payments and portal changes have not been exercised with test clocks. The first real occurrence of each is its first test, so watch the first month closely (§9).
-- **Champion open for sale (2026-11-10).** Wording confirmed by Hunter: "Everything in Pro, plus we manage your portfolio for you." `CHAMPION_CHECKOUT_ENABLED=true` is set in Vercel Production. Hunter confirmed IMS is not a registered investment adviser; the Disclaimer says so.
+- **Champion retired (2026-11-13).** Hunter replaced the $399/month Champion tier with a one-year Pro option paid once in Bitcoin ($199, `/join/btc`). That option is not a Stripe product: members send BTC to `NEXT_PUBLIC_BTC_ADDRESS`, send their TXID, email and Telegram username through the contact form, and are invited by hand. The Champion price and product are archived in Stripe (Stripe doesn't allow deleting a price). It had no subscribers. `CHAMPION_CHECKOUT_ENABLED` is no longer read and can be removed from Vercel.
 - **Recommendations accepted:** n8n for webhooks (D1), manual Telegram invites first and the bot later (D2), Stripe's default proration (D5).
 
 Rules that still apply:
 
 - No secret keys, webhook secrets or bot tokens in code, this file, issues, commits or logs.
-- The browser sends only a tier id (`core`, `pro`, `champion`); the server maps it to a Stripe Price by `lookup_key`.
+- The browser sends only a tier id (`core`, `pro`); the server maps it to a Stripe Price by `lookup_key`.
 - Access is granted from webhooks (or by an admin), never from the success page.
 
 ---
@@ -67,7 +67,7 @@ Rules that still apply:
 | `NEXT_PUBLIC_STRIPE_PORTAL_URL` | `https://billing.stripe.com/p/login/bJe28t2PSdC19VQdPH8so00` | Set in Vercel (Production, Preview) |
 | `STRIPE_MANAGED_PAYMENTS` | `true` | Set in Vercel (Production, Preview) |
 | `STRIPE_SECRET_KEY` | `sk_live_…` | **Hunter adds it** (§2) |
-| `CHAMPION_CHECKOUT_ENABLED` | `true` | Set in Vercel (Production) |
+| `NEXT_PUBLIC_BTC_ADDRESS` | The IMS Bitcoin address for the BTC year | **Hunter adds it.** The BTC button stays closed until set |
 | `CONTACT_WEBHOOK_URL` | n8n workflow "IMS - Website contact form to email" → ceo@leeenterprisesunlimited.com | Set in Vercel (Production, Sensitive) |
 
 ---
@@ -81,11 +81,10 @@ Created by `scripts/stripe-setup.mts`. It's idempotent: prices are found by `loo
 | IMS Core | The Portfolio Signal only, in the read-only "Core Members - SIGNAL ONLY" Telegram group. | $20.00 / month | `ims_core_monthly` | `prod_VbKNJCHQYGbJqg` | `price_1Ub6EPRj5B5P2OabewSN5uz2` |
 | IMS Pro | All IMS signals (Portfolio Signal, IMS Signals, BTC DCA Signal, Trend Probability), a weekly research note, a macro and liquidity briefing, method notes, and full access to the main "Investing Mastery Signals" Telegram group. | $25.00 / month | `ims_pro_monthly` | `prod_VbKNU4iJNqFG5p` | `price_1Ub6EQRj5B5P2Oabgp1DACwM` |
 | IMS Pro (yearly) | Same product as IMS Pro. | $249.00 / year | `ims_pro_yearly` | `prod_VbKNU4iJNqFG5p` | `price_1Ub6IIRj5B5P2OabqoZgYRtM` |
-| IMS Champion | Everything in Pro, plus we manage your portfolio for you. | $399.00 / month | `ims_champion_monthly` | `prod_VbKNqZs5VvVvc8` | `price_1Ua7irRj5B5P2OabVfNyjMdL` |
 
 Customer portal configuration: `bpc_1Ua7irRj5B5P2OabBz6cKtBZ`.
 
-Price history: on 2026-11-12 Core went from $25 to $20 and Pro from $50 to $25. The old prices (`price_1Ua7ipRj5B5P2OabVBxlHkN3`, `price_1Ua7iqRj5B5P2OabEHqlT3U1`) are archived. There were no subscribers at the time. The same day, a yearly Pro price ($249/year, `ims_pro_yearly`) was added; members can switch Pro between monthly and yearly in the customer portal (quantity changes are off).
+Price history: on 2026-11-13 Champion ($399/month, `ims_champion_monthly`, product `prod_VbKNqZs5VvVvc8`, price `price_1Ua7irRj5B5P2OabVfNyjMdL`) was archived with no subscribers. On 2026-11-12 Core went from $25 to $20 and Pro from $50 to $25. The old prices (`price_1Ua7ipRj5B5P2OabVBxlHkN3`, `price_1Ua7iqRj5B5P2OabEHqlT3U1`) are archived. There were no subscribers at the time. The same day, a yearly Pro price ($249/year, `ims_pro_yearly`) was added; members can switch Pro between monthly and yearly in the customer portal (quantity changes are off).
 
 To change a price, edit `amount` in `scripts/stripe-setup.mts` (and the site copy in `content/signals.ts`, `content/home.ts`, `content/faq.ts`) and re-run the script. Stripe prices can't be edited, so the script creates a new price on the same product, moves the `lookup_key` to it, archives the old price and points the customer portal at the new one. Existing subscriptions stay on the old price until moved.
 
@@ -101,7 +100,8 @@ NODE_USE_ENV_PROXY=1 STRIPE_SECRET_KEY=<key or proxy placeholder> SITE_URL=https
 
 | File | What it does |
 |---|---|
-| `lib/tiers.ts` | Tier ids, lookup keys, the Champion flag |
+| `lib/tiers.ts` | Tier ids and lookup keys |
+| `lib/btc.ts`, `app/join/btc` | The BTC address check and the Pay with Bitcoin page |
 | `lib/stripe.ts` | Server-only Stripe client (fetch-based) and cached price lookup by `lookup_key` |
 | `lib/rate-limit.ts` | 5 requests per minute per IP, per server instance |
 | `app/api/checkout/route.ts` | `POST { tier, billing?, attempt }` → `{ url }`. `billing` is `monthly` (default) or `yearly` (Pro only) |
@@ -113,7 +113,7 @@ Session settings: `mode: subscription`; required text field "Telegram username (
 
 **Managed Payments** (Stripe as merchant of record) is on by default for this account (confirmed: sessions report `managed_payments.enabled: true`). It doesn't allow Checkout's `custom_text`, so the "invite by email" note lives on the success page.
 
-**Eligibility: confirmed.** Hunter checked with Stripe that IMS does not owe the tax under Managed Payments (2026-11-10). Background: Stripe's eligibility page says Managed Payments is for "fully automated digital product[s]" and that a service with "human intervention (such as live 1-1 coaching)" doesn't qualify. Pro's live calls and Ask the Founders, and Champion's done-for-you part, may fall outside that. If Stripe rules a product ineligible, IMS becomes responsible for its sales tax/VAT. Options: confirm with Stripe support, or set `STRIPE_MANAGED_PAYMENTS=false` and use Stripe Tax instead.
+**Eligibility: confirmed.** Hunter checked with Stripe that IMS does not owe the tax under Managed Payments (2026-11-10). Background: Stripe's eligibility page says Managed Payments is for "fully automated digital product[s]" and that a service with "human intervention (such as live 1-1 coaching)" doesn't qualify. Pro's live calls and Ask the Founders may fall outside that. If Stripe rules a product ineligible, IMS becomes responsible for its sales tax/VAT. Options: confirm with Stripe support, or set `STRIPE_MANAGED_PAYMENTS=false` and use Stripe Tax instead.
 
 ---
 
@@ -154,7 +154,7 @@ Dashboard only (Hunter):
 | V1 | Key belongs to `acct_1Ua6qPRj5B5P2Oab`, live mode | Pass (2026-11-10) |
 | V2 | Setup script run twice | Pass: second run created nothing |
 | V3 | Bad tier, tampered body (`price`, `amount`), bad JSON | Pass: 400 |
-| V4 | Champion with the flag off | Pass: 403 |
+| V4 | Champion with the flag off | Pass: 403 (Champion retired 2026-11-13; the tier id is now rejected with 400) |
 | V5 | 6 requests in a minute from one IP | Pass: 6th gets 429 with `Retry-After: 60` |
 | V6 | Double click (same attempt id) | Pass: same response returned |
 | V7 | Live session with the real settings | Created `cs_live_…` with Managed Payments on, $25.00 USD, Telegram field; expired immediately. With `consent_collection` it is refused until the Terms URL is set (§2.1) |

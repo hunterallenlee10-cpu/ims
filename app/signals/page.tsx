@@ -13,12 +13,11 @@ import { TermsList } from "@/components/sections/signals/TermsList";
 
 export const metadata = pageMetadata({ ...signals.meta, path: "/signals" });
 
-/** Product/Offer structured data for the three tiers (and Pro's yearly option). Facts only. */
+/** Product/Offer structured data for Core and Pro (and Pro's yearly option). Facts only. */
 function offersJsonLd() {
   const descriptions: Record<string, string> = {
     core: "The Portfolio Signal only, in the read-only Core Members Telegram group.",
     pro: "All signals (Portfolio Signal, BTC DCA Signal, TPI (Trend Probability Indicator), IA (Investing Analysis)), a daily research note, a macro and liquidity briefing, method notes, execution tutorials, and full access to the main Investing Mastery Signals Telegram group.",
-    champion: "Everything in Pro",
   };
   return {
     "@context": "https://schema.org",
