@@ -34,7 +34,7 @@ const stripe = new Stripe(key, { appInfo: { name: "ims-setup-script" }, httpClie
 const PRODUCTS: Record<TierId, { name: string; description: string; amount: number; yearly?: number }> = {
   core: {
     name: "IMS Core",
-    description: 'The Portfolio Signal only, in the read-only "Core Members - SIGNAL ONLY" Telegram group.',
+    description: 'The Portfolio Signal every day, without the short positions, in the read-only "Core Members - SIGNAL ONLY" Telegram group.',
     amount: 2000,
   },
   pro: {
