@@ -1,5 +1,5 @@
 // /signals (membership) copy, plus the tier and signal data used across the site.
-// Source of truth: three monthly tiers, plus a yearly option on Pro. Each higher tier includes everything below it.
+// Source of truth: Core (monthly), Pro (monthly or yearly) through Stripe, plus one year of Pro access paid in Bitcoin.
 // No countdowns, no "spots left", no strikethrough prices, no "most popular" labels.
 
 import type { IconName } from "@/components/ui/Icon";
@@ -19,28 +19,28 @@ export const signalCatalog: { icon: IconName; name: string; tagline: string; tex
     name: "Portfolio Signal",
     tagline: "What to hold, and how much.",
     text: "The full allocation in one post: which assets, what share of your portfolio each one gets, and how much stays in cash. You match it once. After that you only adjust what changes.",
-    tiers: "Core, Pro and Champion",
+    tiers: "Every membership",
   },
   {
     icon: "refresh",
     name: "BTC DCA Signal",
     tagline: "When to buy Bitcoin, and how hard.",
     text: "A valuation model reads whether Bitcoin is cheap or expensive and turns that into one number each day: how much of your cash to put into BTC today. You buy more when it's cheap and slow down when it isn't.",
-    tiers: "Pro and Champion",
+    tiers: "Pro and the BTC year",
   },
   {
     icon: "trend",
     name: "TPI (Trend Probability Indicator)",
     tagline: "Is the market trending up or down?",
     text: "Dozens of trend indicators combined into one reading from -1 to +1. Above zero, the trend is up. Below zero, it's down. It tells you when it makes sense to take on more risk and when to pull back.",
-    tiers: "Pro and Champion",
+    tiers: "Pro and the BTC year",
   },
   {
     icon: "note",
     name: "IA (Investing Analysis)",
     tagline: "The why behind every move.",
     text: "Written breakdowns of the market, macro and liquidity, plus what the models are saying and why. You learn the system instead of just copying it.",
-    tiers: "Pro and Champion",
+    tiers: "Pro and the BTC year",
   },
 ];
 
@@ -60,8 +60,6 @@ export type Tier = {
   featured?: boolean;
   whoFor?: string;
   note?: string;
-  /** Champion only: shown instead of rows until compliance clears the wording. */
-  pending?: string;
   /** Checkout button label. The button posts only the tier id to /api/checkout. */
   cta: { label: string };
   /** Optional yearly billing, shown under the monthly price with its own checkout button. */
@@ -118,46 +116,50 @@ export const tiers: Tier[] = [
       cta: { label: "Join Pro yearly" },
     },
   },
-  {
-    id: "champion",
-    name: "Champion",
-    price: "$399",
-    amount: 399,
-    period: "USD / month, billed monthly",
-    inherits: "Everything in Pro, and we manage it for you:",
-    rows: [
-      { label: "Portfolio management", items: ["We manage your portfolio for you, entirely"] },
-      { label: "Group", items: [`Full access to the main ${groups.main} group, every topic`] },
-      { label: "Signals", items: ["Portfolio Signal", "BTC DCA Signal", "TPI (Trend Probability Indicator)", "IA (Investing Analysis)"] },
-      { label: "Research", items: ["Daily research note", "Macro and liquidity briefing", "Method notes on how the models work", "Tutorials on exactly how to execute each signal"] },
-      { label: "Community", items: ["All chats", "Live calls", "Ask the Founders", "Talk with other members and the founders"] },
-    ],
-    whoFor: "People who want everything in Pro and want their portfolio managed for them.",
-    cta: { label: "Join Champion" },
-  },
 ];
+
+/** The Pro feature rows, shared by the Pro card and the BTC card. */
+const fullAccessRows = tiers.find((t) => t.id === "pro")!.rows;
+
+/**
+ * One year of Pro access, paid once in Bitcoin. Not a Stripe product: there is no checkout,
+ * no auto-renewal and no Manage membership. The button opens /join/btc, which shows the address.
+ * Keep the facts here in sync with the btc page copy below and section 6 of the Terms.
+ */
+export const btcOffer = {
+  id: "btc",
+  name: "1 Year, Paid in BTC",
+  price: "$199",
+  amount: 199,
+  period: "USD in Bitcoin, one payment for 12 months",
+  inherits: "Full access, the same as Pro:",
+  rows: fullAccessRows,
+  whoFor: "People who'd rather pay once, in Bitcoin, for a full year.",
+  note: "One payment. Nothing renews automatically. Your year starts the day we confirm your payment.",
+  cta: { label: "Pay with BTC", href: "/join/btc" },
+  closed: "Bitcoin payment opens soon.",
+};
 
 export const signals = {
   meta: {
     title: "Membership and Pricing",
     description:
-      "Core ($20/month), Pro ($25/month or $249/year) and Champion ($399/month) memberships for Investing Mastery Signals, delivered in private Telegram groups. How joining, billing, cancelling and switching tiers work.",
+      "Core ($20/month), Pro ($25/month or $249/year), or a full year of Pro access for $199 paid in Bitcoin. Investing Mastery Signals memberships, delivered in private Telegram groups. How joining, billing, cancelling and switching tiers work.",
   },
 
   hero: {
     eyebrow: "Membership",
     title: "Pick your\n*tier.*",
     intro:
-      "Three memberships, all delivered in private Telegram groups. Pay monthly, or pay for Pro yearly. **Each tier includes everything in the tiers below it.**",
+      "Core or Pro by card, monthly or yearly, or a full year of Pro access paid in Bitcoin. All delivered in private Telegram groups. **Pro includes everything in Core.**",
   },
 
   pricing: {
     eyebrow: "Pricing",
-    title: "Three tiers.\n*Cancel anytime.*",
+    title: "Pick a plan.\n*Pay your way.*",
     canceled: "Checkout canceled. You haven't been charged. Pick a tier when you're ready.",
     agree: "By joining you agree to the",
-    footnote: "Prices in USD. Depending on where you live, sales tax or VAT may apply at checkout. Stripe processes payments as the merchant of record.",
-    championClosed: "Champion checkout opens soon.",
+    footnote: "Prices in USD. For card payments, depending on where you live, sales tax or VAT may apply at checkout, and Stripe processes the payment as the merchant of record. Bitcoin payments are made directly to IMS.",
     redirecting: "Opening checkout…",
     error: "Checkout couldn't start. Please try again, or contact support.",
   },
@@ -175,14 +177,58 @@ export const signals = {
     help: "Invite didn't arrive, or your username changed? Contact support:",
   },
 
+  btc: {
+    meta: {
+      title: "Pay with Bitcoin",
+      description: "One year of full Investing Mastery Signals access for $199, paid once in Bitcoin. Where to send it and how you get into the Telegram group.",
+    },
+    eyebrow: "1 year, paid in BTC",
+    title: "Pay with\n*Bitcoin.*",
+    intro: "**$199 worth of BTC, paid once, gets a full year of Pro access.** Nothing renews automatically. Read every step before you send.",
+    details: {
+      title: "Payment details",
+      rows: [
+        { label: "Amount", text: "$199 USD worth of BTC, at the BTC price when you send. Send a little extra to cover your wallet's network fee: at least $199 has to arrive." },
+        { label: "Network", text: "Bitcoin network only (on-chain BTC). Don't send Lightning, wrapped BTC or any other coin or network." },
+        { label: "Address", text: "" },
+      ],
+      copy: "Copy address",
+      copied: "Copied",
+      closed: "The Bitcoin address isn't published yet. Bitcoin payment opens soon.",
+      warning: "Check the address character by character before you send. Bitcoin payments can't be reversed, and coins sent to the wrong address or network can't be recovered.",
+    },
+    steps: {
+      title: "How it works",
+      items: [
+        { title: "Send the BTC", text: "Send $199 worth of BTC to the address above from your own wallet or exchange." },
+        { title: "Send us your details", text: "Through the contact form, send the transaction ID (TXID), the email you want your invite sent to, and your Telegram username." },
+        { title: "We confirm it", text: "We check the payment on the Bitcoin network. It counts once it has confirmed and at least $199 arrived." },
+        { title: "Get your invite", text: "Your private invite link to the main " + groups.main + " group arrives by email within 12 hours of confirmation." },
+        { title: "Request to join", text: "Open the link in Telegram and tap Request to Join with the username you gave us." },
+        { title: "Your year runs", text: "Access lasts 12 months from the day we confirm your payment. We'll contact you before it ends about renewing." },
+      ],
+      cta: { label: "Send your transaction details", href: "/contact" },
+    },
+    rules: {
+      title: "Good to know",
+      items: [
+        { label: "Refunds", text: "Bitcoin payments are final. No refunds once your payment has confirmed." },
+        { label: "Short payment", text: "If less than $199 worth arrives, we'll email you to send the difference before we send your invite." },
+        { label: "No auto-renewal", text: "We never charge you again. To stay after your year, pay again in Bitcoin or join by card." },
+        { label: "Not in Manage membership", text: "Manage membership is for card memberships only. For anything about a BTC year, contact us." },
+        { label: "Age", text: "Membership is for adults 18 and over." },
+      ],
+    },
+  },
+
   joining: {
     eyebrow: "How joining works",
     title: "From checkout\n*to the group.*",
     subhead:
-      "Core members join **" + groups.core + "**. Pro and Champion members join the main **" + groups.main + "** group.",
+      "Core members join **" + groups.core + "**. Pro members and BTC-year members join the main **" + groups.main + "** group.",
     steps: [
-      { title: "Choose a tier", text: "Pick Core, Pro or Champion above." },
-      { title: "Pay with Stripe", text: "Checkout runs on Stripe. Enter your Telegram username there so we can approve your request." },
+      { title: "Choose a plan", text: "Pick Core, Pro or the BTC year above." },
+      { title: "Pay", text: "Card checkout runs on Stripe: enter your Telegram username there. Paying in Bitcoin? Send us your transaction ID and Telegram username instead." },
       { title: "Get your invite", text: "A private invite link arrives by email within 12 hours." },
       { title: "Request to join", text: "Open the link in Telegram and tap Request to Join." },
       { title: "Get approved", text: "Your request is approved once it matches your paid membership and Telegram username." },
@@ -208,8 +254,8 @@ export const signals = {
         text: "Takes effect right away. You're charged $249 for the year, minus a credit for the unused part of your current month. Moving from yearly back to monthly takes effect when your year ends.",
       },
       {
-        label: "Champion",
-        text: "Contact us anytime to move up to Champion. Champion members can cancel in Manage membership, or contact us to switch tiers.",
+        label: "BTC year",
+        text: "The BTC year is a one-time payment, so there's nothing to switch or cancel in Manage membership. Near the end of your year we'll contact you about renewing, in Bitcoin or by card.",
       },
     ],
   },
@@ -219,7 +265,8 @@ export const signals = {
     title: "Clear\n*terms.*",
     subhead: "Read these before you join.",
     items: [
-      { label: "Billing", text: "Core and Champion are billed monthly. Pro is billed monthly ($25) or yearly ($249), whichever you pick. All in USD, in advance, through Stripe, until you cancel." },
+      { label: "Billing", text: "Core is billed monthly. Pro is billed monthly ($25) or yearly ($249), whichever you pick. Card memberships are billed in USD, in advance, through Stripe, until you cancel." },
+      { label: "Paying in Bitcoin", text: "$199 worth of BTC, paid once, gets 12 months of Pro access. It doesn't renew automatically. Bitcoin payments are final and can't be refunded." },
       { label: "Cancelling", text: "Cancel any time in Manage membership. Sign in with the email you paid with." },
       { label: "After you cancel", text: "Access continues to the end of the period you've paid for. Then your membership ends and you're removed from the group." },
       {
@@ -255,6 +302,6 @@ export const signals = {
       title: "Follow a system",
       text: "Rules-based signals with the reasoning written out, and your own decisions about what to do with them.",
     },
-    cta: { label: "Choose a tier", href: "#pricing" },
+    cta: { label: "Choose a plan", href: "#pricing" },
   },
 };

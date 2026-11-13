@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { stripe, priceIdFor } from "@/lib/stripe";
-import { championCheckoutEnabled, isBilling, isTierId, lookupKeyFor } from "@/lib/tiers";
+import { isBilling, isTierId, lookupKeyFor } from "@/lib/tiers";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
@@ -43,9 +43,6 @@ export async function POST(request: Request) {
   }
   if (typeof attempt !== "string" || !ATTEMPT.test(attempt)) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
-  }
-  if (tier === "champion" && !championCheckoutEnabled()) {
-    return NextResponse.json({ error: "Champion checkout isn't open yet." }, { status: 403 });
   }
 
   const origin = siteOrigin(request);

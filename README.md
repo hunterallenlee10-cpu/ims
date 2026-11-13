@@ -1,6 +1,6 @@
 # Investing Mastery Signals — website
 
-Marketing and membership site for Investing Mastery Signals: three monthly tiers (Core, Pro, Champion) delivered in private Telegram groups, paid through Stripe. Next.js 16 (App Router), TypeScript, Tailwind CSS v4, MDX (legal pages). Deploys on Vercel.
+Marketing and membership site for Investing Mastery Signals: Core and Pro memberships (Pro monthly or yearly) paid through Stripe, plus a one-year Pro option paid once in Bitcoin ($199, see `/join/btc`), all delivered in private Telegram groups. Next.js 16 (App Router), TypeScript, Tailwind CSS v4, MDX (legal pages). Deploys on Vercel.
 
 Payments: see **STRIPE.md**.
 
