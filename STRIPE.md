@@ -79,10 +79,12 @@ Created by `scripts/stripe-setup.mts`. It's idempotent: prices are found by `loo
 | Product | Description | Price | `lookup_key` | Product ID | Price ID |
 |---|---|---|---|---|---|
 | IMS Core | The Portfolio Signal only, in the read-only "Core Members - SIGNAL ONLY" Telegram group. | $20.00 / month | `ims_core_monthly` | `prod_VbKNJCHQYGbJqg` | `price_1Ub6EPRj5B5P2OabewSN5uz2` |
-| IMS Pro | All IMS signals (Portfolio Signal, IMS Signals, BTC DCA Signal, Trend Probability), a weekly research note, a macro and liquidity briefing, method notes, and full access to the main "Investing Mastery Signals" Telegram group. | $25.00 / month | `ims_pro_monthly` | `prod_VbKNU4iJNqFG5p` | `price_1Ub6EQRj5B5P2Oabgp1DACwM` |
+| IMS Pro | All four IMS signals (Portfolio Signal including short positions, BTC DCA Signal, TPI (Trend Probability Indicator), IA (Investing Analysis)), posted daily, and full access to the main "Investing Mastery Signals" Telegram group: Start Here, Member Chat and Questions, where the founders answer. | $25.00 / month | `ims_pro_monthly` | `prod_VbKNU4iJNqFG5p` | `price_1Ub6EQRj5B5P2Oabgp1DACwM` |
 | IMS Pro (yearly) | Same product as IMS Pro. | $249.00 / year | `ims_pro_yearly` | `prod_VbKNU4iJNqFG5p` | `price_1Ub6IIRj5B5P2OabqoZgYRtM` |
 
 Customer portal configuration: `bpc_1Ua7irRj5B5P2OabBz6cKtBZ`.
+
+Description history: on 2026-11-13 the IMS Pro description was updated in live Stripe to match the site (the four signal topics, Start Here, Member Chat and Questions; the research note, briefing and method notes were removed).
 
 Price history: on 2026-11-13 Champion ($399/month, `ims_champion_monthly`, product `prod_VbKNqZs5VvVvc8`, price `price_1Ua7irRj5B5P2OabVfNyjMdL`) was archived with no subscribers. On 2026-11-12 Core went from $25 to $20 and Pro from $50 to $25. The old prices (`price_1Ua7ipRj5B5P2OabVBxlHkN3`, `price_1Ua7iqRj5B5P2OabEHqlT3U1`) are archived. There were no subscribers at the time. The same day, a yearly Pro price ($249/year, `ims_pro_yearly`) was added; members can switch Pro between monthly and yearly in the customer portal (quantity changes are off).
 

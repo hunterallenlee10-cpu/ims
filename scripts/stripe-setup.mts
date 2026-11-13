@@ -40,7 +40,7 @@ const PRODUCTS: Record<TierId, { name: string; description: string; amount: numb
   pro: {
     name: "IMS Pro",
     description:
-      'All IMS signals (Portfolio Signal, IMS Signals, BTC DCA Signal, Trend Probability), a weekly research note, a macro and liquidity briefing, method notes, and full access to the main "Investing Mastery Signals" Telegram group.',
+      'All four IMS signals (Portfolio Signal including short positions, BTC DCA Signal, TPI (Trend Probability Indicator), IA (Investing Analysis)), posted daily, and full access to the main "Investing Mastery Signals" Telegram group: Start Here, Member Chat and Questions, where the founders answer.',
     amount: 2500,
     yearly: 24900,
   },
