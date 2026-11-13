@@ -189,13 +189,13 @@ export const signals = {
       title: "Payment details",
       rows: [
         { label: "Amount", text: "$199 USD worth of BTC, at the BTC price when you send. Send a little extra to cover your wallet's network fee: at least $199 has to arrive." },
-        { label: "Network", text: "Bitcoin network only (on-chain BTC). Don't send Lightning, wrapped BTC or any other coin or network." },
+        { label: "Network", text: "Bitcoin network only (on-chain BTC). Don't send Bitcoin Cash (BCH), Lightning, wrapped BTC or any other coin or network: it will be lost." },
         { label: "Address", text: "" },
       ],
       copy: "Copy address",
       copied: "Copied",
       closed: "The Bitcoin address isn't published yet. Bitcoin payment opens soon.",
-      warning: "Check the address character by character before you send. Bitcoin payments can't be reversed, and coins sent to the wrong address or network can't be recovered.",
+      warning: "Check the address character by character before you send. Don't send Bitcoin Cash (BCH) to this address. Bitcoin payments can't be reversed, and coins sent to the wrong address or network can't be recovered.",
     },
     steps: {
       title: "How it works",
