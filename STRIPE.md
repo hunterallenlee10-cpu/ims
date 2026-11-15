@@ -1,6 +1,6 @@
 # Stripe subscription checkout
 
-Status: **Live and selling (Core, Pro).** Checkout tested from the live site on 2026-11-10. New members are invited to Telegram by hand for now (Option 1); webhook automation (Phase 5) is optional future work.
+Status: **Live and selling (Pro, monthly and yearly).** Checkout tested from the live site on 2026-11-10. New members are invited to Telegram by hand for now (Option 1); webhook automation (Phase 5) is optional future work.
 
 Stripe account: `acct_1Ua6qPRj5B5P2Oab` (IMS, owned by Hunter). Verified with `GET /v1/account` on 2026-11-10: live mode, `charges_enabled: true`.
 
@@ -8,12 +8,13 @@ Stripe account: `acct_1Ua6qPRj5B5P2Oab` (IMS, owned by Hunter). Verified with `G
 
 - **Live first.** Hunter asked for Stripe to be set up straight in live mode, skipping the sandbox. Consequence: renewals, failed payments and portal changes have not been exercised with test clocks. The first real occurrence of each is its first test, so watch the first month closely (§9).
 - **Champion retired (2026-11-13).** Hunter replaced the $399/month Champion tier with a one-year Pro option paid once in Bitcoin ($199, `/join/btc`). That option is not a Stripe product: members send BTC to `NEXT_PUBLIC_BTC_ADDRESS`, send their TXID, email and Telegram username through the contact form, and are invited by hand. The Champion price and product are archived in Stripe (Stripe doesn't allow deleting a price). It had no subscribers. `CHAMPION_CHECKOUT_ENABLED` is no longer read and can be removed from Vercel.
+- **Core retired (2026-11-15).** Hunter removed the $20/month Core tier: the only plans are Pro (monthly or yearly) and the BTC year. The Core price (`price_1Ub6EPRj5B5P2OabewSN5uz2`, `ims_core_monthly`) and product (`prod_VbKNJCHQYGbJqg`) are archived in Stripe and removed from the customer portal, so nobody can buy or switch to Core. There were no subscriptions on the account at the time. The checkout route now rejects the `core` tier id with 400.
 - **Recommendations accepted:** n8n for webhooks (D1), manual Telegram invites first and the bot later (D2), Stripe's default proration (D5).
 
 Rules that still apply:
 
 - No secret keys, webhook secrets or bot tokens in code, this file, issues, commits or logs.
-- The browser sends only a tier id (`core`, `pro`); the server maps it to a Stripe Price by `lookup_key`.
+- The browser sends only a tier id (`pro`); the server maps it to a Stripe Price by `lookup_key`.
 - Access is granted from webhooks (or by an admin), never from the success page.
 
 ---
@@ -26,9 +27,8 @@ Rules that still apply:
 | D2 | Telegram delivery | **Option 1 manual first**, Option 2 bot after |
 | D3 | Checkout field label | Your exact label fits (Stripe allows 100 characters): "Telegram username (so we can approve your join request)" |
 | D4 | Members without a Telegram username | Mismatches go to the admins |
-| D5 | Proration on Core ↔ Pro | `create_prorations`: an upgrade takes effect immediately and the prorated difference goes on the next invoice. Change by re-running the setup script with `PRORATION=none` or `always_invoice` (then update the site copy) |
+| D5 | Proration on Pro monthly ↔ yearly | `create_prorations`: monthly → yearly takes effect immediately with a credit for the unused month. Change by re-running the setup script with `PRORATION=none` or `always_invoice` (then update the site copy) |
 | D6 | After all payment retries fail | Cancel the subscription (Billing settings done by Hunter) |
-| D7 | Upgrade Core → Pro: remove from Core group? | **Yes**, once they have joined the main group |
 | D8 | Invite link lifetime (Option 2) | 72 hours, re-sent by the daily sweep |
 | D9 | Member email sender | Manual invites for now, sent by Hunter or Aaron. Support address: ceo@leeenterprisesunlimited.com. Invites promised within 12 hours |
 | D10 | Admin alerts | Telegram DM to both admins, email as backup |
@@ -78,7 +78,6 @@ Created by `scripts/stripe-setup.mts`. It's idempotent: prices are found by `loo
 
 | Product | Description | Price | `lookup_key` | Product ID | Price ID |
 |---|---|---|---|---|---|
-| IMS Core | The Portfolio Signal every day, without the short positions, in the read-only "Core Members - SIGNAL ONLY" Telegram group. | $20.00 / month | `ims_core_monthly` | `prod_VbKNJCHQYGbJqg` | `price_1Ub6EPRj5B5P2OabewSN5uz2` |
 | IMS Pro | All four IMS signals (Portfolio Signal including short positions, BTC DCA Signal, TPI (Trend Probability Indicator), IA (Investing Analysis)), posted daily, and full access to the main "Investing Mastery Signals" Telegram group: Start Here, Member Chat and Questions, where the founders answer. | $25.00 / month | `ims_pro_monthly` | `prod_VbKNU4iJNqFG5p` | `price_1Ub6EQRj5B5P2Oabgp1DACwM` |
 | IMS Pro (yearly) | Same product as IMS Pro. | $249.00 / year | `ims_pro_yearly` | `prod_VbKNU4iJNqFG5p` | `price_1Ub6IIRj5B5P2OabqoZgYRtM` |
 
@@ -86,7 +85,7 @@ Customer portal configuration: `bpc_1Ua7irRj5B5P2OabBz6cKtBZ`.
 
 Description history: on 2026-11-13 the IMS Pro and IMS Core descriptions were updated in live Stripe to match the site. Pro: the four signal topics, Start Here, Member Chat and Questions (the research note, briefing and method notes were removed). Core: the Portfolio Signal every day, without the short positions.
 
-Price history: on 2026-11-13 Champion ($399/month, `ims_champion_monthly`, product `prod_VbKNqZs5VvVvc8`, price `price_1Ua7irRj5B5P2OabVfNyjMdL`) was archived with no subscribers. On 2026-11-12 Core went from $25 to $20 and Pro from $50 to $25. The old prices (`price_1Ua7ipRj5B5P2OabVBxlHkN3`, `price_1Ua7iqRj5B5P2OabEHqlT3U1`) are archived. There were no subscribers at the time. The same day, a yearly Pro price ($249/year, `ims_pro_yearly`) was added; members can switch Pro between monthly and yearly in the customer portal (quantity changes are off).
+Price history: on 2026-11-15 Core ($20/month, `ims_core_monthly`, product `prod_VbKNJCHQYGbJqg`, price `price_1Ub6EPRj5B5P2OabewSN5uz2`) was archived and taken out of the customer portal, with no subscribers. On 2026-11-13 Champion ($399/month, `ims_champion_monthly`, product `prod_VbKNqZs5VvVvc8`, price `price_1Ua7irRj5B5P2OabVfNyjMdL`) was archived with no subscribers. On 2026-11-12 Core went from $25 to $20 and Pro from $50 to $25. The old prices (`price_1Ua7ipRj5B5P2OabVBxlHkN3`, `price_1Ua7iqRj5B5P2OabEHqlT3U1`) are archived. There were no subscribers at the time. The same day, a yearly Pro price ($249/year, `ims_pro_yearly`) was added; members can switch Pro between monthly and yearly in the customer portal (quantity changes are off).
 
 To change a price, edit `amount` in `scripts/stripe-setup.mts` (and the site copy in `content/signals.ts`, `content/home.ts`, `content/faq.ts`) and re-run the script. Stripe prices can't be edited, so the script creates a new price on the same product, moves the `lookup_key` to it, archives the old price and points the customer portal at the new one. Existing subscriptions stay on the old price until moved.
 
@@ -126,20 +125,18 @@ Events: `checkout.session.completed`, `customer.subscription.updated`, `customer
 | Event | Action |
 |---|---|
 | `checkout.session.completed` (paid) | Save Telegram username and tier to customer metadata; deliver the right group invite; alert both admins |
-| Subscription updated, Core → Pro | Invite to the main group. Remove from Core: `[TODO: confirm]` |
-| Subscription updated, Pro → Core (at period end) | Remove from main group; invite to Core group |
 | `invoice.payment_failed` | Notify member and admins; keep access while retries run |
 | `customer.subscription.deleted` | Remove from all groups; alert admins |
 
 Option 1 (manual, now): admins get "New Pro member: @username, email, tier" and send the invite by hand. Option 2 (bot): unique `createChatInviteLink` per member (`creates_join_request: true`, short expiry, name = subscription id); approve join requests only when the link maps to an active subscription and the username matches (case-insensitive); save `telegram_user_id`; revoke the link; remove with `banChatMember` then `unbanChatMember`.
 
-Needed from Hunter for Phase 5: n8n URL (https); in n8n, a Stripe credential (live key + webhook signing secret) and, for Option 2, a Telegram bot credential; the bot added as admin (invite + ban rights) to both groups; the email sender (D9).
+Needed from Hunter for Phase 5: n8n URL (https); in n8n, a Stripe credential (live key + webhook signing secret) and, for Option 2, a Telegram bot credential; the bot added as admin (invite + ban rights) to the group; the email sender (D9).
 
 ---
 
 ## 8. Customer portal and Billing settings
 
-Set through the API (done): cancel at period end, update payment method, invoice history, update email, switch between Core and Pro only, downgrades at period end, proration `create_prorations`, login link on, Terms and Privacy links.
+Set through the API (done): cancel at period end, update payment method, invoice history, update email, switch Pro between monthly and yearly only (yearly → monthly at period end), proration `create_prorations`, login link on, Terms and Privacy links.
 
 Dashboard only (Hunter):
 
@@ -174,7 +171,7 @@ Dashboard only (Hunter):
 4. Billing settings: Smart Retries, customer emails (§8).
 5. Webhook endpoint and signing secret in n8n (Phase 5).
 6. `STRIPE_SECRET_KEY` in Vercel Production; merge to `main`; redeploy.
-7. One real low-cost purchase (Core), check the invite and join flow, then refund it.
+7. One real purchase (Pro monthly), check the invite and join flow, then refund it.
 
 ---
 

@@ -7,7 +7,7 @@ export const site = {
   name: "Investing Mastery Signals",
   shortName: "IMS",
   description:
-    "Rules-based crypto signals posted every evening in private Telegram groups. Core or Pro by card, or a full year of Pro access paid in Bitcoin.",
+    "Rules-based crypto signals posted every evening in a private Telegram group. Pro by card, monthly or yearly, or a full year of Pro access paid in Bitcoin.",
   // Set NEXT_PUBLIC_SITE_URL in Vercel to the production domain, e.g. https://example.com
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
@@ -78,7 +78,7 @@ export const site = {
         title: "The signals",
         links: [
           { label: "How It Works", href: "/how-it-works" },
-          { label: "The groups", href: "/how-it-works#groups" },
+          { label: "The group", href: "/how-it-works#groups" },
           { label: "Group rules", href: "/how-it-works#rules" },
         ],
       },

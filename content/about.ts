@@ -89,7 +89,7 @@ export const about = {
   founders: {
     eyebrow: "The founders",
     title: "Hunter Lee &\n*Aaron Wathen.*",
-    subhead: "Co-founders, and the admins of both member groups.",
+    subhead: "Co-founders, and the admins of the member group.",
   },
   principles: {
     eyebrow: "How we operate",
@@ -97,7 +97,7 @@ export const about = {
     subhead: "Six rules sit behind everything we publish.",
     items: [
       { icon: "rule", title: "Rules over opinions", text: "Signals come from written rules. If we change a rule, we say what changed and why." },
-      { icon: "layers", title: "Same post, same time", text: "Every member of a tier gets the same post at the same moment. No early access." },
+      { icon: "layers", title: "Same post, same time", text: "Every member gets the same post at the same moment. No early access." },
       { icon: "shield", title: "Risk in plain view", text: "Crypto is volatile and signals can be wrong. We say so plainly." },
       { icon: "eye", title: "Reasoning in writing", text: "The reasoning behind the signals is written up daily in the Investing Analysis topic, so Pro and BTC-year members never have to guess why a reading changed." },
       { icon: "ban", title: "No hype", text: "No guarantees, no countdowns, no made-up numbers. Every result we show comes from the record. If it sounds too good, we won't say it." },

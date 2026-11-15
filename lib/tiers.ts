@@ -1,9 +1,8 @@
 // Tier ids and their Stripe price lookup keys. Shared by the checkout route and the setup script.
-export const TIER_IDS = ["core", "pro"] as const;
+export const TIER_IDS = ["pro"] as const;
 export type TierId = (typeof TIER_IDS)[number];
 
 export const LOOKUP_KEYS: Record<TierId, string> = {
-  core: "ims_core_monthly",
   pro: "ims_pro_monthly",
 };
 

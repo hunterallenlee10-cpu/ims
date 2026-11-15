@@ -1,8 +1,8 @@
 import { home } from "@/content/home";
 
 /**
- * Compact "what's in the group" list: the main group's seven topics in their Telegram order,
- * then the separate Core group. Sits beside the example posts on wide screens, above them on phones.
+ * Compact "what's in the group" list: the group's seven topics in their Telegram order.
+ * Sits beside the example posts on wide screens, above them on phones.
  */
 export function GroupTopics({ className }: { className?: string }) {
   const t = home.sample.topics;
@@ -28,12 +28,6 @@ export function GroupTopics({ className }: { className?: string }) {
           ))}
         </ol>
         <p className="mt-4 border-t border-panel-line pt-3 text-xs text-muted">{t.postedBy}</p>
-      </div>
-
-      <div className="mt-4 border border-panel-line p-5">
-        <p className="mono-label text-accent-light">{t.core.tiers}</p>
-        <p className="mt-2 font-semibold text-heading">{t.core.name}</p>
-        <p className="mt-2 text-sm text-body">{t.core.text}</p>
       </div>
     </div>
   );

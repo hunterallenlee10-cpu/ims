@@ -1,5 +1,5 @@
 // /signals (membership) copy, plus the tier and signal data used across the site.
-// Source of truth: Core (monthly), Pro (monthly or yearly) through Stripe, plus one year of Pro access paid in Bitcoin.
+// Source of truth: Pro (monthly or yearly) through Stripe, plus one year of Pro access paid in Bitcoin.
 // No countdowns, no "spots left", no strikethrough prices, no "most popular" labels.
 
 import type { IconName } from "@/components/ui/Icon";
@@ -8,7 +8,6 @@ import type { TierId } from "@/lib/tiers";
 export type { TierId };
 
 export const groups = {
-  core: "Core Members - SIGNAL ONLY",
   main: "Investing Mastery Signals",
 } as const;
 
@@ -19,28 +18,28 @@ export const signalCatalog: { icon: IconName; name: string; tagline: string; tex
     name: "Portfolio Signal",
     tagline: "What to hold, and how much.",
     text: "One post every evening: your cash allocation, a short module of small short positions (often on around ten altcoins), the net positions that result, and the BTC leverage condition. It's actively managed and can change any day, so check in daily.",
-    tiers: "All plans (Core gets it without the short positions)",
+    tiers: "All plans",
   },
   {
     icon: "refresh",
     name: "BTC DCA Signal",
     tagline: "How much of your cash goes into Bitcoin today.",
     text: "The SDCA (Strategic Dollar Cost Averaging) signal: the percentage of your remaining cash to put into BTC each day. The default is about 1% a day, and it speeds up when the accelerated accumulation threshold is passed. BTC only, posted daily.",
-    tiers: "Pro and the BTC year",
+    tiers: "All plans",
   },
   {
     icon: "trend",
     name: "TPI (Trend Probability Indicator)",
     tagline: "Is the market trending up or down?",
     text: "Two readings, posted daily as a pair of dials: the long-term bull/bear probability (LTPI) and the medium-term trend probability (MTPI). Each runs from -1 to +1 and comes with its state, positive or negative, and its rate of change.",
-    tiers: "Pro and the BTC year",
+    tiers: "All plans",
   },
   {
     icon: "note",
     name: "IA (Investing Analysis)",
     tagline: "The why behind every move.",
     text: "Daily chart-based commentary on on-chain data, liquidations, stablecoin supply, valuation models and sentiment, with a view by timeframe that ties back to the Portfolio Signal. Plus the daily BTC valuation z-score update.",
-    tiers: "Pro and the BTC year",
+    tiers: "All plans",
   },
 ];
 
@@ -51,7 +50,7 @@ export type Tier = {
   /** Plain number for structured data. */
   amount: number;
   period: string;
-  /** "Everything in Core, plus:" style line. */
+  /** "Full access, the same as Pro:" style line. */
   inherits?: string;
   rows: { label: string; items: string[] }[];
   /** What this tier leaves out, shown with a cross. */
@@ -68,39 +67,14 @@ export type Tier = {
 
 export const tiers: Tier[] = [
   {
-    id: "core",
-    name: "Core",
-    price: "$20",
-    amount: 20,
-    period: "USD / month, billed monthly",
-    rows: [
-      // The exact group name (groups.core) stays in the FAQ, Terms and joining steps; the card uses plain words.
-      { label: "Group", items: ["The Core Members group, signals only (read-only)"] },
-      { label: "Signals", items: ["Portfolio Signal, every day, without the short positions"] },
-      { label: "Community", items: ["Read-only: members can't post or ask questions"] },
-    ],
-    excludes: [
-      "Short positions in the Portfolio Signal",
-      "BTC DCA Signal",
-      "TPI (Trend Probability Indicator)",
-      "IA (Investing Analysis), where the reasoning is written up",
-      "Member Chat and Questions",
-      "Training videos (coming soon)",
-    ],
-    whoFor: "People who want the daily portfolio signal and nothing else.",
-    note: "Move up to Pro any time in Manage membership. It takes effect right away.",
-    cta: { label: "Join Core" },
-  },
-  {
     id: "pro",
     name: "Pro",
     price: "$25",
     amount: 25,
     period: "USD / month, billed monthly",
-    inherits: "Everything in Core, plus:",
     featured: true,
     rows: [
-      { label: "Group", items: [`Full access to the main ${groups.main} group, every topic`] },
+      { label: "Group", items: [`Full access to the private ${groups.main} group, every topic`] },
       { label: "Signals", items: ["Portfolio Signal, including short positions", "BTC DCA Signal (SDCA)", "TPI (Trend Probability Indicator)", "IA (Investing Analysis)"] },
       { label: "Community", items: ["Start Here: setup steps, rules and disclaimer", "Member Chat: talk with members and the founders", "Questions: the founders answer here"] },
       { label: "Coming soon", items: ["Training videos"] },
@@ -145,20 +119,20 @@ export const signals = {
   meta: {
     title: "Membership and Pricing",
     description:
-      "Core ($20/month), Pro ($25/month or $249/year), or a full year of Pro access for $199 paid in Bitcoin. Investing Mastery Signals memberships, delivered in private Telegram groups. How joining, billing, cancelling and switching tiers work.",
+      "Pro ($25/month or $249/year), or a full year of Pro access for $199 paid in Bitcoin. Investing Mastery Signals membership, delivered in a private Telegram group. How joining, billing, cancelling and switching billing work.",
   },
 
   hero: {
     eyebrow: "Membership",
-    title: "Pick your\n*tier.*",
+    title: "Pick your\n*plan.*",
     intro:
-      "Core or Pro by card, monthly or yearly, or a full year of Pro access paid in Bitcoin. All delivered in private Telegram groups. **Pro includes everything in Core.**",
+      "Pro by card, monthly or yearly, or a full year of Pro access paid in Bitcoin. **Same signals, same group, either way.**",
   },
 
   pricing: {
     eyebrow: "Pricing",
     title: "Pick a plan.\n*Pay your way.*",
-    canceled: "Checkout canceled. You haven't been charged. Pick a tier when you're ready.",
+    canceled: "Checkout canceled. You haven't been charged. Pick a plan when you're ready.",
     agree: "By joining you agree to the",
     footnote: "Prices in USD. For card payments, depending on where you live, sales tax or VAT may apply at checkout, and Stripe processes the payment as the merchant of record. Bitcoin payments are made directly to IMS.",
     redirecting: "Opening checkout…",
@@ -206,7 +180,7 @@ export const signals = {
         { title: "Send the BTC", text: "Send $199 worth of BTC to the address above from your own wallet or exchange." },
         { title: "Send us your details", text: "Through the contact form, send the transaction ID (TXID), the email you want your invite sent to, and your Telegram username." },
         { title: "We confirm it", text: "We check the payment on the Bitcoin network. It counts once it has confirmed and at least $199 arrived." },
-        { title: "Get your invite", text: "Your private invite link to the main " + groups.main + " group arrives by email within 12 hours of confirmation." },
+        { title: "Get your invite", text: "Your private invite link to the " + groups.main + " group arrives by email within 12 hours of confirmation." },
         { title: "Request to join", text: "Open the link in Telegram and tap Request to Join with the username you gave us." },
         { title: "Your year runs", text: "Access lasts 12 months from the day we confirm your payment. We'll contact you before it ends about renewing." },
       ],
@@ -227,10 +201,9 @@ export const signals = {
   joining: {
     eyebrow: "How joining works",
     title: "From checkout\n*to the group.*",
-    subhead:
-      "Core members join **" + groups.core + "**. Pro members and BTC-year members join the main **" + groups.main + "** group.",
+    subhead: "Pro members and BTC-year members join the private **" + groups.main + "** group.",
     steps: [
-      { title: "Choose a plan", text: "Pick Core, Pro or the BTC year above." },
+      { title: "Choose a plan", text: "Pick Pro (monthly or yearly) or the BTC year above." },
       { title: "Pay", text: "Card checkout runs on Stripe: enter your Telegram username there. Paying in Bitcoin? Send us your transaction ID and Telegram username instead." },
       { title: "Get your invite", text: "A private invite link arrives by email within 12 hours." },
       { title: "Request to join", text: "Open the link in Telegram and tap Request to Join." },
@@ -240,21 +213,17 @@ export const signals = {
   },
 
   switching: {
-    eyebrow: "Upgrade or downgrade",
-    title: "Change tiers\n*any time.*",
-    subhead: "Switch between Core and Pro yourself in **Manage membership**. Sign in with the email you paid with.",
+    eyebrow: "Switch billing",
+    title: "Monthly or yearly,\n*your call.*",
+    subhead: "Switch Pro between monthly and yearly billing yourself in **Manage membership**. Sign in with the email you paid with.",
     items: [
       {
-        label: "Core to Pro",
-        text: "Takes effect right away. The price difference for the rest of the current month is added to your next bill. You get an invite to the main " + groups.main + " group, and you're removed from the Core group once you've joined.",
-      },
-      {
-        label: "Pro to Core",
-        text: "Takes effect at the end of your current billing period. Then you're removed from the main group and invited to " + groups.core + ".",
-      },
-      {
         label: "Pro monthly to yearly",
-        text: "Takes effect right away. You're charged $249 for the year, minus a credit for the unused part of your current month. Moving from yearly back to monthly takes effect when your year ends.",
+        text: "Takes effect right away. You're charged $249 for the year, minus a credit for the unused part of your current month.",
+      },
+      {
+        label: "Pro yearly to monthly",
+        text: "Takes effect when your current year ends. Then you're billed $25 a month.",
       },
       {
         label: "BTC year",
@@ -268,7 +237,7 @@ export const signals = {
     title: "Clear\n*terms.*",
     subhead: "Read these before you join.",
     items: [
-      { label: "Billing", text: "Core is billed monthly. Pro is billed monthly ($25) or yearly ($249), whichever you pick. Card memberships are billed in USD, in advance, through Stripe, until you cancel." },
+      { label: "Billing", text: "Pro is billed monthly ($25) or yearly ($249), whichever you pick. Card memberships are billed in USD, in advance, through Stripe, until you cancel." },
       { label: "Paying in Bitcoin", text: "$199 worth of BTC, paid once, gets 12 months of Pro access. It doesn't renew automatically. Bitcoin payments are final and can't be refunded." },
       { label: "Cancelling", text: "Cancel any time in Manage membership. Sign in with the email you paid with." },
       { label: "After you cancel", text: "Access continues to the end of the period you've paid for. Then your membership ends and you're removed from the group." },
@@ -291,7 +260,7 @@ export const signals = {
   faq: {
     eyebrow: "Before you join",
     title: "Membership\n*questions.*",
-    ids: ["core-vs-pro", "telegram", "cancel", "upgrade", "payment-failed", "refunds", "financial-advice"],
+    ids: ["pro-vs-btc", "telegram", "cancel", "upgrade", "payment-failed", "refunds", "financial-advice"],
   },
 
   twoPaths: {
