@@ -25,7 +25,7 @@ export type ExamplePost = {
   topic: string;
   /** Who gets this topic. One wording site-wide: see tierLabels. */
   tiers: string;
-  /** Extra tier detail shown under the pill, e.g. what Core gets. */
+  /** Extra tier detail shown under the pill. */
   tierNote?: string;
   /** Evening timestamp in ET. Weekday-free and date-free: these are not real posts. */
   time: { label: string; datetime: string };
@@ -33,8 +33,8 @@ export type ExamplePost = {
   lines: PostLine[];
 };
 
-/** Tier wording used everywhere on the site. */
-export const tierLabels = { all: "All plans", full: "Pro and the BTC year", core: "Core" } as const;
+/** Tier wording used everywhere on the site. Every plan gets every signal. */
+export const tierLabels = { all: "All plans" } as const;
 
 const div = { kind: "divider" } as const;
 const sp = { kind: "space" } as const;
@@ -43,7 +43,7 @@ export const home = {
   meta: {
     title: "Rules-Based Crypto Signals in Private Telegram Groups",
     description:
-      "Investing Mastery Signals posts rules-based crypto signals every evening in private Telegram groups. Core $20 or Pro $25 per month, Pro at $249 a year, or a full year of Pro access for $199 paid in Bitcoin.",
+      "Investing Mastery Signals posts rules-based crypto signals every evening in private Telegram groups. Pro at $25 a month or $249 a year, or a full year of Pro access for $199 paid in Bitcoin.",
   },
 
   hero: {
@@ -68,7 +68,7 @@ export const home = {
     // Keep in step with howItWorks.groupsSection.topics.
     topics: {
       title: "What's in the group",
-      main: { name: groups.main, tiers: tierLabels.full },
+      main: { name: groups.main, tiers: tierLabels.all },
       items: [
         { emoji: "💎", name: "Portfolio Signal", text: "Daily: cash allocation, short positions, net positions and the BTC leverage condition." },
         { emoji: "🟠", name: "BTC DCA Signal", text: "Daily SDCA rate: the share of your remaining cash to put into BTC." },
@@ -79,11 +79,6 @@ export const home = {
         { emoji: "🧠", name: "Questions", text: "Members ask, the founders answer." },
       ],
       postedBy: "The four signal topics are posted by the founders. Training videos are coming soon.",
-      core: {
-        name: groups.core,
-        tiers: tierLabels.core,
-        text: "A separate read-only group: the Portfolio Signal every day, without the short positions. Only the founders post.",
-      },
     },
 
     // Stated once, next to the cards. Don't repeat it inside the card.
@@ -106,7 +101,6 @@ export const home = {
         {
           topic: "💎 Portfolio Signal",
           tiers: tierLabels.all,
-          tierNote: "Core gets it without the short positions.",
           time: { label: "7:35 PM ET", datetime: "19:35" },
           lines: [
             { kind: "title", text: "📈 IMS Signal Update 📈" },
@@ -138,7 +132,7 @@ export const home = {
         },
         {
           topic: "🟠 BTC DCA Signal",
-          tiers: tierLabels.full,
+          tiers: tierLabels.all,
           time: { label: "7:41 PM ET", datetime: "19:41" },
           lines: [
             { kind: "title", text: "⚡️ SDCA Signal Update ⚡️" },
@@ -157,7 +151,7 @@ export const home = {
         },
         {
           topic: "🧭 Trend Probability Indicator",
-          tiers: tierLabels.full,
+          tiers: tierLabels.all,
           time: { label: "7:48 PM ET", datetime: "19:48" },
           media: {
             kind: "tpi",
@@ -174,7 +168,7 @@ export const home = {
         },
         {
           topic: "📈 IA - Investing Analysis",
-          tiers: tierLabels.full,
+          tiers: tierLabels.all,
           time: { label: "8:12 PM ET", datetime: "20:12" },
           media: { kind: "chart", title: "Example chart: stablecoin supply on exchanges", series: "supply" },
           lines: [
@@ -190,7 +184,7 @@ export const home = {
         },
         {
           topic: "📈 IA - Investing Analysis",
-          tiers: tierLabels.full,
+          tiers: tierLabels.all,
           time: { label: "8:20 PM ET", datetime: "20:20" },
           media: { kind: "chart", title: "Example chart: BTC valuation z-score", series: "zscore" },
           lines: [
@@ -240,7 +234,7 @@ export const home = {
       title: "Rules, data and a written process",
       points: [
         "Signals come from fixed rules, not mood",
-        "The reasoning is written up daily in Investing Analysis (Pro and the BTC year)",
+        "The reasoning is written up daily in Investing Analysis",
         "Portfolio Signal: +281% from August 2023 to November 2026",
         "Training videos coming soon",
       ],
@@ -252,13 +246,13 @@ export const home = {
     eyebrow: "The signals",
     title: "Four signals.\n*Posted daily.*",
     subhead:
-      "Every signal comes from written rules, not a feeling, and goes up every evening. **Positions are actively managed and can change any day,** and the Portfolio Signal can include short positions, so check in daily. The reasoning is in the Investing Analysis topic (Pro and the BTC year).",
+      "Every signal comes from written rules, not a feeling, and goes up every evening. **Positions are actively managed and can change any day,** and the Portfolio Signal can include short positions, so check in daily. The reasoning is in the Investing Analysis topic.",
   },
 
   pricing: {
     eyebrow: "Membership",
     title: "Pick a plan.\n*Pay your way.*",
-    subhead: "Pro includes everything in Core. Pay for Pro monthly or yearly by card, or pay $199 in Bitcoin for a full year.",
+    subhead: "One membership, two ways to pay: Pro monthly or yearly by card, or $199 in Bitcoin for a full year.",
   },
 
   steps: {
@@ -266,7 +260,7 @@ export const home = {
     title: "How\n*joining works.*",
     subhead: "From checkout to the group in a few steps.",
     items: [
-      { title: "Choose and pay", text: "Pick a tier and pay with Stripe. Enter your Telegram username at checkout." },
+      { title: "Choose and pay", text: "Pick a plan and pay by card with Stripe. Enter your Telegram username at checkout." },
       { title: "Get your invite", text: "A private invite link arrives by email. Open it in Telegram and request to join." },
       { title: "Read Start Here", text: "Once you're approved, start with the Start Here topic, then follow the signals." },
     ],
@@ -279,8 +273,8 @@ export const home = {
     subhead: "Hunter Lee and Aaron Wathen founded Investing Mastery Signals and run the member groups as admins.",
     // Shown under the founder names. Keep these true to what the tiers include (content/signals.ts).
     facts: [
-      "Admins of both member Telegram groups",
-      "Answer member questions in the Questions topic (Pro and the BTC year)",
+      "Admins of the member Telegram group",
+      "Answer member questions in the Questions topic",
     ],
     link: { label: "About the founders", href: "/about" },
   },
@@ -288,7 +282,7 @@ export const home = {
   faq: {
     eyebrow: "Questions",
     title: "Straight\n*answers.*",
-    ids: ["financial-advice", "core-vs-pro", "telegram", "cancel"],
+    ids: ["financial-advice", "pro-vs-btc", "telegram", "cancel"],
     link: { label: "All questions", href: "/faq" },
   },
 
@@ -325,6 +319,6 @@ export const home = {
       disclosure:
         "Past performance does not guarantee future results. Crypto is highly volatile and you can lose money. Signals are research, not advice; your results depend on your own decisions.",
     },
-    cta: { label: "Choose a tier", href: "#pricing" },
+    cta: { label: "Choose a plan", href: "#pricing" },
   },
 };

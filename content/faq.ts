@@ -21,7 +21,7 @@ export const faqGroups: FaqGroup[] = [
         id: "experience",
         question: "Do I need experience?",
         answer:
-          "There's no experience requirement to join. Pro and the BTC year include the Investing Analysis topic, where the reasoning behind the signals is written up, and the Questions topic, where the founders answer. Training videos are coming soon. You do need to be comfortable making your own decisions, because the signals are general research, not instructions.",
+          "There's no experience requirement to join. Every plan includes the Investing Analysis topic, where the reasoning behind the signals is written up, and the Questions topic, where the founders answer. Training videos are coming soon. You do need to be comfortable making your own decisions, because the signals are general research, not instructions.",
       },
       {
         id: "exchange",
@@ -58,16 +58,16 @@ export const faqGroups: FaqGroup[] = [
           "Four rules-based signals, posted daily: the Portfolio Signal (cash allocation, short positions, net positions and the BTC leverage condition), the BTC DCA Signal (the SDCA rate: the share of your remaining cash to put into BTC each day), the TPI or Trend Probability Indicator (long-term and medium-term trend readings), and IA, Investing Analysis (chart-based commentary and the daily BTC valuation update, where the reasoning is written up).\n\nPositions are actively managed and can change any day, and the Portfolio Signal can include short positions. Check in daily.",
       },
       {
-        id: "core-vs-pro",
-        question: "What's the difference between Core and Pro?",
+        id: "pro-vs-btc",
+        question: "What's the difference between Pro and the BTC year?",
         answer:
-          `Core ($20/month) gets the Portfolio Signal every day, without the short positions, in the read-only ${groups.core} group. Only the founders post there; members can't post or ask questions.\n\nPro ($25/month, or $249/year) and the BTC year ($199 in Bitcoin for 12 months) get all four signals: the Portfolio Signal including short positions, the BTC DCA Signal, the TPI (Trend Probability Indicator) and IA (Investing Analysis). They also get full access to the main ${groups.main} group: Start Here, Member Chat, and Questions, where the founders answer. Training videos are coming soon.`,
+          `Only how you pay. Both get all four signals: the Portfolio Signal including short positions, the BTC DCA Signal, the TPI (Trend Probability Indicator) and IA (Investing Analysis). Both get full access to the ${groups.main} Telegram group: Start Here, Member Chat, and Questions, where the founders answer. Training videos are coming soon.\n\nPro is paid by card through Stripe, $25/month or $249/year, renews until you cancel, and is managed in Manage membership. The BTC year is $199 worth of Bitcoin, paid once for 12 months, and doesn't renew automatically.`,
       },
       {
         id: "personalized",
         question: "Is the signal personalized?",
         answer:
-          "No. Every member of a tier gets the same post at the same time. Signals don't include individual allocations or position sizes.",
+          "No. Every member gets the same post at the same time. Signals don't include individual allocations or position sizes.",
       },
       {
         id: "missed",
@@ -78,7 +78,7 @@ export const faqGroups: FaqGroup[] = [
       {
         id: "cadence",
         question: "How often do signals go out?",
-        answer: "Every day. Signals go up in the evening, between 6pm and midnight ET, usually 7 to 9pm. Positions are actively managed and can change any day, so check in daily. Pro and the BTC year also get daily Investing Analysis posts.",
+        answer: "Every day. Signals go up in the evening, between 6pm and midnight ET, usually 7 to 9pm. Positions are actively managed and can change any day, so check in daily. Investing Analysis posts go up daily too.",
       },
       {
         id: "markets",
@@ -88,19 +88,19 @@ export const faqGroups: FaqGroup[] = [
     ],
   },
   {
-    title: "Telegram groups",
+    title: "Telegram group",
     items: [
       {
         id: "telegram",
         question: "How do I get into the Telegram group after I pay?",
         answer:
-          `Enter your Telegram username during checkout. After you pay, a private invite link arrives by email within 12 hours. Open it in Telegram and tap Request to Join. Once your request is approved, read the Start Here topic first.\n\nCore members join ${groups.core}. Pro and BTC-year members join the main ${groups.main} group.\n\nPaying in Bitcoin? There's no checkout: after you send the BTC, send us the transaction ID, your email and your Telegram username through the contact form, and your invite follows within 12 hours of the payment confirming.`,
+          `Enter your Telegram username during checkout. After you pay, a private invite link arrives by email within 12 hours. Open it in Telegram and tap Request to Join. Once your request is approved, read the Start Here topic first.\n\nEvery member joins the ${groups.main} group.\n\nPaying in Bitcoin? There's no checkout: after you send the BTC, send us the transaction ID, your email and your Telegram username through the contact form, and your invite follows within 12 hours of the payment confirming.`,
       },
       {
         id: "share",
         question: "Can I share the signals?",
         answer:
-          "No. Signals are for your own use. You can't share, repost or resell them, and forwarding and saving are turned off in the groups. Members also can't add or invite anyone. Sharing breaks the Terms of Service and can lead to removal.",
+          "No. Signals are for your own use. You can't share, repost or resell them, and forwarding and saving are turned off in the group. Members also can't add or invite anyone. Sharing breaks the Terms of Service and can lead to removal.",
       },
     ],
   },
@@ -116,9 +116,9 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         id: "upgrade",
-        question: "Can I upgrade or downgrade?",
+        question: "Can I switch between monthly and yearly?",
         answer:
-          `Yes, between Core and Pro, in Manage membership. Moving from Core to Pro takes effect right away: the price difference for the rest of the month is added to your next bill, you get an invite to the main ${groups.main} group, and you leave the Core group once you've joined.\n\nMoving from Pro to Core takes effect at the end of your current billing period. Then you're removed from the main group and invited to ${groups.core}.\n\nYou can also switch Pro between monthly and yearly billing in Manage membership. Monthly to yearly takes effect right away, with a credit for the unused part of your current month. Yearly to monthly takes effect when your year ends.`,
+          "Yes, in Manage membership. Monthly to yearly takes effect right away, with a credit for the unused part of your current month. Yearly to monthly takes effect when your year ends.\n\nThe BTC year is a one-time payment, so there's nothing to switch. Near the end of your year we'll contact you about renewing, in Bitcoin or by card.",
         link: "manage",
       },
       {

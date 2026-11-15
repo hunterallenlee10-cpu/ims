@@ -1,6 +1,6 @@
 # Investing Mastery Signals — Build Plan
 
-> **Historical.** This is the original build plan. The site has since moved to three monthly tiers (Core, Pro, Champion) delivered in Telegram, and the public research section was removed. Current copy lives in `content/`, open items in `PLACEHOLDERS.md`, payments in `STRIPE.md`.
+> **Historical.** This is the original build plan. The site now sells one membership, Pro (monthly or yearly by card), plus a one-year Pro option paid in Bitcoin, delivered in one private Telegram group; the public research section was removed. Current copy lives in `content/`, open items in `PLACEHOLDERS.md`, payments in `STRIPE.md`.
 
 Status: **approved and built (Phases 1–5 complete).** Decisions: branch `claude/busy-fermi-5nsujj`, two tiers, delivery channel and cadence kept as placeholders.
 

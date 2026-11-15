@@ -14,13 +14,13 @@ import { DisclaimerBox } from "@/components/ui/DisclaimerBox";
 import { CheckoutCanceledNote } from "./CheckoutCanceledNote";
 import { CheckoutButton } from "./CheckoutButton";
 
-/** The fields a pricing card shows. Core and Pro are Stripe tiers; the BTC year is a one-time Bitcoin payment. */
+/** The fields a pricing card shows. Pro is the Stripe tier; the BTC year is a one-time Bitcoin payment. */
 type CardTier = Pick<Tier, "name" | "price" | "period" | "inherits" | "rows" | "excludes" | "featured" | "whoFor" | "note" | "yearly"> & {
   id: string;
 };
 
 /**
- * Pricing table: Core, Pro and the BTC year side by side (stacked on mobile).
+ * Pricing table: Pro and the BTC year side by side (stacked on mobile).
  * No "most popular", no strikethrough, no countdown. A `featured` tier gets a purple frame only.
  */
 export function TierCards({
@@ -47,7 +47,7 @@ export function TierCards({
         <CheckoutCanceledNote text={c.canceled} />
       </Suspense>
 
-      <ul className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <ul className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
         {tiers.map((tier, i) => (
           <li key={tier.id} data-reveal style={{ ["--reveal-delay" as string]: `${i * 120}ms` }}>
             <TierCard tier={tier}>

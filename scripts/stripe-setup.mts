@@ -7,7 +7,7 @@
 //   STRIPE_SECRET_KEY   secret key for the target mode (never hard-coded, never logged)
 //   SITE_URL            public site URL, e.g. https://example.com (portal links to /terms and /privacy)
 //   EXPECTED_ACCOUNT    defaults to acct_1Ua6qPRj5B5P2Oab; the script stops if the key belongs elsewhere
-//   PRORATION           portal proration for Core <-> Pro: create_prorations (default) | none | always_invoice
+//   PRORATION           portal proration for Pro monthly <-> yearly: create_prorations (default) | none | always_invoice
 //   STRIPE_TAX_CODE     product tax code. Default txcd_10701411 (Electronically Delivered Information
 //                       Services - Personal Use), which Managed Payments accepts
 //
@@ -29,14 +29,10 @@ if (!SITE_URL.startsWith("https://")) throw new Error("Set SITE_URL to the publi
 // fetch-based client: respects HTTPS_PROXY when run with NODE_USE_ENV_PROXY=1.
 const stripe = new Stripe(key, { appInfo: { name: "ims-setup-script" }, httpClient: Stripe.createFetchHttpClient() });
 
-// Facts only. Champion ($399/month) was retired on 2026-11-13; its Stripe price and product are archived.
+// Facts only. Champion ($399/month) was retired on 2026-11-13 and Core ($20/month) on 2026-11-15;
+// their Stripe prices and products are archived. Pro is the only Stripe tier.
 // amount is the monthly price in cents; yearly (Pro only) is the yearly price in cents, sold under YEARLY_LOOKUP_KEYS.
 const PRODUCTS: Record<TierId, { name: string; description: string; amount: number; yearly?: number }> = {
-  core: {
-    name: "IMS Core",
-    description: 'The Portfolio Signal every day, without the short positions, in the read-only "Core Members - SIGNAL ONLY" Telegram group.',
-    amount: 2000,
-  },
   pro: {
     name: "IMS Pro",
     description:
@@ -197,22 +193,20 @@ async function ensurePortal(ids: Record<TierId, { product: string; price: string
       payment_method_update: { enabled: true },
       customer_update: { enabled: true, allowed_updates: ["email"] },
       subscription_cancel: { enabled: true, mode: "at_period_end", cancellation_reason: { enabled: true, options: ["too_expensive", "unused", "other"] } },
-      // Core <-> Pro only.
+      // Pro only: members can switch between monthly and yearly billing.
       subscription_update: {
         enabled: true,
         default_allowed_updates: ["price"],
         proration_behavior: PRORATION,
         products: [
-          // One membership per subscription: members can switch tier but not change quantity.
-          { product: ids.core.product, prices: [ids.core.price], adjustable_quantity: { enabled: false } },
-          // Pro members can also switch between monthly and yearly billing.
+          // One membership per subscription: quantity changes are off.
           {
             product: ids.pro.product,
             prices: ids.pro.yearly ? [ids.pro.price, ids.pro.yearly] : [ids.pro.price],
             adjustable_quantity: { enabled: false },
           },
         ],
-        // Downgrades (Pro -> Core) wait until the end of the period.
+        // Yearly -> monthly waits until the end of the year.
         schedule_at_period_end: { conditions: [{ type: "decreasing_item_amount" }] },
       },
     },
@@ -240,7 +234,7 @@ async function main() {
     ids[tier] = await ensureTier(tier);
     if (ids[tier].product !== "(new)") ids[tier].yearly = await ensureYearly(tier, ids[tier].product);
   }
-  const pending = [ids.core.price, ids.pro.price, ids.pro.yearly].includes("(new)");
+  const pending = [ids.pro.price, ids.pro.yearly].includes("(new)");
   const portalUrl = DRY && pending ? null : await ensurePortal(ids);
 
   console.log("\nRecord these in STRIPE.md (IDs only):");
