@@ -47,7 +47,7 @@ export const training = {
     welcome: "Welcome to Investing Mastery Signals 👋",
     intro: "If you know nothing about investing and need to get started, do these in order:",
     items: [
-      { text: "Watch the step-by-step videos.", note: "Videos coming soon to show you step by step." },
+      { text: "Watch these videos as well.", note: "Videos coming soon to show you step by step." },
       {
         text: "Get on this centralized exchange.",
         link: { label: "Open Kraken", href: "https://proinvite.kraken.com/9f1e/iz1isq99" },
