@@ -185,7 +185,28 @@ export function TrainingSteps() {
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="text-body">{item.text}</p>
-                  {item.note ? <p className="mono-label mt-2 text-muted">{item.note}</p> : null}
+                  {item.videos ? (
+                    <ul className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                      {item.videos.map((video) => (
+                        <li key={video.href}>
+                          <a
+                            href={video.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={cn(
+                              btn,
+                              "w-full border-accent-light bg-transparent text-accent-light hover:border-accent-lighter hover:bg-accent-light/5 hover:text-accent-lighter sm:w-auto",
+                            )}
+                          >
+                            <Icon name="youtube" size={20} />
+                            {video.label}
+                            <span className="sr-only"> on YouTube (opens in a new tab)</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {item.note ? <p className={cn("mono-label text-muted", item.videos ? "mt-4" : "mt-2")}>{item.note}</p> : null}
                   {item.link ? (
                     <a
                       href={item.link.href}
