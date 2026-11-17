@@ -41,6 +41,7 @@ const btn =
 
 export function TrainingSteps() {
   const c = training;
+  const b = c.briefing;
   const raw = useSyncExternalStore(subscribe, read, () => "");
   const done = new Set(raw.split(",").filter(Boolean));
   const count = c.modules.filter((m) => done.has(m.id)).length;
@@ -81,10 +82,9 @@ export function TrainingSteps() {
         {c.modules.map((m, i) => {
           const isDone = done.has(m.id);
           const href = `${trainingFiles}/${m.file}`;
-          const last = i === total - 1;
           return (
             <li key={m.id} className="relative flex gap-4 pb-10 sm:gap-6">
-              {!last ? <span aria-hidden="true" className="absolute bottom-0 left-6 top-12 w-px -translate-x-1/2 bg-panel-line" /> : null}
+              <span aria-hidden="true" className="absolute bottom-0 left-6 top-12 w-px -translate-x-1/2 bg-panel-line" />
               <span
                 aria-hidden="true"
                 className={cn(
@@ -161,8 +161,72 @@ export function TrainingSteps() {
         })}
       </ol>
 
+      <section aria-labelledby="training-briefing-title" className="flex gap-4 sm:gap-6">
+        <span
+          aria-hidden="true"
+          className="flex h-12 w-12 shrink-0 items-center justify-center border-2 border-accent-lighter bg-accent-hover text-heading shadow-[inset_0_0_0_2px_var(--bg)]"
+        >
+          <Icon name="spark" size={22} />
+        </span>
+
+        <div className="frame frame-accent min-w-0 flex-1 p-5 [--cut:18px] [--fill:var(--bg-lift-2)] sm:p-7">
+          <p className="mono-label text-accent-light">{b.label}</p>
+          <h3 id="training-briefing-title" className="mt-3 text-h3">
+            {b.title}
+          </h3>
+          <p className="mt-4 text-lg font-semibold text-heading">{b.welcome}</p>
+          <p className="mt-2 text-body">{b.intro}</p>
+
+          <ol className="mt-6 border-t border-panel-line">
+            {b.items.map((item, i) => (
+              <li key={item.text} className="flex gap-4 border-b border-panel-line py-5">
+                <span aria-hidden="true" className="w-6 shrink-0 pt-0.5 font-mono text-sm font-semibold text-accent-light">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-body">{item.text}</p>
+                  {item.note ? <p className="mono-label mt-2 text-muted">{item.note}</p> : null}
+                  {item.link ? (
+                    <a
+                      href={item.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(
+                        btn,
+                        "mt-4 w-full border-accent-light bg-transparent text-accent-light hover:border-accent-lighter hover:bg-accent-light/5 hover:text-accent-lighter sm:w-auto",
+                      )}
+                    >
+                      {item.link.label}
+                      <span className="sr-only"> (opens in a new tab)</span>
+                      <Icon name="arrowRight" size={18} />
+                    </a>
+                  ) : null}
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-7 border border-accent-light/70 bg-bg/40 p-5 sm:p-6">
+            <p className="mono-label text-accent-lighter">{b.pools.label}</p>
+            <h4 className="mt-3 text-2xl leading-[1.1]">{b.pools.title}</h4>
+            <p className="mt-3 text-body">{b.pools.intro}</p>
+            <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+              {b.pools.items.map((pool) => (
+                <div key={pool.name} className="border border-panel-line bg-bg/50 p-4">
+                  <dt className="mono-label text-accent-light">{pool.name}</dt>
+                  <dd className="mt-2 text-[0.95rem] text-body">{pool.text}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-5 text-body">{b.pools.outro}</p>
+          </div>
+
+          <p className="mt-6 text-sm leading-relaxed text-muted">{b.referral}</p>
+        </div>
+      </section>
+
       {count === total ? (
-        <div role="status" className="frame frame-accent p-6 [--cut:18px] [--fill:var(--bg-lift-2)] sm:p-8">
+        <div role="status" className="frame frame-accent mt-10 p-6 [--cut:18px] [--fill:var(--bg-lift-2)] sm:p-8">
           <p className="mono-label text-accent-light">{c.complete.title}</p>
           <p className="mt-3 text-lg text-heading">{c.complete.text}</p>
         </div>
