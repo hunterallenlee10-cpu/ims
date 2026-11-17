@@ -15,6 +15,12 @@ export type TrainingModule = {
   warning?: string;
 };
 
+export type BriefingItem = {
+  text: string;
+  note?: string;
+  link?: { label: string; href: string };
+};
+
 export const training = {
   meta: { title: "Member Training" },
   hero: {
@@ -33,6 +39,46 @@ export const training = {
   complete: {
     title: "Training complete",
     text: "Go back to your Module 3 notes, confirm your money split and your system, and follow them.",
+  },
+  // Shown after the five steps. Not a step and not counted in the progress bar.
+  briefing: {
+    label: "Final briefing",
+    title: "Get ready to go",
+    welcome: "Welcome to Investing Mastery Signals 👋",
+    intro: "If you know nothing about investing and need to get started, do these in order:",
+    items: [
+      { text: "Watch the step-by-step videos.", note: "Videos coming soon to show you step by step." },
+      {
+        text: "Get on this centralized exchange.",
+        link: { label: "Open Kraken", href: "https://proinvite.kraken.com/9f1e/iz1isq99" },
+      },
+      {
+        text: "Get on this centralized exchange as a backup.",
+        link: { label: "Open Coinbase", href: "https://coinbase.com/join/UY63VLT?src=referral-link" },
+      },
+      { text: "Have both set up and ready to go before buying anything." },
+      {
+        text: "Buy a cold wallet when you are investing over $5,000. Trezor Safe 5 is what we recommend.",
+        link: { label: "Get a Trezor", href: "http://trezorio.refr.cc/default/u/hunterlee" },
+      },
+    ] satisfies BriefingItem[],
+    pools: {
+      label: "Your money",
+      title: "Two pools. Not one big pool.",
+      intro: "Your investing money is split into two separate funds. Each one follows its own signal.",
+      items: [
+        {
+          name: "RSPS fund",
+          text: "Your active pool. It follows the Portfolio Signal, posted every evening. It can change any day, so check in daily and act when it changes.",
+        },
+        {
+          name: "DCA fund",
+          text: "Your long-term pool. It follows the BTC DCA Signal. A share of this fund's remaining cash goes into Bitcoin each day, so it builds slowly.",
+        },
+      ],
+      outro: "Decide how much goes in each before you buy anything. Write the split in your Module 3 notes and track each fund on its own.",
+    },
+    referral: "The Kraken, Coinbase and Trezor links are referral links. We may earn a commission if you sign up or buy through them.",
   },
   note: "Educational material only. Not financial advice. Crypto is high risk and you can lose money. We will never message you first asking for money, a password or your seed phrase.",
   modules: [
