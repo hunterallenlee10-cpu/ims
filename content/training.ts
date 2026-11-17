@@ -19,6 +19,7 @@ export type BriefingItem = {
   text: string;
   note?: string;
   link?: { label: string; href: string };
+  videos?: { label: string; href: string }[];
 };
 
 export const training = {
@@ -47,7 +48,12 @@ export const training = {
     welcome: "Welcome to Investing Mastery Signals 👋",
     intro: "If you know nothing about investing and need to get started, do these in order:",
     items: [
-      { text: "Watch these videos as well.", note: "Videos coming soon to show you step by step." },
+      {
+        text: "Watch these videos as well.",
+        // Add each new video here: { label: "Video 2", href: "https://..." }
+        videos: [{ label: "Video 1", href: "https://www.youtube.com/watch?v=bBC-nXj3Ng4" }],
+        note: "More videos coming soon.",
+      },
       {
         text: "Get on this centralized exchange.",
         link: { label: "Open Kraken", href: "https://proinvite.kraken.com/9f1e/iz1isq99" },
