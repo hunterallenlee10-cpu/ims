@@ -31,9 +31,9 @@ export function HomeHero() {
         </>
       ) : null}
 
-      {/* Slow falling BTC coins, bills and gold, thinned out behind the headline */}
+      {/* Holographic BTC coins, bills and charts falling slowly, thinned out behind the headline */}
       <MoneyRain
-        opacity={0.6}
+        opacity={0.75}
         className="[mask-image:radial-gradient(ellipse_55%_45%_at_50%_45%,rgba(0,0,0,0.25)_0%,#000_100%)]"
       />
 
