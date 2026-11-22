@@ -5,6 +5,7 @@ import { home } from "@/content/home";
 import { renderAccent, renderRich } from "@/lib/accent";
 import { DataWave } from "@/components/art/DataWave";
 import { Glow } from "@/components/art/Glow";
+import { MoneyRain } from "@/components/art/MoneyRain";
 import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { CtaArrows } from "@/components/ui/CtaArrows";
@@ -29,6 +30,12 @@ export function HomeHero() {
           <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-bg/60 via-bg/70 to-bg" />
         </>
       ) : null}
+
+      {/* Slow falling BTC coins, bills and gold, thinned out behind the headline */}
+      <MoneyRain
+        opacity={0.6}
+        className="[mask-image:radial-gradient(ellipse_55%_45%_at_50%_45%,rgba(0,0,0,0.25)_0%,#000_100%)]"
+      />
 
       {/* Data-wave line art in the corners */}
       <DataWave
