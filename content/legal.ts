@@ -2,26 +2,24 @@
 export const legalPages = {
   disclaimer: {
     title: "Disclaimer",
-    description: "Investing Mastery Signals publishes general, impersonal research for educational purposes. Not financial advice.",
-    updated: "[DATE]",
+    description: "IMS provides general research and educational information only. It is not financial, investment, legal, or tax advice.",
+    updated: "November 15, 2026",
   },
   "risk-disclosure": {
     title: "Risk Disclosure",
-    description: "The main risks of investing and of using systematic, rules-based research. Please read before acting on any signal.",
-    updated: "[DATE]",
+    description: "The main risks of crypto investing and of using rules-based signals. Please read before acting on any signal.",
+    updated: "November 15, 2026",
   },
   terms: {
     title: "Terms of Service",
-    description: "The terms that govern use of the Investing Mastery Signals website and membership.",
-    updated: "[DATE]",
+    description: "The terms that govern the Investing Mastery Signals website and the Pro membership, including Pro access paid in Bitcoin.",
+    updated: "November 15, 2026",
   },
   privacy: {
     title: "Privacy Policy",
     description: "How Investing Mastery Signals collects, uses and protects personal information.",
-    updated: "[DATE]",
+    updated: "November 15, 2026",
   },
 } as const;
 
 export type LegalSlug = keyof typeof legalPages;
-
-export const legalDraftNotice = "DRAFT: have an attorney review before launch.";

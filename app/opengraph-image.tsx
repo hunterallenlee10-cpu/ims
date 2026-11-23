@@ -3,7 +3,7 @@ import path from "node:path";
 import { ImageResponse } from "next/og";
 import { ribbonPath } from "@/lib/wave";
 
-export const alt = "Investing Mastery Signals: systematic investment research";
+export const alt = "Investing Mastery Signals: rules-based crypto signals in private Telegram groups";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -26,10 +26,12 @@ function Waves({ seed, top, left, opacity }: { seed: number; top: number; left: 
 }
 
 export default async function OpengraphImage() {
-  const [cinzel, inter] = await Promise.all([
+  const [cinzel, inter, mark] = await Promise.all([
     readFile(path.join(process.cwd(), "assets/fonts/Cinzel.ttf")),
     readFile(path.join(process.cwd(), "assets/fonts/Inter.ttf")),
+    readFile(path.join(process.cwd(), "public/brand/logo-mark.png")),
   ]);
+  const markSrc = `data:image/png;base64,${mark.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -51,8 +53,9 @@ export default async function OpengraphImage() {
         <Waves seed={0.6} top={-150} left={420} opacity={0.55} />
         <Waves seed={3.3} top={380} left={-760} opacity={0.4} />
 
-        <div style={{ display: "flex", fontSize: 20, letterSpacing: 9, color: "#B7BFD3", textTransform: "uppercase", marginBottom: 34 }}>
-          Systematic Investment Research
+        <img src={markSrc} width={199} height={120} alt="" style={{ marginBottom: 26 }} />
+        <div style={{ display: "flex", fontSize: 20, letterSpacing: 9, color: "#B7BFD3", textTransform: "uppercase", marginBottom: 30 }}>
+          Rules-Based Crypto Research
         </div>
         <div
           style={{
@@ -74,7 +77,7 @@ export default async function OpengraphImage() {
           <div style={{ display: "flex", flex: 1, height: 2, backgroundImage: "linear-gradient(90deg, #B946FB, rgba(185,70,251,0))" }} />
         </div>
         <div style={{ display: "flex", marginTop: 44, fontSize: 26, color: "#C5CEDE" }}>
-          Rules-based valuation, trend and risk signals. Same signal for every member.
+          Rules-based crypto signals, posted daily. Private Telegram groups.
         </div>
       </div>
     ),

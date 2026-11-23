@@ -79,6 +79,9 @@ const paths = {
       <path d="M12 7.5V12l3 2" />
     </>
   ),
+  phone: (
+    <path d="M8.5 3.5H6A2 2 0 0 0 4 5.6 16.5 16.5 0 0 0 18.4 20 2 2 0 0 0 20.5 18v-2.5l-3.8-1.5-1.9 1.9a12 12 0 0 1-5.2-5.2l1.9-1.9z" />
+  ),
   mail: (
     <>
       <rect x="3.5" y="5.5" width="17" height="13" rx="1.5" />
@@ -126,6 +129,12 @@ const paths = {
       <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
       <circle cx="12" cy="12" r="3.8" />
       <circle cx="17.2" cy="6.8" r=".6" />
+    </>
+  ),
+  lock: (
+    <>
+      <rect x="5" y="10.5" width="14" height="10" rx="1.5" />
+      <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3M12 14.5v2" />
     </>
   ),
   chat: (

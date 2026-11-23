@@ -1,21 +1,24 @@
 import { home } from "@/content/home";
 import { founders } from "@/content/about";
+import { signalCatalog } from "@/content/signals";
 import { pickFaqs } from "@/content/faq";
 import { pageMetadata } from "@/lib/metadata";
 import { Section } from "@/components/ui/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
-import { Icon } from "@/components/ui/Icon";
 import { HomeHero } from "@/components/sections/home/HomeHero";
-import { SignalConsole } from "@/components/sections/home/SignalConsole";
 import { StatStrip } from "@/components/sections/shared/StatStrip";
 import { VsCompare } from "@/components/sections/shared/VsCompare";
-import { ProgramExplorer } from "@/components/sections/home/ProgramExplorer";
+import { SignalRows } from "@/components/sections/home/SignalRows";
+import { GroupTopics } from "@/components/sections/home/GroupTopics";
+import { SignalFeedExample } from "@/components/sections/shared/SignalFeedExample";
+import { TierCards } from "@/components/sections/signals/TierCards";
 import { StepPath } from "@/components/sections/shared/StepPath";
-import { FeatureChecklists } from "@/components/sections/shared/FeatureChecklists";
 import { FoundersTeaser } from "@/components/sections/shared/FoundersTeaser";
 import { FaqList } from "@/components/sections/shared/FaqList";
-import { TwoPathsCta } from "@/components/sections/shared/TwoPathsCta";
+import { PathsCompare } from "@/components/sections/home/PathsCompare";
+import { GrowthChart } from "@/components/sections/home/GrowthChart";
+import { trackRecord } from "@/content/track-record";
 
 export const metadata = pageMetadata({
   title: `Investing Mastery Signals | ${home.meta.title}`,
@@ -28,36 +31,54 @@ export default function HomePage() {
   return (
     <>
       <HomeHero />
-      <SignalConsole />
+
+      <Section glow="right" aria-labelledby="track-title">
+        <SectionHeader id="track-title" eyebrow={trackRecord.eyebrow} title={trackRecord.title} subhead={trackRecord.subhead} />
+        <div data-reveal className="mx-auto max-w-6xl">
+          <GrowthChart />
+        </div>
+      </Section>
+
+      <Section id="example-signal" glow="center" aria-labelledby="sample-title">
+        <SectionHeader id="sample-title" eyebrow={home.sample.eyebrow} title={home.sample.title} subhead={home.sample.subhead} />
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start lg:gap-10">
+          <GroupTopics className="lg:sticky lg:top-28" />
+          <div data-reveal className="min-w-0">
+            <SignalFeedExample />
+          </div>
+        </div>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3" data-reveal>
+          <Button href={home.sample.plansCta.href} arrow>
+            {home.sample.plansCta.label}
+          </Button>
+        </div>
+      </Section>
+
       <StatStrip eyebrow={home.stats.eyebrow} items={home.stats.items} />
 
       <Section tone="band" aria-labelledby="vs-title">
         <SectionHeader id="vs-title" eyebrow={home.vs.eyebrow} title={home.vs.title} subhead={home.vs.subhead} />
         <VsCompare theirs={home.vs.theirs} ours={home.vs.ours} />
-      </Section>
-
-      <Section aria-labelledby="program-title">
-        <SectionHeader id="program-title" eyebrow={home.program.eyebrow} title={home.program.title} subhead={home.program.subhead} />
-        <ProgramExplorer items={home.program.items} hint={home.program.hint} />
-        <div className="mt-14 flex justify-center" data-reveal>
-          <Button href="/signals" size="lg">
-            Join Signals
-            <Icon name="arrowRight" size={18} />
+        <div className="mt-12 text-center" data-reveal>
+          <Button href={home.vs.cta.href} size="lg" arrow>
+            {home.vs.cta.label}
           </Button>
         </div>
       </Section>
 
+      <Section aria-labelledby="program-title">
+        <SectionHeader id="program-title" eyebrow={home.program.eyebrow} title={home.program.title} subhead={home.program.subhead} />
+        <SignalRows items={signalCatalog} />
+      </Section>
+
+      <TierCards eyebrow={home.pricing.eyebrow} title={home.pricing.title} subhead={home.pricing.subhead} />
+
       <Section divider aria-labelledby="steps-title" glow="left">
         <SectionHeader id="steps-title" eyebrow={home.steps.eyebrow} title={home.steps.title} subhead={home.steps.subhead} />
         <StepPath items={home.steps.items} />
-      </Section>
-
-      <Section tone="band" aria-labelledby="features-title">
-        <SectionHeader id="features-title" eyebrow={home.features.eyebrow} title={home.features.title} subhead={home.features.subhead} />
-        <FeatureChecklists cards={home.features.cards} />
         <div className="mt-12 text-center" data-reveal>
-          <Button href="/signals" variant="secondary" arrow>
-            See membership options
+          <Button href={home.steps.link.href} variant="secondary" arrow>
+            {home.steps.link.label}
           </Button>
         </div>
       </Section>
@@ -82,7 +103,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <TwoPathsCta {...home.twoPaths} />
+      <PathsCompare />
     </>
   );
 }

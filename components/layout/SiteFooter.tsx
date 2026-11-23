@@ -2,10 +2,12 @@ import Link from "next/link";
 import { isPlaceholder, site } from "@/content/site";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Icon } from "@/components/ui/Icon";
+import { ManageMembershipLink } from "@/components/ui/ManageMembershipLink";
 
-/** Mega footer: wordmark, link columns, socials, persistent disclaimer, 18+ notice. */
+/** Mega footer: wordmark, support, link columns, socials, disclaimer, risk note, 18+ notice. */
 export function SiteFooter() {
   const year = new Date().getFullYear();
+  const socials = site.socials.filter((s) => !isPlaceholder(s.href));
   return (
     <footer
       className="relative border-t border-accent/30"
@@ -16,17 +18,26 @@ export function SiteFooter() {
           <div>
             <Wordmark size="lg" />
             <p className="mt-6 max-w-xs text-sm text-muted">
-              Systematic investment research. One rules-based signal, published the same way to every member.
+              Rules-based crypto valuation and trend signals, delivered in private Telegram groups.
             </p>
-            <p className="mt-4 text-sm text-muted">
-              <a href={isPlaceholder(site.email) ? "/contact" : `mailto:${site.email}`} className="inline-flex min-h-11 items-center gap-2 hover:text-heading">
-                <Icon name="mail" size={18} className="text-accent-light" />
-                {site.email}
-              </a>
-            </p>
+            <p className="eyebrow mb-1 mt-6 text-accent-light">Support</p>
+            <ul className="text-sm">
+              <li>
+                <a
+                  href={site.phone.href}
+                  className="inline-flex min-h-11 items-center gap-2 text-muted hover:text-heading sm:min-h-9"
+                >
+                  <Icon name="phone" size={16} className="text-accent-light" />
+                  {site.phone.display}
+                </a>
+              </li>
+              <li>
+                <ManageMembershipLink className="text-sm" />
+              </li>
+            </ul>
           </div>
 
-          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:grid-cols-5">
+          <div className={socials.length ? "grid grid-cols-2 gap-10 sm:grid-cols-3 md:grid-cols-5" : "grid grid-cols-2 gap-10 md:grid-cols-4"}>
             {site.footer.columns.map((col) => (
               <nav key={col.title} aria-label={col.title}>
                 <p className="eyebrow mb-4 text-accent-light">{col.title}</p>
@@ -41,17 +52,12 @@ export function SiteFooter() {
                 </ul>
               </nav>
             ))}
-            <nav aria-label="Social">
-              <p className="eyebrow mb-4 text-accent-light">Social</p>
-              <ul className="space-y-1">
-                {site.socials.map((s) => (
-                  <li key={s.label}>
-                    {isPlaceholder(s.href) ? (
-                      <span className="inline-flex min-h-11 items-center gap-2 text-sm text-muted sm:min-h-9" title={`Link not set yet: ${s.href}`}>
-                        <Icon name={s.icon} size={16} />
-                        {s.label}
-                      </span>
-                    ) : (
+            {socials.length ? (
+              <nav aria-label="Social">
+                <p className="eyebrow mb-4 text-accent-light">Social</p>
+                <ul className="space-y-1">
+                  {socials.map((s) => (
+                    <li key={s.label}>
                       <a
                         href={s.href}
                         target="_blank"
@@ -61,16 +67,17 @@ export function SiteFooter() {
                         <Icon name={s.icon} size={16} className="text-accent-light" />
                         {s.label}
                       </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </nav>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ) : null}
           </div>
         </div>
 
         <div className="mt-14 border-t border-line pt-8">
-          <p className="max-w-4xl text-sm leading-relaxed text-muted">{site.disclaimer}</p>
+          <p className="max-w-4xl text-sm font-semibold leading-relaxed text-heading">{site.disclaimer}</p>
+          <p className="mt-2 max-w-4xl text-sm leading-relaxed text-muted">{site.riskNote}</p>
           <p className="mt-3 text-sm text-muted">
             <span className="mr-2 inline-flex items-center rounded-site-sm border border-line px-1.5 py-0.5 text-xs font-semibold text-eyebrow">
               18+
@@ -79,17 +86,34 @@ export function SiteFooter() {
           </p>
           <div className="mt-8 flex flex-col gap-2 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
             <p>
-              © {year} {site.name}. {site.legalEntity}. All rights reserved.
+              © {year} {site.name}.{site.legalEntity !== site.name ? ` ${site.legalEntity}.` : ""} All rights reserved.
             </p>
-            <p>
-              <Link href="/disclaimer" className="hover:text-heading">
-                Disclaimer
-              </Link>
-              {" · "}
-              <Link href="/risk-disclosure" className="hover:text-heading">
-                Risk Disclosure
-              </Link>
-            </p>
+            <div className="flex flex-col gap-2 sm:items-end">
+              <p>
+                <Link href="/terms" className="inline-block py-1.5 hover:text-heading">
+                  Terms of Service
+                </Link>
+                {" · "}
+                <Link href="/privacy" className="inline-block py-1.5 hover:text-heading">
+                  Privacy Policy
+                </Link>
+                {" · "}
+                <Link href="/risk-disclosure" className="inline-block py-1.5 hover:text-heading">
+                  Risk Disclosure
+                </Link>
+              </p>
+              <p>
+                {site.builtBy.text}{" "}
+                <a
+                  href={site.builtBy.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block py-1.5 underline decoration-line underline-offset-2 hover:text-heading hover:decoration-accent-light"
+                >
+                  {site.builtBy.name}
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>

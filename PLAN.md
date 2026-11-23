@@ -1,5 +1,7 @@
 # Investing Mastery Signals — Build Plan
 
+> **Historical.** This is the original build plan. The site now sells one membership, Pro (monthly or yearly by card), plus a one-year Pro option paid in Bitcoin, delivered in one private Telegram group; the public research section was removed. Current copy lives in `content/`, open items in `PLACEHOLDERS.md`, payments in `STRIPE.md`.
+
 Status: **approved and built (Phases 1–5 complete).** Decisions: branch `claude/busy-fermi-5nsujj`, two tiers, delivery channel and cadence kept as placeholders.
 
 ## 0. Source of the design system
@@ -116,7 +118,7 @@ components/
     shared/ PageHero, VsCompare, StepPath, ProgramGrid, FeatureChecklists, FaqList, TwoPathsCta, CtaBand,
             StatStrip, FoundersTeaser
     home/   HomeHero, SignalConsole (TrendChip, ZScoreGauge, RiskGate, UpdatedStamp)
-    how/    WhySystematic, ThreeInputs, UpdateCadence, Delivery, SignalAnatomy, WhatItIsNot
+    how/    WhySystematic, ThreeInputs, UpdateCadence, Delivery, WhatItIsNot
     signals/TierCards, IncludedList, BillingTerms
     about/  Timeline, FounderBios, Principles
     research/ PostCard, TagFilter, ArticleLayout

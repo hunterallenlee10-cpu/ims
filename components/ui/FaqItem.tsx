@@ -1,10 +1,21 @@
 import { Icon } from "./Icon";
+import { ManageMembershipLink } from "./ManageMembershipLink";
 
 /** Accordion row (native <details>) styled as a navy panel with a plus icon. */
-export function FaqItem({ question, answer, defaultOpen }: { question: string; answer: string; defaultOpen?: boolean }) {
+export function FaqItem({
+  question,
+  answer,
+  link,
+  defaultOpen,
+}: {
+  question: string;
+  answer: string;
+  link?: "manage";
+  defaultOpen?: boolean;
+}) {
   return (
     <details className="group border border-panel-line bg-panel transition-colors open:border-accent-light/60 hover:border-accent-light/60" open={defaultOpen}>
-      <summary className="flex min-h-16 items-center justify-between gap-6 px-5 py-4 text-left text-[1.05rem] font-semibold text-heading sm:px-6">
+      <summary className="flex min-h-16 cursor-pointer items-center justify-between gap-6 px-5 py-4 text-left text-[1.05rem] font-semibold text-heading sm:px-6">
         <span>{question}</span>
         <Icon name="plus" size={22} className="shrink-0 text-accent-light transition-transform duration-300 group-open:rotate-45" />
       </summary>
@@ -14,6 +25,7 @@ export function FaqItem({ question, answer, defaultOpen }: { question: string; a
             {para}
           </p>
         ))}
+        {link === "manage" ? <ManageMembershipLink className="mt-3" /> : null}
       </div>
     </details>
   );

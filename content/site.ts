@@ -1,5 +1,5 @@
 // Site-wide copy and settings. Edit text here; components read from this file.
-// Anything in [BRACKETS] is a placeholder. See PLACEHOLDERS.md.
+// Anything in [TODO: ...] brackets is missing information. See PLACEHOLDERS.md.
 
 export type NavLink = { label: string; href: string };
 
@@ -7,56 +7,79 @@ export const site = {
   name: "Investing Mastery Signals",
   shortName: "IMS",
   description:
-    "Systematic, rules-based investment research. Investing Mastery Signals publishes the same valuation, trend and risk signals to every member, with the reasoning written down.",
-  // Set NEXT_PUBLIC_SITE_URL in Vercel to the production domain, e.g. https://[DOMAIN]
+    "Rules-based crypto signals posted every evening in a private Telegram group. Pro by card, monthly or yearly, or a full year of Pro access paid in Bitcoin.",
+  // Set NEXT_PUBLIC_SITE_URL in Vercel to the production domain, e.g. https://example.com
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : "http://localhost:3000"),
-  legalEntity: "[LEGAL ENTITY NAME]",
-  email: "[EMAIL]",
+  builtBy: { text: "Website Built & Operated by", name: "Lee Enterprises Unlimited", href: "https://leeenterprisesunlimited.com" },
+  legalEntity: "Investing Mastery Signals",
+  // Support and contact phone number shown across the site.
+  phone: { display: "(240) 538-3463", href: "tel:+12405383463" },
   founders: ["Hunter Lee", "Aaron Wathen"],
 
-  // Set to "/brand/logo.svg" once the real logo file is in public/brand/.
-  logoSrc: null as string | null,
+  // IM logo mark (transparent PNG, 712x430) shown beside the text wordmark, and a
+  // square version on its dark background for search engines and app icons.
+  logo: {
+    mark: { src: "/brand/logo-mark.png", width: 712, height: 430 },
+    square: "/brand/logo-square.png",
+  },
 
-  // Where every "Join Signals" button points. Tier cards on /signals hold the real [JOIN LINK]s.
-  joinHref: "/signals",
-  joinLabel: "Join Signals",
+  // Where every "Join" button outside the pricing cards points.
+  joinHref: "/signals#pricing",
+  joinLabel: "See membership",
 
-  // Only true claims. Items marked [CONFIRM] are not yet confirmed.
-  trustLine: ["Rules-based", "Same signal for every member", "Cancel anytime [CONFIRM]"],
+  // Stripe's no-code customer portal login link (members sign in with their email).
+  // Set NEXT_PUBLIC_STRIPE_PORTAL_URL in Vercel. Test and live mode have different links.
+  manageMembership: {
+    label: "Manage membership",
+    href: process.env.NEXT_PUBLIC_STRIPE_PORTAL_URL ?? "[TODO: Stripe customer portal login link]",
+  },
+
+  // Only true claims. The return figure must be backed by records (which signal, actual or backtest).
+  trustLine: ["Rules-based", "Posted daily", "+281% From August 2023 - November 2026"],
 
   ageNotice: "Membership is for adults 18 and over.",
 
+  // Required wording. Shown in the footer on every page and next to the pricing table.
   disclaimer:
-    "Investing Mastery Signals publishes general, impersonal research for educational purposes. Nothing on this site is financial, investment, tax or legal advice. Investing involves risk, including loss of principal. Past performance does not guarantee future results.",
+    "IMS provides general research and educational information only. It is not financial, investment, legal, or tax advice.",
+  riskNote:
+    "Crypto is highly volatile. Past performance does not guarantee future results. You can lose some or all of your money. Do your own research and consider speaking with a licensed professional.",
 
   nav: [
+    { label: "Home", href: "/" },
     { label: "How It Works", href: "/how-it-works" },
-    { label: "Signals", href: "/signals" },
-    { label: "Research", href: "/research" },
+    { label: "Membership", href: "/signals" },
     { label: "About", href: "/about" },
     { label: "FAQ", href: "/faq" },
   ] satisfies NavLink[],
 
   socials: [
-    { label: "X", href: "[X URL]", icon: "x" },
-    { label: "YouTube", href: "[YOUTUBE URL]", icon: "youtube" },
-    { label: "Instagram", href: "[INSTAGRAM URL]", icon: "instagram" },
-    { label: "Community", href: "[DISCORD/TELEGRAM URL]", icon: "chat" },
+    { label: "X", href: "[TODO: X URL]", icon: "x" },
+    { label: "YouTube", href: "[TODO: YouTube URL]", icon: "youtube" },
+    { label: "Instagram", href: "[TODO: Instagram URL]", icon: "instagram" },
   ] as const,
 
   footer: {
     columns: [
       {
-        title: "Signals",
+        title: "Membership",
         links: [
-          { label: "Membership", href: "/signals" },
-          { label: "How It Works", href: "/how-it-works" },
-          { label: "Example signal", href: "/how-it-works#signal-anatomy" },
+          { label: "Pricing", href: "/signals#pricing" },
+          { label: "How joining works", href: "/signals#joining" },
+          { label: "Billing", href: "/signals#billing" },
           { label: "FAQ", href: "/faq" },
+        ],
+      },
+      {
+        title: "The signals",
+        links: [
+          { label: "How It Works", href: "/how-it-works" },
+          { label: "The group", href: "/how-it-works#groups" },
+          { label: "Group rules", href: "/how-it-works#rules" },
         ],
       },
       {
@@ -64,16 +87,7 @@ export const site = {
         links: [
           { label: "About", href: "/about" },
           { label: "Founders", href: "/about#founders" },
-          { label: "Principles", href: "/about#principles" },
           { label: "Contact", href: "/contact" },
-        ],
-      },
-      {
-        title: "Research",
-        links: [
-          { label: "All research", href: "/research" },
-          { label: "Method notes", href: "/research?tag=method" },
-          { label: "Valuation", href: "/research?tag=valuation" },
         ],
       },
       {
@@ -81,15 +95,15 @@ export const site = {
         links: [
           { label: "Disclaimer", href: "/disclaimer" },
           { label: "Risk Disclosure", href: "/risk-disclosure" },
-          { label: "Terms", href: "/terms" },
-          { label: "Privacy", href: "/privacy" },
+          { label: "Terms of Service", href: "/terms" },
+          { label: "Privacy Policy", href: "/privacy" },
         ],
       },
     ] satisfies { title: string; links: NavLink[] }[],
   },
 };
 
-/** True when a string still holds a [PLACEHOLDER] token. */
+/** True when a string still holds a [PLACEHOLDER] or [TODO: ...] token. */
 export function isPlaceholder(value: string | null | undefined): boolean {
   return !value || /\[[A-Z][^\]]*\]/.test(value);
 }

@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { RevealObserver } from "@/components/ui/RevealObserver";
 import { organizationJsonLd } from "@/lib/jsonld";
+import { Analytics } from "@vercel/analytics/next";
 
 // Headlines: heavy condensed caps. Body: Geist. Labels: Geist Mono. Wordmark: Cinzel.
 const anton = Anton({ subsets: ["latin"], weight: "400", variable: "--font-anton", display: "swap" });
@@ -17,7 +18,7 @@ const cinzel = Cinzel({ subsets: ["latin"], weight: "600", variable: "--font-cin
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Systematic Investment Research`,
+    default: `${site.name} | Rules-Based Crypto Signals`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: site.name,
-    title: `${site.name} | Systematic Investment Research`,
+    title: `${site.name} | Rules-Based Crypto Signals`,
     description: site.description,
     url: "/",
   },
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${anton.variable} ${geist.variable} ${geistMono.variable} ${cinzel.variable}`}
     >
@@ -56,6 +58,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </main>
         <SiteFooter />
         <RevealObserver />
+        <Analytics />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />
       </body>
     </html>

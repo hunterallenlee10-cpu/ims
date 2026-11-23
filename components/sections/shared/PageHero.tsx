@@ -18,7 +18,7 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative isolate overflow-hidden border-b border-panel-line pb-16 pt-[calc(var(--header-h)+4rem)] md:pb-24 md:pt-[calc(var(--header-h)+6rem)]">
+    <section className="relative isolate overflow-hidden border-b border-panel-line pb-16 pt-16 md:pb-24 md:pt-24">
       <DataWave seed={2.1} lines={7} opacity={0.32} className="-right-[30%] -top-[20%] h-[420px] w-[900px] max-w-none sm:-right-[10%]" />
       <DataWave seed={4.4} lines={6} opacity={0.22} reverse className="-bottom-[40%] -left-[35%] h-[380px] w-[900px] max-w-none" />
       <Glow className="left-1/2 top-1/2 h-[360px] w-[760px] max-w-[130vw] -translate-x-1/2 -translate-y-1/2" strength={0.6} />

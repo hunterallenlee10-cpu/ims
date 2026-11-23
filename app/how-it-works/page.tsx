@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/Button";
 import { PageHero } from "@/components/sections/shared/PageHero";
 import { CtaBand } from "@/components/sections/shared/CtaBand";
 import { WhySystematic } from "@/components/sections/how/WhySystematic";
-import { ThreeInputs } from "@/components/sections/how/ThreeInputs";
+import { TheSignals } from "@/components/sections/how/TheSignals";
+import { Groups } from "@/components/sections/how/Groups";
 import { UpdateCadence } from "@/components/sections/how/UpdateCadence";
-import { Delivery } from "@/components/sections/how/Delivery";
-import { SignalAnatomy } from "@/components/sections/how/SignalAnatomy";
+import { GroupRules } from "@/components/sections/how/GroupRules";
 import { WhatItIsNot } from "@/components/sections/how/WhatItIsNot";
 
 export const metadata = pageMetadata({ ...howItWorks.meta, path: "/how-it-works" });
@@ -18,20 +18,15 @@ export default function HowItWorksPage() {
   return (
     <>
       <PageHero eyebrow={hero.eyebrow} title={hero.title} intro={hero.intro}>
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <Button href="/signals" size="lg">
-            Join Signals
-          </Button>
-          <Button href="#signal-anatomy" size="lg" variant="secondary">
-            See an example signal
-          </Button>
-        </div>
+        <Button href="/signals#pricing" size="lg">
+          See membership
+        </Button>
       </PageHero>
-      <WhySystematic />
-      <ThreeInputs />
+      <TheSignals />
+      <Groups />
       <UpdateCadence />
-      <Delivery />
-      <SignalAnatomy />
+      <GroupRules />
+      <WhySystematic />
       <WhatItIsNot />
       <CtaBand title={cta.title} text={cta.text} />
     </>

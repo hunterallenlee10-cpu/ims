@@ -2,7 +2,7 @@
 export const contact = {
   meta: {
     title: "Contact",
-    description: "Questions about Investing Mastery Signals or membership? Send us a message.",
+    description: "Questions about Investing Mastery Signals, membership, billing or getting into the Telegram group? Send us a message.",
   },
   hero: {
     eyebrow: "Contact",
@@ -18,12 +18,13 @@ export const contact = {
     messageHint: "Please don't include account numbers or other sensitive financial details.",
     submit: "Send message",
     sending: "Sending…",
-    success: "Thanks. Your message is in. We'll reply by email [RESPONSE TIME, e.g. within 2 business days].",
-    error: "Something went wrong and your message wasn't sent. Please try again, or email us directly.",
+    success: "Thanks. Your message is in. We'll reply by email within 12 to 18 hours.",
+    error: "Something went wrong and your message wasn't sent. Please try again, or call us at (240) 538-3463.",
   },
   sidebar: {
-    emailTitle: "Email",
+    phoneTitle: "Phone",
     socialTitle: "Elsewhere",
-    note: "For billing questions, include the email address you joined with.",
+    note: "For billing questions, have the email address you joined with ready.",
+    manageNote: "To cancel, switch tiers or update your card, use Manage membership.",
   },
 };
