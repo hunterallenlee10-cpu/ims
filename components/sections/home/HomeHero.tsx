@@ -3,8 +3,8 @@ import path from "node:path";
 import Link from "next/link";
 import { home } from "@/content/home";
 import { renderAccent, renderRich } from "@/lib/accent";
-import { DataWave } from "@/components/art/DataWave";
 import { Glow } from "@/components/art/Glow";
+import { HoloGrowthChart } from "@/components/art/HoloGrowthChart";
 import { MoneyRain } from "@/components/art/MoneyRain";
 import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
@@ -31,29 +31,16 @@ export function HomeHero() {
         </>
       ) : null}
 
-      {/* Holographic BTC coins, bills and charts falling slowly, thinned out behind the headline */}
+      <Glow className="left-1/2 top-[40%] h-[520px] w-[900px] max-w-[160vw] -translate-x-1/2 -translate-y-1/2" strength={0.7} />
+
+      {/* Holographic growth chart drawing itself upward on a perspective grid, dimmed behind the headline */}
+      <HoloGrowthChart className="[mask-image:radial-gradient(ellipse_60%_48%_at_50%_42%,rgba(0,0,0,0.35)_0%,#000_100%)]" />
+
+      {/* Holographic BTC coins, bills and gold falling slowly on top, thinned out behind the headline */}
       <MoneyRain
         opacity={0.75}
         className="[mask-image:radial-gradient(ellipse_55%_45%_at_50%_45%,rgba(0,0,0,0.25)_0%,#000_100%)]"
       />
-
-      {/* Data-wave line art in the corners */}
-      <DataWave
-        seed={0.6}
-        lines={11}
-        opacity={0.5}
-        duration={56}
-        className="-right-[45%] -top-[8%] h-[520px] w-[1100px] max-w-none sm:-right-[25%] lg:-right-[12%] lg:-top-[14%]"
-      />
-      <DataWave
-        seed={3.3}
-        lines={9}
-        opacity={0.38}
-        duration={64}
-        reverse
-        className="-bottom-[10%] -left-[50%] h-[460px] w-[1000px] max-w-none sm:-left-[30%] lg:-left-[16%]"
-      />
-      <Glow className="left-1/2 top-[40%] h-[520px] w-[900px] max-w-[160vw] -translate-x-1/2 -translate-y-1/2" strength={0.7} />
 
       <div className="container-site relative text-center">
         <Chip tag={hero.chipTag} label={hero.eyebrow} className="mb-8" />
